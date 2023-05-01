@@ -1,8 +1,6 @@
 using System.Globalization;
 using InfoTerraTerra_Library;
 using InfoTerraTerra_Library.Users;
-using InfoTerraTerra.Middlewares;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 
@@ -26,6 +24,7 @@ builder.Services.Configure<KeyManagementOptions>(options =>
 });
 
 builder.Services.AddHealthChecks();
+
 builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
@@ -36,10 +35,6 @@ builder.Services
         options.LoginPath = "/auth/login";
         options.SlidingExpiration = true;
     });
-
-builder.Services.AddAuthentication(BasicAuthenticationHandler.DefaultScheme).
-    AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>
-        (BasicAuthenticationHandler.DefaultScheme, null);
 
 var cultureInfo = new CultureInfo("it-iT");
 cultureInfo.NumberFormat.CurrencySymbol = "€";

@@ -1,10 +1,9 @@
-using InfoTerraTerra.Middlewares;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InfoTerraTerra.Controllers;
 
-[Authorize(AuthenticationSchemes = BasicAuthenticationHandler.DefaultScheme)]
+[Authorize]
 public class AdminController : Controller
 {
     [Route("/admin")]

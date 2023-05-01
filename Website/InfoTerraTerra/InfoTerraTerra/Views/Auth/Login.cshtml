@@ -1,0 +1,29 @@
+﻿@model InfoTerraTerra.Models.Auth.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<form method="post">
+
+    <div class="form-row">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required/>
+    </div>
+
+    <div class="form-row">
+        <label for="plainTextPassword">Password:</label>
+        <input type="password" id="plainTextPassword" name="plainTextPassword" required/>
+    </div>
+
+    <div class="form-row">
+        <input type="submit" value="Login"/>
+    </div>
+
+</form>
+
+@if (!string.IsNullOrWhiteSpace(Model.Errors))
+{
+    <section>
+        <h3>@Model.Errors</h3>
+    </section>
+}
