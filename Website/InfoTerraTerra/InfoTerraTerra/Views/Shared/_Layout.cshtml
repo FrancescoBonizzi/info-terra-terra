@@ -1,26 +1,79 @@
-﻿<!DOCTYPE html>
+﻿@using InfoTerraTerra.Data
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8"/>
+    <!-- MAKE IT RESPONSIVE, YEAH! -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - InfoTerraTerra</title>
+    
+    <!-- SEO -->
+    @{ var metaTitle = $"{ViewData["Title"]} - {Constants.SiteTitle}"; }
+     <title>@metaTitle</title>
+    <meta name="description" content="@ViewData["MetaDescription"]" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@metaTitle" />
+    <meta property="og:description" content="@ViewData["MetaDescription"]" />
+    <meta property="og:site_name" content="@Constants.SiteTitle" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:image" content="@Constants.SiteTitle/images/info-terra-terra.png" />
+    <link rel="canonical" href="@Constants.SiteUrl" />
+
+    <!-- STYLES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/responsive.css" asp-append-version="true"/>
+    
 </head>
 
 <body>
 
 <header>
-  
+
+    <nav>
+        <ul>
+
+            <li>
+                <a class="header-logo" href="/">
+                    <img
+                        asp-append-version="true"
+                        src="~/images/info-terra-terra.png"
+                        alt="Il logo di @Constants.SiteTitle"
+                        width="50"
+                        height="50"/>
+                    <span>@Constants.SiteTitle</span>
+                </a>
+            </li>
+
+            <li>
+                <a class="text-link" href="/manifesto">Manifesto</a>
+            </li>
+
+            <li>
+                <a class="text-link" href="/aiutaci">Aiutaci</a>
+            </li>
+
+            <li>
+                <a class="text-link" href="/volantini">I volantini</a>
+            </li>
+
+            <li>
+                <a class="action-button action-button-small" href="/newsletter">Iscriviti alla newsletter</a>
+            </li>
+
+        </ul>
+    </nav>
+
 </header>
 
 <main role="main">
     @RenderBody()
 </main>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2023 - InfoTerraTerra - <a href="/privacy" title="Leggi l'informativa sulla privacy">Privacy</a>
-    </div>
+<footer>
+    <p>&copy; 2023 - @Constants.SiteTitle - <a class="text-link" href="/privacy" title="Leggi l'informativa sulla privacy">Privacy</a>
 </footer>
 
 <script src="~/js/site.js" asp-append-version="true"></script>

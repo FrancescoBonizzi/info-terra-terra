@@ -19,6 +19,24 @@ public class HomeController : Controller
     {
         return View();
     }
+    
+    [Route("/aiutaci")]
+    public IActionResult Aiutaci()
+    {
+        return View();
+    }
+    
+    [Route("/manifesto")]
+    public IActionResult Manifesto()
+    {
+        return View();
+    }
+    
+    [Route("/volantini")]
+    public IActionResult Volantini()
+    {
+        return View();
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
