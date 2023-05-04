@@ -62,7 +62,7 @@ jobs:
           uses: SamKirkland/FTP-Deploy-Action@v4.3.4
           with:
             local-dir: ${{ env.PUBLISHED_PACKAGE_PATH }}
-            serber-dir: info-terra-terra
+            server-dir: info-terra-terra/
             server: win6047.site4now.net
             username: fbonizzi-001
             password: ${{ secrets.ftp_password }}
