@@ -51,10 +51,10 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
+    app.UseHttpsRedirection();
 }
 
 app.UseMiddleware<WwwRedirect>();
-app.UseHttpsRedirection();
 app.MapHealthChecks("/healthz");
 app.UseRouting();
 app.UseAuthentication();

@@ -113,7 +113,11 @@ nav ul {
     flex-wrap: wrap;
 }
 
-nav ul > :nth-child(1n + 2), nav li > :nth-child(1n + 2) {
+nav ul > :nth-child(1n + 2) {
+    margin: 0 1rem;
+}
+
+.margin-horizontal-1rem {
     margin: 0 1rem;
 }
 
@@ -269,7 +273,7 @@ section ul li {
 }
 
 .hashtag {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--primary-color-darker);
     text-transform: uppercase;

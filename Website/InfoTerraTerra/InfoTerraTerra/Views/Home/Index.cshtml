@@ -34,22 +34,19 @@
         @foreach (var volantino in Voltantini.All.Take(3).OrderByDescending(v => v.Date))
         {
             <div class="homepage-volantino-container">
-                
+
                 <div class="homepage-volantino-image-text-container">
-                <img src="images/@volantino.ImageName" alt="La foto del volatino @volantino.Title"/>
-                <div class="homepage-volantino-text-container">
-
-                    <span class="hashtag">@volantino.HashTagsString</span>
-                    <span>@volantino.Title</span>
-                    <span>@volantino.Date</span>
-                    <p>@volantino.Description</p>
-                     <a class="action-button-secondary" href="@volantino.PageUrl">Leggi di più &rsaquo;</a>
+                    <img src="images/@volantino.ImageName" alt="La foto del volatino @volantino.Title"/>
+                    <div class="homepage-volantino-text-container">
+                        <span class="hashtag">@volantino.HashTagsString</span>
+                        <span>@volantino.Title</span>
+                        <span>@volantino.Date</span>
+                        <p>@volantino.Description</p>
+                        <a class="action-button-secondary" href="@volantino.PageUrl">Leggi di più &rsaquo;</a>
+                    </div>
                 </div>
-                </div>
 
-               
             </div>
-           
         }
 
         <a class="action-button" href="/volantini">Guarda tutti i volantini</a>
@@ -80,6 +77,8 @@
         <p>
             <strong>Ogni piccola azione può fare la differenza</strong>: unisciti a noi per creare un futuro sostenibile per tutti!
         </p>
+        
+          <a class="action-button" href="/aiutaci">Scopri come puoi aiutare</a>
 
     </div>
 </section>
