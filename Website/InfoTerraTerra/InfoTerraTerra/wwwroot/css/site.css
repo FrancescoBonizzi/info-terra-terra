@@ -48,6 +48,15 @@ section {
     color: white;
 }
 
+.action-button-secondary-2 {
+    color: var(--cta-section-color);
+    align-self: flex-start;
+}
+
+.action-button-secondary-2:hover {
+    border-bottom: 2px solid black;
+}
+
 
 /** Reset */
 *,
@@ -188,7 +197,6 @@ nav ul li a {
     transition: all 0.3s ease;
 }
 
-
 .action-button-secondary {
     color: var(--primary-color);
     align-self: flex-start;
@@ -197,6 +205,7 @@ nav ul li a {
 .action-button-secondary:hover {
     border-bottom: 2px solid var(--primary-color);
 }
+
 
 h1 {
     font-size: 4rem;
@@ -216,6 +225,8 @@ h3 {
 
 h4 {
     font-size: 1.2rem;
+    padding-top: 1rem;
+    font-weight: 700;
 }
 
 footer {
