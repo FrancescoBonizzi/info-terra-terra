@@ -12,7 +12,8 @@
         </p>
 
         <p>
-            La nostra <strong>missione</strong> è fornire informazioni accurate e aggiornate sulle questioni ambientali più urgenti,
+            La nostra <strong>missione</strong> è fornire informazioni accurate
+            e aggiornate sulle questioni ambientali più urgenti,
             perché crediamo che la conoscenza sia il primo passo per il cambiamento.
         </p>
 
@@ -33,20 +34,7 @@
 
         @foreach (var volantino in Voltantini.All.Take(3).OrderByDescending(v => v.Date))
         {
-            <div class="homepage-volantino-container">
-
-                <div class="homepage-volantino-image-text-container">
-                    <img src="images/@volantino.ImageName" alt="La foto del volatino @volantino.Title"/>
-                    <div class="homepage-volantino-text-container">
-                        <span class="hashtag">@volantino.HashTagsString</span>
-                        <span>@volantino.Title</span>
-                        <span>@volantino.FormattedDate</span>
-                        <p>@volantino.Description</p>
-                        <a class="action-button-secondary" href="@volantino.PageUrl">Leggi di più &rsaquo;</a>
-                    </div>
-                </div>
-
-            </div>
+            <partial name="PartialVolantino" model="@volantino"/>
         }
 
         <a class="action-button" href="/volantini">Guarda tutti i volantini</a>
@@ -70,15 +58,21 @@
 
         <ul>
             <li><strong>Stampare</strong> i nostri volantini e <strong>distribuirli</strong> nella tua comunità</li>
-            <li><strong>Condividere</strong> le nostre iniziative</li>
+            <li>
+                <strong>Condividere</strong> le nostre iniziative. Ricorda:
+                <strong>
+                    anche una sola persona che inizia a riflettere
+                    su questi temi grazie a noi, è un successo!
+                </strong>
+            </li>
             <li>Lasciarci la tua email per ricevere aggiornamenti sulle nostre attività</li>
         </ul>
 
         <p>
-            <strong>Ogni piccola azione può fare la differenza</strong>: unisciti a noi per creare un futuro sostenibile per tutti!
+            <strong>Ogni piccola azione può fare la differenza</strong>
         </p>
-        
-          <a class="action-button" href="/aiutaci">Scopri come puoi aiutare</a>
+
+        <a class="action-button" href="/aiutaci">Scopri come puoi aiutare</a>
 
     </div>
 </section>
@@ -88,16 +82,13 @@
         <h3>Rimaniamo in <strong>contatto</strong></h3>
 
         <p>
-            Se vuoi rimanere aggiornato sulle nostre attività e sulle ultime notizie riguardanti l'ambiente,
+            Se vuoi rimanere aggiornato sulle nostre attività
             lascia la tua email qui sotto.
         </p>
 
         <p>
-            Ti terremo informato su come puoi aiutarci a diffondere la nostra missione e a fare la differenza nel mondo.
-        </p>
-
-        <p>
-            Insieme possiamo creare un futuro sostenibile per tutti, ma dobbiamo farlo insieme. Non perdere l'occasione di unirti alla nostra comunità!
+            Ti terremo informato su come puoi aiutarci a diffondere
+            la nostra missione e a fare la differenza.
         </p>
 
         <a class="action-button" href="/newsletter">Iscriviti alla newsletter</a>

@@ -1,6 +1,8 @@
+@using InfoTerraTerra.Data
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Volantini";
-    ViewData["MetaDescription"] = "";
+    ViewData["MetaDescription"] = "Tutti i volantini pubblicati da Info Terra Terra.";
 }
 
 <article>
@@ -8,9 +10,19 @@
     <section>
         <div class="section-content">
             <h1>@ViewData["Title"]</h1>
-            <h2>Da scrivere</h2>
+            <h2>Tutte le nostre grafiche consulatabili e scaricabili</h2>
         </div>
+    </section>
+    
+    <section class="section-alt">
+        <div class="section-content">
+            
+            @foreach (var volantino in Voltantini.All.Take(3).OrderByDescending(v => v.Date))
+            {
+                <partial name="PartialVolantino" model="@volantino"/>
+            }
 
+        </div>
     </section>
 
 </article>
