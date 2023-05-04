@@ -1,16 +1,15 @@
 :root {
-    --primary-color: #7FB235;
-    --primary-color-darker: #275529;
+    --primary-color: #86C342;
     --text-on-primary-color: #fff;
-    --accent-color: #95D1D7;
-    --body-text-color: #8c8c95;
+    --secondary-color: #cfe8c9;
+    --body-text-color: #d5eebc;
     --alt-section-color: #f7f7f7;
-    --cta-section-color: #753906;
+    --cta-section-color: #3C312B;
     --content-max-width: 40rem;
     --header-max-width: 70rem;
     --page-horizontal-padding: 1rem;
-    --cta-background-color: #dc2463;
-    --cta-background-hover-color: #a82e57;
+    --cta-button-background-color: #A31F37;
+    --cta-button-background-hover-color: #dc2463;
 }
 
 html {
@@ -28,7 +27,7 @@ main {
 section {
     padding: 3rem var(--page-horizontal-padding);
     width: 100%;
-    background-color: var(--accent-color);
+    background-color: var(--secondary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,6 +45,35 @@ section {
 .section-cta {
     background-color: var(--cta-section-color);
     color: white;
+}
+
+.section-content-right, .section-content-left {
+    width: 25rem;
+    background-color: var(--secondary-color);
+    padding: 1rem var(--page-horizontal-padding);
+    border-radius: 1rem;
+    margin: 0.5rem;
+}
+
+.section-content-right {
+    align-self: flex-end;
+}
+
+.section-content-left {
+    align-self: flex-start;
+}
+
+.section-content-primary-color-bg {
+    background-color: var(--primary-color);
+    color: var(--text-on-primary-color);
+    border: 6px solid white;
+}
+
+.section-forest {
+    background-image: url('../images/dave-hoefler-UFnHt94r91w-unsplash.jpg');
+    border-bottom: 6px solid white;
+    border-top: 6px solid white;
+    padding: 2rem 10rem;
 }
 
 .action-button-secondary-2 {
@@ -177,7 +205,7 @@ nav ul li a {
 .action-button {
     padding: 16px 30px;
     border-radius: 80px;
-    background-color: var(--cta-background-color);
+    background-color: var(--cta-button-background-color);
     color: white;
     text-align: center;
     transform-style: preserve-3d;
@@ -192,7 +220,7 @@ nav ul li a {
 
 
 .action-button:hover {
-    background-color: var(--cta-background-hover-color);
+    background-color: var(--cta-button-background-hover-color);
     color: white;
     transition: all 0.3s ease;
 }
@@ -287,7 +315,19 @@ section ul li {
 .hashtag {
     font-size: 0.8rem;
     font-weight: 700;
-    color: var(--primary-color-darker);
+    color: var(--cta-section-color);
     text-transform: uppercase;
     padding-bottom: 1rem;
+}
+
+.jumbo-text {
+    font-size: 3rem;
+    text-align: center;
+    display: block;
+    align-self: center;
+}
+
+.left-aligned {
+    text-align: left;
+    align-self: flex-start;
 }

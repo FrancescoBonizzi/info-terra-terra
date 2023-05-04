@@ -11,5 +11,7 @@ public class Volantino
     public required string DownloadUrl { get; init; }
     public required string[] HashTags { get; init; }
     
+    // Campi calcolati
     public string HashTagsString => string.Join(" ", HashTags);
+    public string FormattedDate => Date.ToString("dd/MM/yyyy");
 }

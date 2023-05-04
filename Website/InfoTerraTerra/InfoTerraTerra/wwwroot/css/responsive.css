@@ -16,4 +16,17 @@
     nav ul li:first-child{
         flex: none;
     }
+
+    .section-content-right, .section-content-left {
+        width: 100%;
+        align-self: stretch;
+    }
+    
+    .section-forest {
+        padding: 3rem var(--page-horizontal-padding);
+    }
+    
+    h2, h3, h4, .jumbo-text {
+        text-align: center;
+    }
 }
