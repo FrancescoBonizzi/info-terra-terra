@@ -17,9 +17,9 @@
         </p>
 
         <p>
-            Attraverso i nostri volantini, i nostri articoli e le nostre iniziative, 
-            speriamo di <strong>ispirare</strong> azioni concrete 
-            e di sensibilizzare sempre più persone sulla necessità 
+            Attraverso i nostri volantini, i nostri articoli e le nostre iniziative,
+            speriamo di <strong>ispirare</strong> azioni concrete
+            e di sensibilizzare sempre più persone sulla necessità
             di proteggere il nostro pianeta per le generazioni future.
         </p>
 
@@ -33,10 +33,23 @@
 
         @foreach (var volantino in Voltantini.All.Take(3).OrderByDescending(v => v.Date))
         {
-            <span>@volantino.Title</span>
-            <span>@volantino.Date</span>
-            <p>@volantino.Description</p>
-            <a class="action-button action-button-secondary" href="@volantino.PageUrl">Leggi di più</a>
+            <div class="homepage-volantino-container">
+                
+                <div class="homepage-volantino-image-text-container">
+                <img src="images/@volantino.ImageName" alt="La foto del volatino @volantino.Title"/>
+                <div class="homepage-volantino-text-container">
+
+                    <span class="hashtag">@volantino.HashTagsString</span>
+                    <span>@volantino.Title</span>
+                    <span>@volantino.Date</span>
+                    <p>@volantino.Description</p>
+                     <a class="action-button-secondary" href="@volantino.PageUrl">Leggi di più &rsaquo;</a>
+                </div>
+                </div>
+
+               
+            </div>
+           
         }
 
         <a class="action-button" href="/volantini">Guarda tutti i volantini</a>
@@ -45,7 +58,9 @@
 
 <section>
     <div class="section-content">
-        <h3><strong>Aiutaci</strong></h3>
+        <h3>
+            <strong>Aiutaci</strong>
+        </h3>
 
         <p>
             Siamo una piccola organizzazione con grandi idee per rendere il mondo un posto migliore.

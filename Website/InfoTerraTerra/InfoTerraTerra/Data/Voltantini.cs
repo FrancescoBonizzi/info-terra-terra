@@ -12,7 +12,7 @@ public static class Voltantini
             Title = "Volantino 1",
             Slug = "volantino-1",
             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            ImageUrl = "https://via.placeholder.com/150",
+            ImageName = "volantino-1.png",
             PageUrl = "https://www.google.com",
             DownloadUrl = "https://www.google.com",
             HashTags = new []{ "#tag1", "#tag2", "#tag3" }
@@ -23,7 +23,7 @@ public static class Voltantini
             Title = "Volantino 2",
             Slug = "volantino-2",
             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            ImageUrl = "https://via.placeholder.com/150",
+            ImageName = "volantino-1.png",
             PageUrl = "https://www.google.com",
             DownloadUrl = "https://www.google.com",
             HashTags = new []{ "#tag1", "#tag2", "#tag3" }
