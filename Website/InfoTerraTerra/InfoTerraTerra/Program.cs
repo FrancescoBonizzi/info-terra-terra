@@ -1,6 +1,7 @@
 using System.Globalization;
 using InfoTerraTerra_Library;
 using InfoTerraTerra_Library.Users;
+using InfoTerraTerra.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 
@@ -8,9 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionStringProvider = new JsonConfigInfrastructureConfigurationProvider(builder.Configuration);
 builder.Services.AddSingleton<IUsersRepository, InMemoryUsersRepository>();
+builder.Services.AddSingleton<WwwRedirect>();
+
 builder.Services
     .AddControllersWithViews()
     .AddNewtonsoftJson();
+
 
 // Provider custom di storage delle chiavi di crittazione per la data protection
 // usato in particolare la crittografia dei cookie, che non va correttamente sulle macchine virtuali o shared
@@ -49,6 +53,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseMiddleware<WwwRedirect>();
+app.UseHttpsRedirection();
 app.MapHealthChecks("/healthz");
 app.UseRouting();
 app.UseAuthentication();
