@@ -60,10 +60,17 @@ section {
 }
 
 .section-content-left {
-    align-self: flex-start;
+    align-self: stretch;
     background-color: white;
     margin-right: 25rem;
     padding: 4rem 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.width25rem {
+    width: 25rem;
 }
 
 .section-forest {
