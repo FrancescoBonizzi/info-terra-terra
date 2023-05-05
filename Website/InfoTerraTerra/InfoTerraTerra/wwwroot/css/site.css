@@ -67,7 +67,7 @@ section {
 }
 
 .section-forest {
-    background: url('../images/dave-hoefler-UFnHt94r91w-unsplash.jpg') no-repeat center center;
+    background: url('../images/forest-2.jpg') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -293,7 +293,6 @@ section ul {
 }
 
 section ul li {
-
     list-style: initial;
 }
 
