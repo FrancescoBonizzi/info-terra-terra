@@ -3,27 +3,29 @@
     ViewData["Title"] = "Login";
 }
 
-<form method="post">
+<div class="flex-horizontal-center height100vh bg-forest-1">
+    <form method="post" class="margin-top-2rem transparent-rounded-form">
 
-    <div class="form-row">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required/>
-    </div>
+        <div class="form-row">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required/>
+        </div>
 
-    <div class="form-row">
-        <label for="plainTextPassword">Password:</label>
-        <input type="password" id="plainTextPassword" name="plainTextPassword" required/>
-    </div>
+        <div class="form-row">
+            <label for="plainTextPassword">Password:</label>
+            <input type="password" id="plainTextPassword" name="plainTextPassword" required/>
+        </div>
 
-    <div class="form-row">
-        <input type="submit" value="Login"/>
-    </div>
+        <div class="form-row">
+            <input type="submit" value="Login"/>
+        </div>
 
-</form>
+    </form>
 
-@if (!string.IsNullOrWhiteSpace(Model.Errors))
-{
-    <section>
-        <h3>@Model.Errors</h3>
-    </section>
-}
+    @if (!string.IsNullOrWhiteSpace(Model.Errors))
+    {
+        <section>
+            <h3>@Model.Errors</h3>
+        </section>
+    }
+</div>
