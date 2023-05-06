@@ -69,11 +69,22 @@ public class HomeController : Controller
         });
     }
 
-    [Route($"/{Constants.QrPageSlug}/{{slug}}")]
-    public async Task<IActionResult> Qr(string slug)
+    [Route($"/{Constants.QrPageSlug}/{{idVolantino:int?}}/{{citta?}}/{{via?}}/{{luogo?}}")]
+    public async Task<IActionResult> Qr(
+        int? idVolantino = null, 
+        string? citta = null, 
+        string? via = null, 
+        string? luogo = null)
     {
-        var trackingSlug = SlugParser.Parse(slug);
-
+        var trackingSlug = new TrackingSlug()
+        {
+            IdVolantino = idVolantino,
+            Citta = citta,
+            Via = via,
+            Luogo = luogo,
+            Slug = HttpContext.Request.Path
+        };
+            
         await _trackingRepository.InsertQrOpenAsync(new QrOpen
         {
             Ip = HttpContext.GetRemoteIpAddress(),
