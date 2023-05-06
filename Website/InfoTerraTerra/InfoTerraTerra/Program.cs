@@ -1,5 +1,6 @@
 using System.Globalization;
 using InfoTerraTerra_Library;
+using InfoTerraTerra_Library.Newsletter;
 using InfoTerraTerra_Library.Tracking;
 using InfoTerraTerra_Library.Users;
 using InfoTerraTerra.AspNetCore;
@@ -13,6 +14,7 @@ var connectionStringProvider = new JsonConfigInfrastructureConfigurationProvider
 builder.Services.AddSingleton<IInfrastructureConfigurationProvider>(connectionStringProvider);
 builder.Services.AddSingleton<IUsersRepository, InMemoryUsersRepository>();
 builder.Services.AddSingleton<TrackingRepository>();
+builder.Services.AddSingleton<NewsletterRepository>();
 builder.Services.AddScoped<WwwRedirect>();
 
 builder.Services

@@ -1,16 +1,46 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model InfoTerraTerra.Models.Newsletter.NewsletterViewModel
 @{
     ViewData["Title"] = "Newsletter";
-    ViewData["MetaDescription"] = "";
+    ViewData["MetaDescription"] = "Se vuoi rimanere aggiornato sulle nostre attività, lasciaci la tua email. Ti terremo informato su come puoi aiutarci a diffondere la nostra missione e a fare la differenza.";
 }
 
-<article>
+<div class="flex-horizontal-center height100vh bg-forest-1">
 
-    <section>
-        <div class="section-content">
-            <h1>@ViewData["Title"]</h1>
-            <h2>Da scrivere</h2>
+    @if (!string.IsNullOrWhiteSpace(Model.Success))
+    {
+        <div class="transparent-rounded-form">
+            <h3>@Model.Success</h3>
         </div>
+    }
+    else
+    {
+        <form method="post" class="margin-top-2rem transparent-rounded-form">
 
-    </section>
+            <p>
+                Se vuoi rimanere aggiornato sulle nostre attività, lasciaci la tua email.
+                Ti terremo informato su come puoi aiutarci a diffondere la nostra missione e a fare la differenza.
+            </p>
 
-</article>
+            <p>Non preoccuparti la tua <a href="/privacy" class="action-button-secondary">privacy</a> è assolutamente al sicuro!</p>
+
+            <div class="form-row">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required/>
+            </div>
+
+            <div class="form-row">
+                <input type="submit" value="Iscriviti"/>
+            </div>
+
+        </form>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.Errors))
+    {
+        <div class="transparent-rounded-form">
+            <h3>@Model.Errors</h3>
+        </div>
+    }
+
+</div>

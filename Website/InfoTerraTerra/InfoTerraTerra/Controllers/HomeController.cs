@@ -1,9 +1,13 @@
 ﻿using System.Diagnostics;
+using InfoTerraTerra_Library;
+using InfoTerraTerra_Library.Newsletter;
 using InfoTerraTerra_Library.Tracking;
 using InfoTerraTerra.AspNetCore;
 using InfoTerraTerra.Data;
 using Microsoft.AspNetCore.Mvc;
 using InfoTerraTerra.Models;
+using InfoTerraTerra.Models.Auth;
+using InfoTerraTerra.Models.Newsletter;
 using Microsoft.AspNetCore.Authorization;
 
 namespace InfoTerraTerra.Controllers;
@@ -12,10 +16,14 @@ namespace InfoTerraTerra.Controllers;
 public class HomeController : Controller
 {
     private readonly TrackingRepository _trackingRepository;
+    private readonly NewsletterRepository _newsletterRepository;
 
-    public HomeController(TrackingRepository trackingRepository)
+    public HomeController(
+        TrackingRepository trackingRepository,
+        NewsletterRepository newsletterRepository)
     {
         _trackingRepository = trackingRepository;
+        _newsletterRepository = newsletterRepository;
     }
 
     [Route(Constants.HomePageSlug)]
@@ -51,7 +59,35 @@ public class HomeController : Controller
     [Route("/newsletter")]
     public IActionResult Newsletter()
     {
-        return View();
+        return View(new NewsletterViewModel());
+    }
+    
+    [Route("/newsletter")]
+    [HttpPost]
+    public async Task<IActionResult> Newsletter(NewsletterIscrizioneRequest request)
+    {
+        try
+        {
+            await _newsletterRepository.InsertEmailAddressAsync(request.Email);
+            return View(new NewsletterViewModel()
+            {
+                Success = "Grazie per esserti iscritto alla newsletter! A presto!"
+            });
+        }
+        catch (FrontendException ex)
+        {
+            return View(new NewsletterViewModel()
+            {
+                Errors = ex.FrontendMessage
+            });
+        }
+        catch
+        {
+            return View(new NewsletterViewModel()
+            {
+                Errors = "Ooops! Qualcosa è andato storto. Riprova più tardi."
+            });
+        }
     }
 
     [Route($"{Constants.VolantinoPageSlug}/{{id:int}}")]

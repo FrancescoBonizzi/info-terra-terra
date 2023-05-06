@@ -38,13 +38,13 @@ public class AuthController : Controller
     
     [Route("login")]
     [HttpPost]
-    public async Task<IActionResult> Login(LoginRequest loginRequest)
+    public async Task<IActionResult> Login(LoginRequest request)
     {
         try
         {
             var user = await _usersRepository.Login(
-                loginRequest.Username,
-                loginRequest.PlainTextPassword);
+                request.Username,
+                request.PlainTextPassword);
             var principal = CookieAuthenticationHelper.GeneratePrincipal(user);
             await HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,

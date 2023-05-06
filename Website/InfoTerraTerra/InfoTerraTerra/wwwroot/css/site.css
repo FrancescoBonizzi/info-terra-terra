@@ -101,12 +101,19 @@ section {
     padding: 0;
 }
 
-.bg-forest-1 {
-    background: url('../images/forest-1.jpg') no-repeat center center;
+.bg-forest-1, .bg-forest-2 {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.bg-forest-1 {
+    background: url('../images/forest-1.jpg') no-repeat center center;
+}
+
+.bg-forest-2 {
+    background: url('../images/forest-2.jpg') no-repeat center center;
 }
 
 
