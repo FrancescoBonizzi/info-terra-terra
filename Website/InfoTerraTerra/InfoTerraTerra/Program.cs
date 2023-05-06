@@ -1,15 +1,19 @@
 using System.Globalization;
 using InfoTerraTerra_Library;
+using InfoTerraTerra_Library.Tracking;
 using InfoTerraTerra_Library.Users;
 using InfoTerraTerra.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionStringProvider = new JsonConfigInfrastructureConfigurationProvider(builder.Configuration);
+builder.Services.AddSingleton<IInfrastructureConfigurationProvider>(connectionStringProvider);
 builder.Services.AddSingleton<IUsersRepository, InMemoryUsersRepository>();
-builder.Services.AddSingleton<WwwRedirect>();
+builder.Services.AddSingleton<TrackingRepository>();
+builder.Services.AddScoped<WwwRedirect>();
 
 builder.Services
     .AddControllersWithViews()
@@ -53,6 +57,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
     app.UseHttpsRedirection();
 }
+
+// Mi serve per tracciare correttamente l'indirizzo IP delle richieste
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+                       ForwardedHeaders.XForwardedProto
+});
 
 app.UseMiddleware<WwwRedirect>();
 app.MapHealthChecks("/healthz");

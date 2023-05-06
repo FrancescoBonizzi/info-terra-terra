@@ -8,6 +8,7 @@ public static class Voltantini
     {
         new Volantino()
         {
+            Id = 1,
             Date = new DateTime(2021, 10, 1),
             Title = "Volantino 1",
             Slug = "volantino-1",
@@ -19,6 +20,7 @@ public static class Voltantini
         },
         new Volantino()
         {
+            Id = 2,
             Date = new DateTime(2021, 10, 2),
             Title = "Volantino 2",
             Slug = "volantino-2",

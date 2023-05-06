@@ -2,6 +2,7 @@ namespace InfoTerraTerra.Domain;
 
 public class Volantino
 {
+    public required int Id { get; init; }
     public required DateTime Date { get; init; }
     public required string Title { get; init; }
     public required string Slug { get; init; }
