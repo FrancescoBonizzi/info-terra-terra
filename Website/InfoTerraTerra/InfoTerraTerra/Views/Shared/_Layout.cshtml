@@ -50,16 +50,16 @@
             </li>
 
             <li>
-                <a class="text-link margin-horizontal-1rem" href="/manifesto">Manifesto</a>
-                <a class="text-link margin-horizontal-1rem" href="/aiutaci">Aiutaci</a>
-                <a class="text-link margin-horizontal-1rem" href="/volantini">I volantini</a>
+                <a class="text-link margin-horizontal-1rem" href="@Constants.ManifestoPageSlug">Manifesto</a>
+                <a class="text-link margin-horizontal-1rem" href="@Constants.AiutaciPageSlug">Aiutaci</a>
+                <a class="text-link margin-horizontal-1rem" href="@Constants.VolantiniPageSlug">I volantini</a>
             </li>
 
             @if ((bool?)ViewData["ShowNewsletterButton"] == null 
                  || (bool?)ViewData["ShowNewsletterButton"] == true)
             {
                 <li>
-                    <a class="action-button action-button-small" href="/newsletter">Iscriviti alla newsletter</a>
+                    <a class="action-button action-button-small" href="@Constants.NewsletterPageSlug">Iscriviti alla newsletter</a>
                 </li>
             }
 
@@ -73,7 +73,7 @@
 </main>
 
 <footer>
-    <p>&copy; 2023 - @Constants.SiteTitle - <a class="text-link" href="/privacy" title="Leggi l'informativa sulla privacy">Privacy</a> - <a class="text-link" href="mailto:@Constants.EmailAddress" title="Mandaci una mail!">Contattaci</a></p>
+    <p>&copy; 2023 - @Constants.SiteTitle - <a class="text-link" href="@Constants.PrivacyPageSlug" title="Leggi l'informativa sulla privacy">Privacy</a> - <a class="text-link" href="mailto:@Constants.EmailAddress" title="Mandaci una mail!">Contattaci</a></p>
 </footer>
 
 <script src="~/js/site.js" asp-append-version="true"></script>

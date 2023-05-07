@@ -55,13 +55,13 @@ public class HomeController : Controller
         return View();
     }
 
-    [Route("/newsletter")]
+    [Route(Constants.NewsletterPageSlug)]
     public IActionResult Newsletter()
     {
         return View(new NewsletterViewModel());
     }
     
-    [Route("/newsletter")]
+    [Route(Constants.NewsletterPageSlug)]
     [HttpPost]
     public async Task<IActionResult> Newsletter(NewsletterIscrizioneRequest request)
     {
