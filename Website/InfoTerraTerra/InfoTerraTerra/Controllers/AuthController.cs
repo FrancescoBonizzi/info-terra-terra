@@ -1,5 +1,6 @@
 using InfoTerraTerra_Library;
 using InfoTerraTerra_Library.Users;
+using InfoTerraTerra.Data;
 using InfoTerraTerra.Models.Auth;
 using InfoTerraTerra.Requests;
 using Microsoft.AspNetCore.Authentication;
@@ -9,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InfoTerraTerra.Controllers;
 
-[Route("auth")]
 public class AuthController : Controller
 {
     private readonly IUsersRepository _usersRepository;
@@ -19,7 +19,7 @@ public class AuthController : Controller
         _usersRepository = usersRepository;
     }
     
-    [Route("logout")]
+    [Route(Constants.Logout)]
     [Authorize]
     public async Task<IActionResult> Logout()
     {
@@ -27,7 +27,8 @@ public class AuthController : Controller
         return Redirect("/");
     }
 
-    [Route("login")]
+    [Route(Constants.LoginSlug)]
+    [AllowAnonymous]
     public IActionResult Login()
     {
         if (User.Identity?.IsAuthenticated == true)
@@ -36,8 +37,9 @@ public class AuthController : Controller
         return View(new LoginViewModel());
     }
     
-    [Route("login")]
+    [Route(Constants.LoginSlug)]
     [HttpPost]
+    [AllowAnonymous]
     public async Task<IActionResult> Login(LoginRequest request)
     {
         try

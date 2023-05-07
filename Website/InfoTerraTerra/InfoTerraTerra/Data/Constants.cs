@@ -14,4 +14,7 @@ public  static class Constants
     public const string NewsletterPageSlug = "/newsletter";
     public const string QrPageSlug = "/qr";
     public const string VolantinoPageSlug = "/volantino";
+    public const string AdminSlug = "/admin";
+    public const string LoginSlug = "/auth/login";
+    public const string Logout = "/auth/logout";
 }
