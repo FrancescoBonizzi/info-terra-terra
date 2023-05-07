@@ -55,9 +55,13 @@
                 <a class="text-link margin-horizontal-1rem" href="/volantini">I volantini</a>
             </li>
 
-            <li>
-                <a class="action-button action-button-small" href="/newsletter">Iscriviti alla newsletter</a>
-            </li>
+            @if ((bool?)ViewData["ShowNewsletterButton"] == null 
+                 || (bool?)ViewData["ShowNewsletterButton"] == true)
+            {
+                <li>
+                    <a class="action-button action-button-small" href="/newsletter">Iscriviti alla newsletter</a>
+                </li>
+            }
 
         </ul>
     </nav>
