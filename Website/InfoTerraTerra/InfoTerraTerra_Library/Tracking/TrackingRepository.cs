@@ -32,4 +32,17 @@ public class TrackingRepository
             trackingData.TrackingSlug.Luogo
         });
     }
+
+    public async Task GetStatisticheVolantini()
+    {
+        await using var connection = new SqlConnection(_connectionString);
+        var groupedData = await connection.QueryAsync<TrackingGroupedData>(
+            @"SELECT IdVolantino, Citta, Via, Luogo, COUNT(*) AS HowMany 
+                FROM Tracking.QrOpen
+                GROUP BY IdVolantino, Citta, Via, Luogo
+                ORDER BY IdVolantino DESC");
+        
+        // TODO: finire
+        
+    }
 }
