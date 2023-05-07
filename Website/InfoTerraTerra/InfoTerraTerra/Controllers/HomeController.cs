@@ -6,7 +6,6 @@ using InfoTerraTerra.AspNetCore;
 using InfoTerraTerra.Data;
 using Microsoft.AspNetCore.Mvc;
 using InfoTerraTerra.Models;
-using InfoTerraTerra.Models.Auth;
 using InfoTerraTerra.Models.Newsletter;
 using Microsoft.AspNetCore.Authorization;
 
