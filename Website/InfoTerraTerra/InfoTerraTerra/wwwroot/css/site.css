@@ -439,3 +439,18 @@ input[type=submit]:hover {
 }
 /* FORM */
 
+.max-width-25rem {
+    max-width: 25rem;
+}
+
+.text-color-error {
+    color: #cc0000;
+}
+
+.text-color-success {
+    color: #69a64b;
+}
+
+.text-align-center {
+    text-align: center;
+}

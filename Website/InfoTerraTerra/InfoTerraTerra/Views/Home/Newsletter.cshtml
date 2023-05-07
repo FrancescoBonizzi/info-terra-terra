@@ -9,8 +9,8 @@
 
     @if (!string.IsNullOrWhiteSpace(Model.Success))
     {
-        <div class="transparent-rounded-form">
-            <h3>@Model.Success</h3>
+        <div class="transparent-rounded-form max-width-25rem text-color-success">
+            <h4 class="padding0 margin0 text-align-center">@Model.Success</h4>
         </div>
     }
     else
@@ -38,8 +38,8 @@
 
     @if (!string.IsNullOrWhiteSpace(Model.Errors))
     {
-        <div class="transparent-rounded-form">
-            <h3>@Model.Errors</h3>
+        <div class="transparent-rounded-form max-width-25rem text-color-error padding0 margin0">
+            <h4 class="padding0 margin0 text-align-center">@Model.Errors</h4>
         </div>
     }
 
