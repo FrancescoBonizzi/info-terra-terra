@@ -1,4 +1,5 @@
 using Dapper;
+using InfoTerraTerra_Library.Extensions;
 using Microsoft.Data.SqlClient;
 
 namespace InfoTerraTerra_Library.Newsletter;
@@ -41,5 +42,28 @@ public class NewsletterRepository
         // NB: non scrivo un messaggio tipo "eri già iscritto"
         // perché non voglio che si possa capire se un indirizzo (di un altro)
         // email è già stato iscritto o meno.
+    }
+    
+    public async Task<NewsletterIscrittiStatistics> GetStatistics()
+    {
+        await using var connection = new SqlConnection(_connectionString);
+        
+        var allEmail = await connection.QueryAsync<string>(
+            @"SELECT EmailAddress
+                  FROM Newsletter.EmailAddresses
+                  ORDER BY DateUtc DESC");
+        
+        var lastEmailDate = await connection.QueryFirstOrDefaultAsync<DateTime?>(
+            @"SELECT TOP 1 DateUtc
+                  FROM Newsletter.EmailAddresses
+                  ORDER BY DateUtc DESC");
+
+        return new NewsletterIscrittiStatistics()
+        {
+            AllNewsletterEmail = allEmail.ToArray(),
+            LastIscrittoDate = lastEmailDate?
+                .ToItalianTimezoneFromUtc()
+                .ToString("dd/MM/yyyy alle HH:mm")
+        };
     }
 }

@@ -464,3 +464,64 @@ input[type=submit]:hover {
     text-align: center;
 }
 
+/* ADMIN */
+
+.newsletter-email-container{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 200px;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    color: black;
+    margin-left: 1rem;
+}
+
+.newsletter-email-container > * {
+    margin-bottom: 0.5rem;
+}
+
+.newsletter-email-container > *:last-child {
+    margin-bottom: 0;
+}
+
+.bg-admin {
+    background-color: #ffee93;
+    color: black;
+}
+
+.counter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+
+.counter-label {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.counter-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cta-button-background-color);
+}
+
+.flex1 {
+    flex: 1;
+}
+
+.border-admin {
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.reset-width {
+    width: auto;
+    max-width: 100%;
+}

@@ -1,5 +1,51 @@
+@using InfoTerraTerra.AspNetCore
+@using Microsoft.Extensions.FileProviders
+@model InfoTerraTerra.Models.Admin.AdminViewModel
 @{
-    ViewData["Title"] = "Admin";
+    ViewData["Title"] = "Amministrazione";
 }
 
-<h2>Admin</h2>
+
+<article>
+
+    <section class="bg-admin">
+        <div class="section-content">
+            <h1>@ViewData["Title"]</h1>
+            <h2>👋🏻 @User.GetLoggedUserName()</h2>
+        </div>
+    </section>
+
+    <section class="bg-alt">
+        <div class="section-content border-admin">
+            <h3 class="reset-width">
+                <strong>Iscritti alla newsletter</strong>
+            </h3>
+
+            @foreach (var counter in Model.Counters)
+            {
+                <partial name="PartialCounter" model="@counter"/>
+            }
+
+            @if (Model.NewsletterIscrittiStatistics.AllNewsletterEmail.Length > 0)
+            {
+                <div class="counter-container">
+                    <div class="counter-label">
+                        Indirizzi email
+                    </div>
+
+                    <div class="newsletter-email-container flex1">
+                        <ol>
+                            @foreach (var email in Model.NewsletterIscrittiStatistics.AllNewsletterEmail)
+                            {
+                                <li>@email</li>
+                            }
+                        </ol>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </section>
+
+
+</article>
