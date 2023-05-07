@@ -1,4 +1,17 @@
 ﻿@using InfoTerraTerra.Data
+@using InfoTerraTerra.AspNetCore
+@{
+    string GetActiveClassForLink(string slug)
+        => Context.IsCurrentRoute(slug)
+            ? "text-link-active"
+            : "";
+
+    string GetActionButtonClassForLink(string slug)
+        => Context.IsCurrentRoute(slug)
+            ? "action-button action-button-active"
+            : "action-button";
+}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +37,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/responsive.css" asp-append-version="true"/>
 
@@ -50,18 +63,14 @@
             </li>
 
             <li>
-                <a class="text-link margin-horizontal-1rem" href="@Constants.ManifestoPageSlug">Manifesto</a>
-                <a class="text-link margin-horizontal-1rem" href="@Constants.AiutaciPageSlug">Aiutaci</a>
-                <a class="text-link margin-horizontal-1rem" href="@Constants.VolantiniPageSlug">I volantini</a>
+                <a class="text-link margin-horizontal-1rem @GetActiveClassForLink(Constants.ManifestoPageSlug)" href="@Constants.ManifestoPageSlug">Manifesto</a>
+                <a class="text-link margin-horizontal-1rem @GetActiveClassForLink(Constants.AiutaciPageSlug)" href="@Constants.AiutaciPageSlug">Aiutaci</a>
+                <a class="text-link margin-horizontal-1rem @GetActiveClassForLink(Constants.VolantiniPageSlug)" href="@Constants.VolantiniPageSlug">I volantini</a>
             </li>
 
-            @if ((bool?)ViewData["ShowNewsletterButton"] == null 
-                 || (bool?)ViewData["ShowNewsletterButton"] == true)
-            {
-                <li>
-                    <a class="action-button action-button-small" href="@Constants.NewsletterPageSlug">Iscriviti alla newsletter</a>
-                </li>
-            }
+            <li>
+                <a class="@GetActionButtonClassForLink(Constants.NewsletterPageSlug)" href="@Constants.NewsletterPageSlug">Iscriviti alla newsletter</a>
+            </li>
 
         </ul>
     </nav>
@@ -73,7 +82,7 @@
 </main>
 
 <footer>
-    <p>&copy; 2023 - @Constants.SiteTitle - <a class="text-link" href="@Constants.PrivacyPageSlug" title="Leggi l'informativa sulla privacy">Privacy</a> - <a class="text-link" href="mailto:@Constants.EmailAddress" title="Mandaci una mail!">Contattaci</a></p>
+    <p>&copy; 2023 - @Constants.SiteTitle - <a class="text-link @GetActiveClassForLink(Constants.PrivacyPageSlug)" href="@Constants.PrivacyPageSlug" title="Leggi l'informativa sulla privacy">Privacy</a> - <a class="text-link" href="mailto:@Constants.EmailAddress" title="Mandaci una mail!">Contattaci</a></p>
 </footer>
 
 <script src="~/js/site.js" asp-append-version="true"></script>

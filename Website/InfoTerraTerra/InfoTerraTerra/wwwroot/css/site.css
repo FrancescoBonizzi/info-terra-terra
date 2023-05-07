@@ -152,6 +152,7 @@ ul,
 li {
     list-style: none;
 }
+
 /** /Reset */
 
 strong {
@@ -200,14 +201,14 @@ nav ul li a {
     color: white;
 }
 
-.text-link {
-   
-}
-
 .text-link:hover {
     border-bottom: 2px solid white;
 }
 
+.text-link-active {
+    border-bottom: 2px solid white;
+    font-weight: 700;
+}
 
 
 .header-logo {
@@ -258,6 +259,13 @@ nav ul li a {
     transition: all 0.3s ease;
 }
 
+.action-button-active {
+    background-color: transparent !important;
+    color: white;
+    border-radius: 0;
+    border-bottom: 2px solid white;
+}
+
 .action-button-secondary {
     color: var(--cta-button-background-color);
     align-self: flex-start;
@@ -266,8 +274,8 @@ nav ul li a {
 
 .action-button-secondary:hover {
     border-bottom: 2px solid var(--cta-button-background-color);
+    color: var(--cta-button-background-hover-color);
 }
-
 
 h1 {
     font-size: 4rem;
@@ -398,7 +406,7 @@ input[type=text], input[type=password], input[type=email] {
     resize: vertical;
 }
 
-.transparent-rounded-form{
+.transparent-rounded-form {
     margin-top: 2rem;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 0.5rem;
@@ -437,6 +445,7 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: var(--cta-button-background-hover-color);
 }
+
 /* FORM */
 
 .max-width-25rem {
@@ -454,3 +463,4 @@ input[type=submit]:hover {
 .text-align-center {
     text-align: center;
 }
+
