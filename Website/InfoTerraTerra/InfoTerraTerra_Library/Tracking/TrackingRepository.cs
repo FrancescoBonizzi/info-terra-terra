@@ -43,6 +43,7 @@ public class TrackingRepository
         var groupedData = (await connection.QueryAsync<TrackingGroupedData>(
             @"SELECT IdVolantino, Citta, Via, Luogo, COUNT(*) AS HowMany 
                 FROM Tracking.QrOpen
+                WHERE IdVolantino IS NOT NULL
                 GROUP BY IdVolantino, Citta, Via, Luogo
                 ORDER BY IdVolantino DESC"))
             ?.ToArray();
