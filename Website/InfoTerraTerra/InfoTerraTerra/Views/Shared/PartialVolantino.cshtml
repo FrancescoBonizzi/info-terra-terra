@@ -3,12 +3,14 @@
 <div class="homepage-volantino-container">
 
     <div class="homepage-volantino-image-text-container">
-        <img src="~/images/@Model.ImageName" alt="La foto del volatino @Model.Title"/>
+        <img src="~/images/@Model.ImageNameFronte" alt="La foto del volatino @Model.Title"/>
         <div class="homepage-volantino-text-container">
             <span class="hashtag">@Model.HashTagsString</span>
-            <span>@Model.Title</span>
-            <span>@Model.FormattedDate</span>
-            <p>@Model.Description</p>
+            <div class="flex-vertical">
+                <span class="partial-volantino-title">@Model.Title</span>
+                <span class="partial-volantino-date">@Model.FormattedDate</span>
+            </div>
+            <p class="partial-volantino-description">@Model.Description…</p>
             <a class="action-button-secondary" href="@Model.PageUrl">Leggi di più &rsaquo;</a>
         </div>
     </div>

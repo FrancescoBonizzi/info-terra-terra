@@ -119,7 +119,22 @@ public class HomeController : Controller
             Volantino = volantino
         });
     }
+    
+    [Route($"{Constants.VolantinoPageSlug}/{{slug}}")]
+    public async Task<IActionResult> Volantino(string slug)
+    {
+        var volantino = await _volantiniRepository.GetVolantino(slug);
+        if (volantino == null)
+        {
+            return Redirect(@Constants.VolantiniPageSlug);
+        }
 
+        return View(new VolantinoViewModel
+        {
+            Volantino = volantino
+        });
+    }
+   
     [Route($"/{Constants.QrPageSlug}/{{idVolantino:int?}}/{{citta?}}/{{via?}}/{{luogo?}}")]
     public async Task<IActionResult> Qr(
         int? idVolantino = null,
