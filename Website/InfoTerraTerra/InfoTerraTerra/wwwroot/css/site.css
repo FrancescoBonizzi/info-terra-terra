@@ -501,7 +501,6 @@ input[type=submit]:hover {
 
 .counter-label {
     font-size: 1.2rem;
-    font-weight: 700;
 }
 
 .counter-value {
@@ -524,4 +523,26 @@ input[type=submit]:hover {
 .reset-width {
     width: auto;
     max-width: 100%;
+}
+
+.volantino-stat-container {
+    margin-top: 1rem;
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
+}
+
+.volantino-stat-subcontainer {
+    margin: 0.8rem 0;
+}
+
+.volantino-stat-subcontainer-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2f3330;
+}
+
+.stat-titolo-volantino {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #107921;
 }

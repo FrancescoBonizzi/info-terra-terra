@@ -1,4 +1,4 @@
-namespace InfoTerraTerra.Domain;
+namespace InfoTerraTerra_Library.Volantini;
 
 public class Volantino
 {

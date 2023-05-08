@@ -58,12 +58,10 @@ public class NewsletterRepository
                   FROM Newsletter.EmailAddresses
                   ORDER BY DateUtc DESC");
 
-        return new NewsletterIscrittiStatistics()
-        {
-            AllNewsletterEmail = allEmail.ToArray(),
-            LastIscrittoDate = lastEmailDate?
+        return new NewsletterIscrittiStatistics(
+            allEmail.ToArray(),
+            lastEmailDate?
                 .ToItalianTimezoneFromUtc()
-                .ToString("dd/MM/yyyy alle HH:mm")
-        };
+                .ToString("dd/MM/yyyy alle HH:mm"));
     }
 }

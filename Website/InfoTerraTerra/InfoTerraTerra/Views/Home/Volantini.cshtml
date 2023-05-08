@@ -1,5 +1,5 @@
-@using InfoTerraTerra.Data
 @using Microsoft.AspNetCore.Mvc.TagHelpers
+@model InfoTerraTerra.Models.Home.VolantiniViewModel
 @{
     ViewData["Title"] = "Volantini";
     ViewData["MetaDescription"] = "Tutti i volantini pubblicati da Info Terra Terra.";
@@ -17,7 +17,7 @@
     <section class="bg-alt">
         <div class="section-content">
             
-            @foreach (var volantino in Voltantini.All.Take(3).OrderByDescending(v => v.Date))
+            @foreach (var volantino in Model.Volantini)
             {
                 <partial name="PartialVolantino" model="@volantino"/>
             }

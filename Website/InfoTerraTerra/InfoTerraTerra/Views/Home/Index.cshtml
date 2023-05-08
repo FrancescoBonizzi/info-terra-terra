@@ -1,4 +1,5 @@
 ﻿@using InfoTerraTerra.Data
+@model InfoTerraTerra.Models.Home.IndexViewModel
 @{
     ViewData["Title"] = "Home Page";
     ViewData["MetaDescription"] = "Info Terra Terra è un sito dedicato a fornire informazioni sulle questioni ambientali più urgenti. Scopri come puoi fare la differenza e aiutarci a creare un mondo migliore per tutti.";
@@ -32,7 +33,7 @@
     <div class="section-content">
         <h3>Gli ultimi <strong>volantini</strong></h3>
 
-        @foreach (var volantino in Voltantini.All.Take(3).OrderByDescending(v => v.Date))
+        @foreach (var volantino in Model.Volantini)
         {
             <partial name="PartialVolantino" model="@volantino"/>
         }

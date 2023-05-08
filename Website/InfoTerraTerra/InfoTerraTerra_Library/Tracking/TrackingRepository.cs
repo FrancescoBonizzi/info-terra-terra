@@ -1,16 +1,20 @@
 using Dapper;
+using InfoTerraTerra_Library.Volantini;
 using Microsoft.Data.SqlClient;
-using Microsoft.VisualBasic;
 
 namespace InfoTerraTerra_Library.Tracking;
 
 public class TrackingRepository
 {
     private readonly string _connectionString;
+    private readonly VolantiniRepository _volantiniRepository;
 
-    public TrackingRepository(IInfrastructureConfigurationProvider infrastructureConfigurationProvider)
+    public TrackingRepository(
+        IInfrastructureConfigurationProvider infrastructureConfigurationProvider,
+        VolantiniRepository volantiniRepository)
     {
         _connectionString = infrastructureConfigurationProvider.MainSqlServerConnectionString;
+        _volantiniRepository = volantiniRepository;
     }
     
     public async Task InsertQrOpenAsync(QrOpen trackingData)
@@ -33,16 +37,24 @@ public class TrackingRepository
         });
     }
 
-    public async Task GetStatisticheVolantini()
+    public async Task<TrackingQrOpenStatistics> GetStatistics()
     {
         await using var connection = new SqlConnection(_connectionString);
-        var groupedData = await connection.QueryAsync<TrackingGroupedData>(
+        var groupedData = (await connection.QueryAsync<TrackingGroupedData>(
             @"SELECT IdVolantino, Citta, Via, Luogo, COUNT(*) AS HowMany 
                 FROM Tracking.QrOpen
                 GROUP BY IdVolantino, Citta, Via, Luogo
-                ORDER BY IdVolantino DESC");
-        
-        // TODO: finire
-        
+                ORDER BY IdVolantino DESC"))
+            ?.ToArray();
+
+        if (groupedData != null)
+        {
+            foreach (var data in groupedData)
+            {
+                data.Volantino = (await _volantiniRepository.GetVolantino(data.IdVolantino))!;
+            }
+        }
+
+        return new TrackingQrOpenStatistics(groupedData?.ToArray());
     }
 }

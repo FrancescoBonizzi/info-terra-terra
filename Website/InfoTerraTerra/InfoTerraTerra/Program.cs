@@ -3,6 +3,7 @@ using InfoTerraTerra_Library;
 using InfoTerraTerra_Library.Newsletter;
 using InfoTerraTerra_Library.Tracking;
 using InfoTerraTerra_Library.Users;
+using InfoTerraTerra_Library.Volantini;
 using InfoTerraTerra.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
@@ -15,6 +16,7 @@ builder.Services.AddSingleton<IInfrastructureConfigurationProvider>(connectionSt
 builder.Services.AddSingleton<IUsersRepository, InMemoryUsersRepository>();
 builder.Services.AddSingleton<TrackingRepository>();
 builder.Services.AddSingleton<NewsletterRepository>();
+builder.Services.AddSingleton<VolantiniRepository>();
 builder.Services.AddScoped<WwwRedirect>();
 
 builder.Services

@@ -23,5 +23,7 @@ public class AdminController : Controller
 
     [Route(Constants.AdminSlug)]
     public async Task<IActionResult> Index()
-        => View(new AdminViewModel(await _newsletterRepository.GetStatistics()));
+        => View(new AdminViewModel(
+            await _newsletterRepository.GetStatistics(),
+            await _trackingRepository.GetStatistics()));
 }

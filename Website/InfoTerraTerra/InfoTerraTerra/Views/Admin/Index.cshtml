@@ -19,7 +19,7 @@
                 <strong>Iscritti alla newsletter</strong>
             </h3>
 
-            @foreach (var counter in Model.Counters)
+            @foreach (var counter in Model.NewsletterIscrittiStatistics.Counters)
             {
                 <partial name="PartialCounter" model="@counter"/>
             }
@@ -51,6 +51,58 @@
                 <strong>Statistiche volantini</strong>
             </h3>
 
+            @foreach (var counter in Model.TrackingQrOpenStatistics.GlobalCounters)
+            {
+                <partial name="PartialCounter" model="@counter"/>
+            }
+
+            @foreach (var volantino in Model.TrackingQrOpenStatistics.SingleVolantinoStatistics)
+            {
+                <div class="volantino-stat-container">
+                    <span class="stat-titolo-volantino">
+                        @volantino.TitoloVolantino
+                    </span>
+
+                    @foreach (var counter in volantino.Counters)
+                    {
+                        <partial name="PartialCounter" model="@counter"/>
+                    }
+
+                    @if (volantino.PerCitta.Any())
+                    {
+                        <div class="volantino-stat-subcontainer">
+                            <span class="volantino-stat-subcontainer-title">Per città</span>
+                            @foreach (var counter in volantino.PerCitta)
+                            {
+                                <partial name="PartialCounter" model="@counter"/>
+                            }
+                        </div>
+                    }
+
+                    @if (volantino.PerVia.Any())
+                    {
+                        <div class="volantino-stat-subcontainer">
+                            <span class="volantino-stat-subcontainer-title">Per via</span>
+                            @foreach (var counter in volantino.PerVia)
+                            {
+                                <partial name="PartialCounter" model="@counter"/>
+                            }
+                        </div>
+                    }
+
+                    @if (volantino.PerLuogo.Any())
+                    {
+                        <div class="volantino-stat-subcontainer">
+                            <span class="volantino-stat-subcontainer-title">Per luogo</span>
+                            @foreach (var counter in volantino.PerLuogo)
+                            {
+                                <partial name="PartialCounter" model="@counter"/>
+                            }
+                        </div>
+                    }
+
+                </div>
+            }
         </div>
     </section>
 

@@ -14,7 +14,7 @@ public static class CookieAuthenticationHelper
             ClaimTypes.Role);
 
         identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Username));
-        identity.AddClaim(new Claim(ClaimTypes.Name, user.Name.ToString()));
+        identity.AddClaim(new Claim(ClaimTypes.Name, user.Name));
 
         return new ClaimsPrincipal(identity);
     }
