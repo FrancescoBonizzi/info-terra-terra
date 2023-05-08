@@ -13,7 +13,7 @@
         </div>
     </section>
 
-    <section class="bg-alt">
+    <section class="bg-alt padding-vertical-1rem">
         <div class="section-content border-admin">
             <h3 class="reset-width">
                 <strong>Iscritti alla newsletter</strong>
@@ -45,16 +45,18 @@
         </div>
     </section>
 
-    <section class="bg-alt">
+    <section class="bg-alt padding-vertical-1rem">
         <div class="section-content border-admin">
             <h3 class="reset-width">
                 <strong>Statistiche volantini</strong>
             </h3>
 
-            @foreach (var counter in Model.TrackingQrOpenStatistics.GlobalCounters)
-            {
-                <partial name="PartialCounter" model="@counter"/>
-            }
+            <div class="volantino-stat-rows">
+                @foreach (var counter in Model.TrackingQrOpenStatistics.GlobalCounters)
+                {
+                    <partial name="PartialCounter" model="@counter"/>
+                }
+            </div>
 
             @foreach (var volantino in Model.TrackingQrOpenStatistics.SingleVolantinoStatistics)
             {
@@ -63,19 +65,23 @@
                         @volantino.TitoloVolantino
                     </span>
 
-                    @foreach (var counter in volantino.Counters)
-                    {
-                        <partial name="PartialCounter" model="@counter"/>
-                    }
+                    <div class="volantino-stat-rows">
+                        @foreach (var counter in volantino.Counters)
+                        {
+                            <partial name="PartialCounter" model="@counter"/>
+                        }
+                    </div>
 
                     @if (volantino.PerCitta.Any())
                     {
                         <div class="volantino-stat-subcontainer">
                             <span class="volantino-stat-subcontainer-title">Per città</span>
-                            @foreach (var counter in volantino.PerCitta)
-                            {
-                                <partial name="PartialCounter" model="@counter"/>
-                            }
+                            <div class="volantino-stat-rows">
+                                @foreach (var counter in volantino.PerCitta)
+                                {
+                                    <partial name="PartialCounter" model="@counter"/>
+                                }
+                            </div>
                         </div>
                     }
 
@@ -83,10 +89,12 @@
                     {
                         <div class="volantino-stat-subcontainer">
                             <span class="volantino-stat-subcontainer-title">Per via</span>
-                            @foreach (var counter in volantino.PerVia)
-                            {
-                                <partial name="PartialCounter" model="@counter"/>
-                            }
+                            <div class="volantino-stat-rows">
+                                @foreach (var counter in volantino.PerVia)
+                                {
+                                    <partial name="PartialCounter" model="@counter"/>
+                                }
+                            </div>
                         </div>
                     }
 
@@ -94,10 +102,12 @@
                     {
                         <div class="volantino-stat-subcontainer">
                             <span class="volantino-stat-subcontainer-title">Per luogo</span>
-                            @foreach (var counter in volantino.PerLuogo)
-                            {
-                                <partial name="PartialCounter" model="@counter"/>
-                            }
+                            <div class="volantino-stat-rows">
+                                @foreach (var counter in volantino.PerLuogo)
+                                {
+                                    <partial name="PartialCounter" model="@counter"/>
+                                }
+                            </div>
                         </div>
                     }
 

@@ -496,7 +496,8 @@ input[type=submit]:hover {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-radius: 0.5rem;
+    border-radius: 0.7rem;
+    padding: 0 0.5rem;
 }
 
 .counter-label {
@@ -532,7 +533,11 @@ input[type=submit]:hover {
 }
 
 .volantino-stat-subcontainer {
-    margin: 0.8rem 0;
+    margin: 1rem 0;
+}
+
+.volantino-stat-rows > :nth-child(odd) {
+    background-color: #e8e8e8;
 }
 
 .volantino-stat-subcontainer-title {
@@ -545,4 +550,10 @@ input[type=submit]:hover {
     font-size: 1.6rem;
     font-weight: 700;
     color: #107921;
+    padding-bottom: 0.5rem;
+    display: block;
+}
+
+.padding-vertical-1rem {
+    padding: 1rem 0;
 }
