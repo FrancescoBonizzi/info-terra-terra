@@ -11,8 +11,8 @@ public class VolantiniRepository
             Slug = "porzione-terra-abitabile",
             Description = @"Pascoli e coltivazioni per l'alimentazione animale costituiscono il 77% della superficie agricola mondiale, 
                 EPPURE il bestiame fornisce a noi esseri umani solo il 18% delle calorie e il 37% delle proteine",
-            ImageNameFronte = "porzione-terra-abitabile-fronte.jpg",
-            ImageNameRetro = "porzione-terra-abitabile-retro.jpg",
+            ImageNameFronte = "volantino-porzione-terra-abitabile-fronte.jpg",
+            ImageNameRetro = "volantino-porzione-terra-abitabile-retro.jpg",
             PageUrl = "/volantino/porzione-terra-abitabile",
             DownloadUrl = "/pdf/InfoTerraTerra - La porzione di Terra abitabile.pdf",
             HashTags = new[] { "#terra_abitabile", "#allevamenti", "#calorie" }
