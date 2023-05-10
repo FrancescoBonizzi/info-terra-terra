@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using InfoTerraTerra.Models;
 using InfoTerraTerra.Models.Home;
 using InfoTerraTerra.Models.Newsletter;
+using InfoTerraTerra.Requests;
 using Microsoft.AspNetCore.Authorization;
 
 namespace InfoTerraTerra.Controllers;
@@ -135,19 +136,15 @@ public class HomeController : Controller
         });
     }
    
-    [Route($"/{Constants.QrPageSlug}/{{idVolantino:int?}}/{{citta?}}/{{via?}}/{{luogo?}}")]
-    public async Task<IActionResult> Qr(
-        int? idVolantino = null,
-        string? citta = null,
-        string? via = null,
-        string? luogo = null)
+    [Route($"/{Constants.QrPageSlug}")]
+    public async Task<IActionResult> Qr([FromQuery] QrOpenRequest request)
     {
         var trackingSlug = new TrackingSlug()
         {
-            IdVolantino = idVolantino,
-            Citta = citta,
-            Via = via,
-            Luogo = luogo,
+            IdVolantino = request.IdVolantino,
+            Citta = request.Citta,
+            Via = request.Via,
+            Luogo = request.Luogo,
             Slug = HttpContext.Request.Path
         };
 
@@ -159,10 +156,7 @@ public class HomeController : Controller
             TrackingSlug = trackingSlug
         });
 
-        if (trackingSlug.IdVolantino == null)
-            return Redirect(Constants.VolantiniPageSlug);
-
-        var volantino = await _volantiniRepository.GetVolantino(trackingSlug.IdVolantino.Value);
+        var volantino = await _volantiniRepository.GetVolantino(trackingSlug.IdVolantino);
 
         if (volantino == null)
             return Redirect(Constants.VolantiniPageSlug);

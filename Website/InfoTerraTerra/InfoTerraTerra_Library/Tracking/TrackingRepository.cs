@@ -1,4 +1,5 @@
 using Dapper;
+using InfoTerraTerra_Library.Extensions;
 using InfoTerraTerra_Library.Volantini;
 using Microsoft.Data.SqlClient;
 
@@ -31,11 +32,17 @@ public class TrackingRepository
             trackingData.Referer,
             trackingData.TrackingSlug.Slug,
             trackingData.TrackingSlug.IdVolantino,
-            trackingData.TrackingSlug.Citta,
-            trackingData.TrackingSlug.Via,
-            trackingData.TrackingSlug.Luogo
+            Citta = ParseUrlValue(trackingData.TrackingSlug.Citta),
+            Via = ParseUrlValue(trackingData.TrackingSlug.Via),
+            Luogo = ParseUrlValue(trackingData.TrackingSlug.Luogo)
         });
     }
+
+    private static string? ParseUrlValue(string? what)
+        => what
+            ?.Replace("-", " ")
+            ?.Replace("_", " ")
+            ?.CapitalizeFirstLetter();
 
     public async Task<TrackingQrOpenStatistics> GetStatistics()
     {
