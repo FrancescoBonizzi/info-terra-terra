@@ -64,29 +64,41 @@
 
                     @if (volantino.PerCitta.Any())
                     {
-                        @foreach (var counter in volantino.PerCitta)
-                        {
-                            var counterModel = new CounterModel() { Category = "Per città", Counter = counter };
-                            <partial name="PartialCounter" model="@counterModel"/>
-                        }
+                        <div class="counter-container">
+                            <div class="counter-category">Per città</div>
+                            <div class="flex-row-wrap">
+                                @foreach (var counter in volantino.PerCitta)
+                                {
+                                    <partial name="PartialSubCounter" model="@counter"/>
+                                }
+                            </div>
+                        </div>
                     }
 
                     @if (volantino.PerVia.Any())
                     {
-                        @foreach (var counter in volantino.PerVia)
-                        {
-                            var counterModel = new CounterModel() { Category = "Per via", Counter = counter };
-                            <partial name="PartialCounter" model="@counterModel"/>
-                        }
+                        <div class="counter-container">
+                            <div class="counter-category">Per via</div>
+                            <div class="flex-row-wrap">
+                                @foreach (var counter in volantino.PerVia)
+                                {
+                                    <partial name="PartialSubCounter" model="@counter"/>
+                                }
+                            </div>
+                        </div>
                     }
 
                     @if (volantino.PerLuogo.Any())
                     {
-                        @foreach (var counter in volantino.PerLuogo)
-                        {
-                            var counterModel = new CounterModel() { Category = "Per luogo", Counter = counter };
-                            <partial name="PartialCounter" model="counterModel"/>
-                        }
+                        <div class="counter-container">
+                            <div class="counter-category">Per luogo</div>
+                            <div class="flex-row-wrap">
+                                @foreach (var counter in volantino.PerLuogo)
+                                {
+                                    <partial name="PartialSubCounter" model="@counter"/>
+                                }
+                            </div>
+                        </div>
                     }
                 </div>
             </div>
