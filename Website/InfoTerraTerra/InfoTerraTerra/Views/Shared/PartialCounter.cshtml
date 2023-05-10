@@ -1,13 +1,20 @@
-@model KeyValuePair<string, string>
+@model InfoTerraTerra.Models.Admin.CounterModel
 
 <div class="counter-container">
     
+    @if (!string.IsNullOrWhiteSpace(Model.Category))
+    {
+        <div class="counter-category">
+            @Model.Category
+        </div>
+    }
+    
     <div class="counter-label">
-        @Model.Key
+        @Model.Counter.Key
     </div>
     
-    <div class="counter-number">
-        @Model.Value
+    <div class="counter-value">
+        @Model.Counter.Value
     </div>
     
 </div>

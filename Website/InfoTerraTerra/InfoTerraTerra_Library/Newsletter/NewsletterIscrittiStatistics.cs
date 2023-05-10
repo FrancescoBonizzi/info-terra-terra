@@ -15,8 +15,8 @@ public class NewsletterIscrittiStatistics
         
         Counters = new[]
         {
-            new KeyValuePair<string, string>("Numero iscritti", GetNumeroIscrittiText()),
-            new KeyValuePair<string, string>("Data ultimo iscritto", LastIscrittoDate ?? "😟"),
+            new KeyValuePair<string, string>("Numero iscritti alla newsletter", GetNumeroIscrittiText()),
+            new KeyValuePair<string, string>("Data ultimo iscritto alla newsletter", LastIscrittoDate ?? "😟"),
         };
     }
     

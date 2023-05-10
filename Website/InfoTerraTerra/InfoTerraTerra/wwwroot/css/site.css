@@ -10,6 +10,7 @@
     --page-horizontal-padding: 1rem;
     --cta-button-background-color: #A31F37;
     --cta-button-background-hover-color: #dc2463;
+    --admin-volantino-color: #7b9d76;
 }
 
 html {
@@ -495,12 +496,10 @@ input[type=submit]:hover {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    max-height: 200px;
+    height: 7rem;
     padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
+    margin: 0.5rem;
     color: black;
-    margin-left: 1rem;
 }
 
 .newsletter-email-container > * {
@@ -512,27 +511,62 @@ input[type=submit]:hover {
 }
 
 .bg-admin {
-    background-color: #ffee93;
-    color: black;
+    background-color :#2B3F54;
+    color: white;
+    padding: 0.5rem 0;
+}
+
+.admin-counters-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: #F7F7F7;
+    color: #76879D;
+    padding: 1rem;
+}
+
+.volantino-counters-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    color: var(--admin-volantino-color);
+    padding: 1rem;
 }
 
 .counter-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    border-radius: 0.7rem;
-    padding: 0 0.5rem;
+    background-color: white;
+    padding: 1.2rem;
+    border: 1px solid #ccc;
+    margin: 0.4rem;
+}
+
+.volantino-stat-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 1.2rem;
+    border: 1px solid #ccc;
+    margin: 0.4rem;
+}
+
+.volantino-stat-container{
+    grid-column: span 4;    
 }
 
 .counter-label {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
 }
 
 .counter-value {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--cta-button-background-color);
+}
+
+ol {
+    margin: 0;
+    padding: 0;
 }
 
 .flex1 {
@@ -551,12 +585,6 @@ input[type=submit]:hover {
     max-width: 100%;
 }
 
-.volantino-stat-container {
-    margin-top: 1rem;
-    border-top: 1px solid #ccc;
-    padding-top: 1rem;
-}
-
 .volantino-stat-subcontainer {
     margin: 1rem 0;
 }
@@ -566,19 +594,26 @@ input[type=submit]:hover {
 }
 
 .volantino-stat-subcontainer-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #2f3330;
+    text-align: center;
 }
 
 .stat-titolo-volantino {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #107921;
     padding-bottom: 0.5rem;
+    color: var(--admin-volantino-color);
+    border-bottom: 1px solid #ccc;
     display: block;
 }
 
 .padding-vertical-1rem {
     padding: 1rem 0;
+}
+
+.counter-category {
+    font-size: 0.6rem;
+    color: #989898;
+    text-transform: uppercase;
+    background-color: #e8e8e8;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.2rem;
 }

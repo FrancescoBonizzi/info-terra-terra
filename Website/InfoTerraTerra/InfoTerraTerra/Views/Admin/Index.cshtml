@@ -1,4 +1,5 @@
 @using InfoTerraTerra.AspNetCore
+@using InfoTerraTerra.Models.Admin
 @model InfoTerraTerra.Models.Admin.AdminViewModel
 @{
     ViewData["Title"] = "Amministrazione";
@@ -7,114 +8,91 @@
 <article>
 
     <section class="bg-admin">
-        <div class="section-content">
-            <h1>@ViewData["Title"]</h1>
-            <h2>👋🏻 @User.GetLoggedUserName()</h2>
+        <div class="text-align-center">
+            <span>@ViewData["Title"]</span>
+            <span>/</span>
+            <span>👋🏻 @User.GetLoggedUserName()</span>
         </div>
     </section>
 
-    <section class="bg-alt padding-vertical-1rem">
-        <div class="section-content border-admin">
-            <h3 class="reset-width">
-                <strong>Iscritti alla newsletter</strong>
-            </h3>
+    <div class="admin-counters-container">
 
-            @foreach (var counter in Model.NewsletterIscrittiStatistics.Counters)
-            {
-                <partial name="PartialCounter" model="@counter"/>
-            }
+        @foreach (var counter in Model.NewsletterIscrittiStatistics.Counters)
+        {
+            var counterModel = new CounterModel() { Counter = counter };
+            <partial name="PartialCounter" model="@counterModel"/>
+        }
 
-            @if (Model.NewsletterIscrittiStatistics.AllNewsletterEmail.Length > 0)
-            {
-                <div class="counter-container">
-                    <div class="counter-label">
-                        Indirizzi email
-                    </div>
-
-                    <div class="newsletter-email-container flex1">
-                        <ol>
-                            @foreach (var email in Model.NewsletterIscrittiStatistics.AllNewsletterEmail)
-                            {
-                                <li>@email</li>
-                            }
-                        </ol>
-                    </div>
+        @if (Model.NewsletterIscrittiStatistics.AllNewsletterEmail.Any())
+        {
+            <div class="counter-container">
+                <div class="counter-label">
+                    Indirizzi email iscritti alla newsletter
                 </div>
-            }
 
-        </div>
-    </section>
-
-    <section class="bg-alt padding-vertical-1rem">
-        <div class="section-content border-admin">
-            <h3 class="reset-width">
-                <strong>Statistiche volantini</strong>
-            </h3>
-
-            <div class="volantino-stat-rows">
-                @foreach (var counter in Model.TrackingQrOpenStatistics.GlobalCounters)
-                {
-                    <partial name="PartialCounter" model="@counter"/>
-                }
-            </div>
-
-            @foreach (var volantino in Model.TrackingQrOpenStatistics.SingleVolantinoStatistics)
-            {
-                <div class="volantino-stat-container">
-                    <span class="stat-titolo-volantino">
-                        @volantino.TitoloVolantino
-                    </span>
-
-                    <div class="volantino-stat-rows">
-                        @foreach (var counter in volantino.Counters)
+                <div class="newsletter-email-container">
+                    <ol>
+                        @foreach (var email in Model.NewsletterIscrittiStatistics.AllNewsletterEmail)
                         {
-                            <partial name="PartialCounter" model="@counter"/>
+                            <li>@email</li>
                         }
-                    </div>
+                    </ol>
+                </div>
+            </div>
+        }
+
+        @foreach (var counter in Model.TrackingQrOpenStatistics.GlobalCounters)
+        {
+            var counterModel = new CounterModel() { Counter = counter };
+            <partial name="PartialCounter" model="@counterModel"/>
+        }
+
+        @foreach (var volantino in Model.TrackingQrOpenStatistics.SingleVolantinoStatistics)
+        {
+            <div class="volantino-stat-container">
+
+                <span class="stat-titolo-volantino">
+                    Statistiche volantino "@volantino.TitoloVolantino"
+                </span>
+
+                <div class="volantino-counters-container">
+                    @foreach (var counter in volantino.Counters)
+                    {
+                        var counterModel = new CounterModel() { Counter = counter };
+                        <partial name="PartialCounter" model="@counterModel"/>
+                    }
 
                     @if (volantino.PerCitta.Any())
                     {
-                        <div class="volantino-stat-subcontainer">
-                            <span class="volantino-stat-subcontainer-title">Per città</span>
-                            <div class="volantino-stat-rows">
-                                @foreach (var counter in volantino.PerCitta)
-                                {
-                                    <partial name="PartialCounter" model="@counter"/>
-                                }
-                            </div>
-                        </div>
+                        @foreach (var counter in volantino.PerCitta)
+                        {
+                            var counterModel = new CounterModel() { Category = "Per città", Counter = counter };
+                            <partial name="PartialCounter" model="@counterModel"/>
+                        }
                     }
 
                     @if (volantino.PerVia.Any())
                     {
-                        <div class="volantino-stat-subcontainer">
-                            <span class="volantino-stat-subcontainer-title">Per via</span>
-                            <div class="volantino-stat-rows">
-                                @foreach (var counter in volantino.PerVia)
-                                {
-                                    <partial name="PartialCounter" model="@counter"/>
-                                }
-                            </div>
-                        </div>
+                        @foreach (var counter in volantino.PerVia)
+                        {
+                            var counterModel = new CounterModel() { Category = "Per via", Counter = counter };
+                            <partial name="PartialCounter" model="@counterModel"/>
+                        }
                     }
 
                     @if (volantino.PerLuogo.Any())
                     {
-                        <div class="volantino-stat-subcontainer">
-                            <span class="volantino-stat-subcontainer-title">Per luogo</span>
-                            <div class="volantino-stat-rows">
-                                @foreach (var counter in volantino.PerLuogo)
-                                {
-                                    <partial name="PartialCounter" model="@counter"/>
-                                }
-                            </div>
-                        </div>
+                        @foreach (var counter in volantino.PerLuogo)
+                        {
+                            var counterModel = new CounterModel() { Category = "Per luogo", Counter = counter };
+                            <partial name="PartialCounter" model="counterModel"/>
+                        }
                     }
-
                 </div>
-            }
-        </div>
-    </section>
+            </div>
+        }
+
+    </div>
 
 
 </article>
