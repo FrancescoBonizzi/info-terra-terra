@@ -12,6 +12,7 @@ public class Volantino
     public required string PageUrl { get; init; }
     public required string DownloadUrl { get; init; }
     public required string[] HashTags { get; init; }
+    public required Paragraph[] Paragraphs { get; init; }
     
     // Campi calcolati
     public string HashTagsString => string.Join(" ", HashTags);

@@ -4,15 +4,31 @@
     ViewData["MetaDescription"] = Model.Volantino.Description;
 }
 
-
 <article>
 
     <section>
         <div class="section-content">
-            <h1>@ViewData["Title"]</h1>
-            <h2>Da scrivere</h2>
+            <h1>@Model.Volantino.Title</h1>
+            <h2>@Model.Volantino.Description</h2>
         </div>
-
     </section>
+    
+    @foreach (var paragraph in Model.Volantino.Paragraphs)
+    {
+        <section class="bg-alt">
+            <div class="section-content">
+                
+                @if (!string.IsNullOrWhiteSpace(paragraph.Title))
+                {
+                    <h3><strong>@paragraph.Title</strong></h3>
+                }
+                
+                <p>
+                    @paragraph.Text
+                </p>
+
+            </div>
+        </section>
+    }
 
 </article>
