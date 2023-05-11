@@ -20,6 +20,8 @@
     .section-content-right, .section-content-left {
         width: 100%;
         align-self: stretch;
+        padding: 2rem 2rem;
+        border: none;
     }
     
     .section-forest {
@@ -43,4 +45,50 @@
         padding: 0 0 0.3rem 0;
     }
 
+    p {
+        font-size: 1.2rem;
+    }
+    
+    .action-button {
+        font-size: 1.2rem;
+        width: 100%;
+    }
+    
+    h3 {
+        max-width: none;
+        padding-bottom: 2rem;
+    }
+
+    .homepage-volantino-container img {
+        height: 10rem;
+    }
+    
+    .partial-volantino-badge-container {
+        display: none;
+    }
+    
+    .partial-volantino-date {
+        display: none;
+    }
+    
+    .badge-container {
+        justify-content: center; 
+    }
+    
+    .centered-in-mobile {
+        align-self: center;
+    }
+    
+    .admin-counters-container, .volantino-counters-container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .stat-titolo-volantino {
+        text-align: center;
+    }
+    
+    .sub-counter-container, .sub-counter-label{
+        width: 100%;
+    }
 }

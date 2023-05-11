@@ -52,10 +52,10 @@ public class VolantiniRepository
                             l'agricoltura è indicata come una minaccia per 24.000 di esse."),
                 new Paragraph(
                     Title: "Ridurre il consumo di carne e derivati",
-                    Text: @"è la <strong>singola azione individuale più efficace</strong> che possiamo compiere nel quotidiano 
+                    Text: @"È la <strong>singola azione individuale più efficace</strong> che possiamo compiere nel quotidiano 
                             per migliorare la nostra impronta ecologica 
                             e contrastare i cambiamenti climatici.
-                            ESATTO. <strong>Non serve stravolgere la tua vita</strong>, 
+                            <strong>Non serve stravolgere la tua vita</strong>, 
                             con una singola azione chiave, puoi veramente fare la differenza!"),
             }
         }
