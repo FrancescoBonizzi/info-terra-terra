@@ -8,27 +8,82 @@
 
     <section>
         <div class="section-content">
+
             <h1>@Model.Volantino.Title</h1>
             <h2>@Model.Volantino.Description</h2>
+            <div class="margin-top-1rem flex-vertical">
+                <a href="@Model.Volantino.DownloadUrl" class="action-button-secondary">
+                    ⬇ Scarica il volantino in PDF
+                </a>
+            </div>
         </div>
+
     </section>
-    
+
+
+    @{ var i = 0; }
     @foreach (var paragraph in Model.Volantino.Paragraphs)
     {
-        <section class="bg-alt">
+        var isEven = i % 2 == 0;
+        i++;
+        var sectionClass = isEven ? "bg-alt" : "";
+
+        <section class="@sectionClass">
             <div class="section-content">
-                
+
+                @if (!string.IsNullOrWhiteSpace(paragraph.ImageRelativePath))
+                {
+                    <img
+                        src="/images/@paragraph.ImageRelativePath"
+                        alt="@paragraph.ImageAltText"
+                        class="paragraph-image"/>
+                }
+
                 @if (!string.IsNullOrWhiteSpace(paragraph.Title))
                 {
-                    <h3><strong>@paragraph.Title</strong></h3>
+                    <h3>
+                        <strong>@paragraph.Title</strong>
+                    </h3>
                 }
-                
-                <p>
-                    @paragraph.Text
-                </p>
+
+                @if (!string.IsNullOrWhiteSpace(paragraph.Text))
+                {
+                    <p>
+                        @Html.Raw(@paragraph.Text)
+                    </p>
+                }
 
             </div>
         </section>
     }
+
+    <section class="bg-cta">
+
+        <a href="@Model.Volantino.DownloadUrl" class="action-button">
+            ⬇ Scarica il volantino in PDF e invialo a qualcuno!
+        </a>
+        
+        <div class="badge-container margin-top-1rem">
+            <span class="text-less-important-badge">@Model.Volantino.FormattedDate</span>
+            @foreach (var hashtag in Model.Volantino.HashTags)
+            {
+                <span class="text-less-important-badge">@hashtag</span>
+            }
+        </div>
+        
+        <div class="fonti-container margin-top-1rem">
+            @{
+                var fonteNumber = 0;
+            }
+            @foreach (var link in Model.Volantino.Fonti)
+            {
+                fonteNumber++;
+                <a href="@link" class="fonte-link">
+                    Fonte @fonteNumber
+                </a>
+            }
+        </div>
+
+    </section>
 
 </article>

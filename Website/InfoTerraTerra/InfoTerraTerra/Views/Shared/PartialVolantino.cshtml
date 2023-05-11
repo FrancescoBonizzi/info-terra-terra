@@ -5,7 +5,12 @@
     <div class="homepage-volantino-image-text-container">
         <img src="~/images/@Model.ImageNameFronte" alt="La foto del volatino @Model.Title"/>
         <div class="homepage-volantino-text-container">
-            <span class="hashtag">@Model.HashTagsString</span>
+            <div class="badge-container">
+                @foreach(var hashtag in Model.HashTags)
+                {
+                    <span class="text-less-important-badge">@hashtag</span>
+                }
+            </div>
             <div class="flex-vertical">
                 <span class="partial-volantino-title">@Model.Title</span>
                 <span class="partial-volantino-date">@Model.FormattedDate</span>

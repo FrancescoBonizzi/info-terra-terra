@@ -14,11 +14,15 @@ public class VolantiniRepository
             Slug = "porzione-terra-abitabile",
             Description = @"Pascoli e coltivazioni per l'alimentazione animale costituiscono il 77% della superficie agricola mondiale, 
                 EPPURE il bestiame fornisce a noi esseri umani solo il 18% delle calorie e il 37% delle proteine",
-            ImageNameFronte = "volantino-porzione-terra-abitabile-fronte.jpg",
-            ImageNameRetro = "volantino-porzione-terra-abitabile-retro.jpg",
+            ImageNameFronte = "volantino-1/volantino-porzione-terra-abitabile-fronte.jpg",
+            ImageNameRetro = "volantino-1/volantino-porzione-terra-abitabile-retro.jpg",
             PageUrl = "/volantino/porzione-terra-abitabile",
             DownloadUrl = "/pdf/InfoTerraTerra - La porzione di Terra abitabile.pdf",
             HashTags = new[] { "#terra_abitabile", "#allevamenti", "#calorie" },
+            Fonti = new[]
+                {
+                    "https://ourworldindata.org/land-use"
+                },
             Paragraphs = new []
             {
                 new Paragraph(
@@ -26,33 +30,33 @@ public class VolantiniRepository
                     Text: @"Per gran parte della storia dell'umanità, la maggior parte della terra del mondo era selvaggia: 
                             foreste, praterie e arbusti dominavano i suoi paesaggi. 
                             Negli ultimi secoli la situazione è cambiata drasticamente: 
-                            gli habitat selvaggi sono stati eliminati trasformandoli in terreni agricoli."),
-                new Paragraph(@"Se riavvolgiamo il nastro di 1000 anni, 
-                            si stima che solo 4 milioni di chilometri quadrati - meno del 4% della superficie mondiale libera dai ghiacci e non brulla - 
-                            fossero utilizzati per l'agricoltura."),
-                new Paragraph(@"Nella visualizzazione vediamo la ripartizione della superficie terrestre globale oggi. 
-                            Il 10% del mondo è coperto da ghiacciai e un altro 19% è costituito da terre sterili - 
-                            deserti, saline secche, spiagge, dune di sabbia e rocce esposte. 
-                            La metà di tutta la terra abitabile è utilizzata per l'agricoltura."),
-                new Paragraph(@"Rimane solo il 37% di foreste, l'11% di arbusti e praterie, l'1% di acqua dolce e il restante 1% - 
-                            una quota molto più piccola di quanto si pensi - 
-                            di aree urbane edificate, che comprendono città, paesi, villaggi, strade e altre infrastrutture umane."),
-                new Paragraph(@"Esiste anche una distribuzione molto diseguale dell'uso del suolo tra bestiame e 
+                            <strong>gli habitat selvaggi sono stati eliminati</strong> trasformandoli in terreni agricoli."),
+                new Paragraph(
+                    ImageRelativePath: "volantino-1/volantino-info-terra-terra-solo-grafico.jpg",
+                    ImageAltText: "Grafico che mostra la ripartizione della superficie terrestre globale oggi"),
+                new Paragraph(
+                    Title: "La terra agricola è utilizzata principalmente per il bestiame",
+                    Text: @"Esiste anche una distribuzione molto <strong>diseguale</strong> dell'uso del suolo tra bestiame e 
                             colture per il consumo umano. Se combiniamo i pascoli utilizzati per il pascolo con i terreni utilizzati 
-                            per la coltivazione di colture per l'alimentazione animale, il bestiame rappresenta il 77% della superficie agricola globale. 
-                            Sebbene il bestiame occupi la maggior parte della superficie agricola mondiale, produce solo il 18% delle calorie mondiali 
-                            e il 37% delle proteine totali."),
-                new Paragraph(@"L'espansione dell'agricoltura è stata uno dei maggiori impatti dell'umanità sull'ambiente. 
-                            Ha trasformato gli habitat ed è una delle maggiori pressioni per la biodiversità: 
-                            delle 28.000 specie valutate a rischio di estinzione nella Lista Rossa dell'IUCN, 
-                            l'agricoltura è indicata come una minaccia per 24.000 di esse.4 Ma sappiamo anche che possiamo ridurre questi impatti 
-                            - sia attraverso cambiamenti nella dieta, sostituendo parte della carne con alternative a base vegetale, 
-                            sia attraverso i progressi della tecnologia. 
-                            Negli ultimi decenni i raccolti sono aumentati in modo significativo, 
-                            il che significa che abbiamo risparmiato molta terra dalla produzione agricola: a livello globale, 
-                            per produrre la stessa quantità di colture del 1961, abbiamo bisogno solo del 30% dei terreni agricoli."),
-                new Paragraph(@"Con soluzioni da parte di consumatori e produttori, abbiamo 
-                                l'importante opportunità di restituire parte di questi terreni agricoli alle foreste e agli habitat naturali.")
+                            per la coltivazione di colture per l'alimentazione animale, <strong>il bestiame rappresenta il 77% della superficie agricola</strong> globale. 
+                            Sebbene il bestiame occupi la maggior parte della superficie agricola mondiale, produce solo il <strong>18% delle calorie</strong> mondiali 
+                            e <strong>il 37% delle proteine</strong> totali."),
+                new Paragraph(
+                    ImageRelativePath: "/volantino-1/volantino-info-terra-terra-solo-spreco-risorse.jpg",
+                    ImageAltText: "Disegno che mostra un toro che piange"),
+                new Paragraph(
+                    Text: @"L'espansione dell'agricoltura è stata <strong>uno dei maggiori impatti dell'umanità sull'ambiente</strong>. 
+                            Ha trasformato gli habitat ed è una delle maggiori pressioni per la <strong>biodiversità</strong>: 
+                            delle 28.000 specie valutate a rischio di estinzione nella Lista Rossa dell'
+                            <a class='action-button-secondary' href='https://www.iucn.org/'>IUCN</a>, 
+                            l'agricoltura è indicata come una minaccia per 24.000 di esse."),
+                new Paragraph(
+                    Title: "Ridurre il consumo di carne e derivati",
+                    Text: @"è la <strong>singola azione individuale più efficace</strong> che possiamo compiere nel quotidiano 
+                            per migliorare la nostra impronta ecologica 
+                            e contrastare i cambiamenti climatici.
+                            ESATTO. <strong>Non serve stravolgere la tua vita</strong>, 
+                            con una singola azione chiave, puoi veramente fare la differenza!"),
             }
         }
     };
