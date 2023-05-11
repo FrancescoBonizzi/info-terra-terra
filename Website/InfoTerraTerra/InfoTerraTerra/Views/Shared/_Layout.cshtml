@@ -29,11 +29,9 @@
     <meta property="og:description" content="@ViewData["MetaDescription"]"/>
     <meta property="og:site_name" content="@Constants.SiteTitle"/>
     <meta property="og:locale" content="it_IT"/>
-    <meta property="og:image" content="@Constants.SiteTitle/images/info-terra-terra.png"/>
+    <meta property="og:image" content="@Constants.SiteUrl/images/info-terra-terra.png"/>
 
-    <!-- TODOOOOOO IL MIO SLUG -->
-    <link rel="canonical" href="@Constants.SiteUrl/TODOOOOOOOOO IL MIO SLUG"/>
-    <!-- IL MIO SLUG -->
+    <link rel="canonical" href="@Constants.SiteUrl/@Context.Request.Path.Value?.Trim('/')"/>
 
     <!-- STYLES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

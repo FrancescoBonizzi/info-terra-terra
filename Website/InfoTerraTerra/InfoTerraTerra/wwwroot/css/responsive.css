@@ -31,6 +31,15 @@
     h1, h2, h3, h4, .jumbo-text {
         text-align: center;
     }
+    
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
 
 
     form {
@@ -59,9 +68,6 @@
         padding-bottom: 2rem;
     }
 
-    .homepage-volantino-container img {
-        height: 10rem;
-    }
     
     .partial-volantino-badge-container {
         display: none;
@@ -91,4 +97,29 @@
     .sub-counter-container, .sub-counter-label{
         width: 100%;
     }
+    
+    .homepage-volantino-image-text-container {
+        flex-direction: column;   
+    }
+
+    .homepage-volantino-container img {
+        align-self: center;
+        margin-bottom: 1rem;
+    }
+    
+    .partial-volantino-title {
+        text-align: center;
+        font-size: 1.4rem;
+    }
+    
+    .partial-volantino-description{
+        font-size: 1rem;
+        line-height: normal !important;
+    }
+
+    .action-button-secondary {
+        font-size: 1.2rem;
+    }
+    
+    
 }
