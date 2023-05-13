@@ -176,9 +176,9 @@ public class HomeController : Controller
         var allVolantini = await _volantiniRepository.GetAll();
         return Ok(SitemapXmlBuilder.Build(
             Constants.SlugForSitemap
-                .Select(u => $"{Constants.SiteUrl}/{u}")
+                .Select(u => $"{Constants.SiteUrl}{u}")
                 .Concat(allVolantini
-                    .Select(v => $"{Constants.SiteUrl}/{Constants.VolantinoPageSlug}/{v.Slug}"))
+                    .Select(v => $"{Constants.SiteUrl}{Constants.VolantinoPageSlug}/{v.Slug}"))
             ));
     }
 
