@@ -3,7 +3,10 @@
 <div class="homepage-volantino-container">
 
     <div class="homepage-volantino-image-text-container">
-        <img src="~/images/@Model.ImageNameFronte" alt="La foto del volatino @Model.Title"/>
+        <img
+            asp-append-version="true"
+            src="~/images/@Model.ImageNameFronte" 
+            alt="La foto del volatino @Model.Title"/>
         <div class="homepage-volantino-text-container">
             
             <div class="badge-container partial-volantino-badge-container">

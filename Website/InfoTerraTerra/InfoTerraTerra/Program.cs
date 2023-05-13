@@ -74,7 +74,14 @@ app.MapHealthChecks("/healthz");
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = ctx =>
+    {
+        ctx.Context.Response.Headers.Append(
+            "Cache-Control", $"public, max-age=31536000, immutable");
+    }
+});
 
 app.MapControllerRoute(
     name: "default",

@@ -34,6 +34,7 @@
                 @if (!string.IsNullOrWhiteSpace(paragraph.ImageRelativePath))
                 {
                     <img
+                        asp-append-version="true"
                         src="/images/@paragraph.ImageRelativePath"
                         alt="@paragraph.ImageAltText"
                         class="paragraph-image"/>
