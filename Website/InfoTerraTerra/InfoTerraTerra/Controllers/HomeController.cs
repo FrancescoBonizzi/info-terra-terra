@@ -140,9 +140,17 @@ public class HomeController : Controller
     [Route($"/{Constants.QrPageSlug}")]
     public async Task<IActionResult> Qr([FromQuery] QrOpenRequest request)
     {
+        if (request.IdVolantino == null)
+            return Redirect(Constants.VolantiniPageSlug);
+        
+        var volantino = await _volantiniRepository.GetVolantino(request.IdVolantino.Value);
+
+        if (volantino == null)
+            return Redirect(Constants.VolantiniPageSlug);
+
         var trackingSlug = new TrackingSlug()
         {
-            IdVolantino = request.IdVolantino,
+            IdVolantino = request.IdVolantino.Value,
             Citta = request.Citta,
             Via = request.Via,
             Luogo = request.Luogo,
@@ -156,11 +164,6 @@ public class HomeController : Controller
             Referer = HttpContext.GetReferer(),
             TrackingSlug = trackingSlug
         });
-
-        var volantino = await _volantiniRepository.GetVolantino(trackingSlug.IdVolantino);
-
-        if (volantino == null)
-            return Redirect(Constants.VolantiniPageSlug);
 
         return Redirect($"{Constants.VolantinoPageSlug}/{volantino.Id}");
     }

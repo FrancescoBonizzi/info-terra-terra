@@ -55,14 +55,20 @@ public class TrackingRepository
                 ORDER BY IdVolantino DESC"))
             ?.ToArray();
 
-        if (groupedData != null)
+        if (groupedData == null) 
+            return new TrackingQrOpenStatistics(null);
+        
+        foreach (var data in groupedData)
         {
-            foreach (var data in groupedData)
+            var volantino = await _volantiniRepository.GetVolantino(data.IdVolantino);
+            if (volantino != null)
             {
-                data.Volantino = (await _volantiniRepository.GetVolantino(data.IdVolantino))!;
+                data.Volantino = volantino;
             }
         }
 
-        return new TrackingQrOpenStatistics(groupedData?.ToArray());
+        return new TrackingQrOpenStatistics(groupedData
+            .Where(d => d.Volantino != null)
+            .ToArray());
     }
 }
