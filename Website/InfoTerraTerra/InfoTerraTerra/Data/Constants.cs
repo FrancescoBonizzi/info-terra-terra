@@ -17,4 +17,14 @@ public  static class Constants
     public const string AdminSlug = "/admin";
     public const string LoginSlug = "/auth/login";
     public const string Logout = "/auth/logout";
+
+    public static readonly string[] SlugForSitemap = {
+        HomePageSlug,
+        PrivacyPageSlug,
+        AiutaciPageSlug,
+        ManifestoPageSlug,
+        VolantiniPageSlug,
+        NewsletterPageSlug,
+        VolantinoPageSlug
+    };
 }

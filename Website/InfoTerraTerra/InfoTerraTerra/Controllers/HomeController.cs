@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Reflection.Metadata;
 using InfoTerraTerra_Library;
 using InfoTerraTerra_Library.Newsletter;
 using InfoTerraTerra_Library.Tracking;
@@ -162,6 +163,20 @@ public class HomeController : Controller
             return Redirect(Constants.VolantiniPageSlug);
 
         return Redirect($"{Constants.VolantinoPageSlug}/{volantino.Id}");
+    }
+
+    // 86400 secondi = 1 giorno
+    [Route("sitemap.xml")]
+    [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any)]
+    public async Task<IActionResult> Sitemap()
+    {
+        var allVolantini = await _volantiniRepository.GetAll();
+        return Ok(SitemapXmlBuilder.Build(
+            Constants.SlugForSitemap
+                .Select(u => $"{Constants.SiteUrl}/{u}")
+                .Concat(allVolantini
+                    .Select(v => $"{Constants.SiteUrl}/{Constants.VolantinoPageSlug}/{v.Slug}"))
+            ));
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

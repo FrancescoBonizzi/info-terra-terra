@@ -43,6 +43,7 @@ public class TrackingQrOpenStatistics
             var singleVolantinoStatistics = new List<SingleVolantinoStatistics>();
             var qrApertiPerVolantino = trackingGroupedData
                 .GroupBy(d => d.IdVolantino)
+                .Where(d => d.Any())
                 .ToArray();
             if (qrApertiPerVolantino.Any())
             {
