@@ -83,6 +83,7 @@
     
     .centered-in-mobile {
         align-self: center;
+        text-align: center;
     }
     
     .admin-counters-container, .volantino-counters-container {

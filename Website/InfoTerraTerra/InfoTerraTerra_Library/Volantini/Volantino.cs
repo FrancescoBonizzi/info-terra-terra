@@ -14,6 +14,7 @@ public class Volantino
     public required string[] HashTags { get; init; }
     public required Paragraph[] Paragraphs { get; init; }
     public required string[] Fonti { get; init; }
+    public required string OgImage { get; init; }
     
     // Campi calcolati
     public string FormattedDate => Date.ToString("dd/MM/yyyy");

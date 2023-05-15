@@ -18,6 +18,7 @@ public class VolantiniRepository
                 è necessario iniziare a nutrirsi con consapevolezza.",
             ImageNameFronte = "volantino-1/volantino-porzione-terra-abitabile-fronte.jpg",
             ImageNameRetro = "volantino-1/volantino-porzione-terra-abitabile-retro.jpg",
+            OgImage = "volantino-1/volantino-info-terra-terra-solo-spreco-risorse.jpg",
             PageUrl = "/volantino/porzione-terra-abitabile",
             DownloadUrl = "/pdf/InfoTerraTerra - La porzione di Terra abitabile.pdf",
             HashTags = new[] { "#terra_abitabile", "#allevamenti", "#calorie" },
