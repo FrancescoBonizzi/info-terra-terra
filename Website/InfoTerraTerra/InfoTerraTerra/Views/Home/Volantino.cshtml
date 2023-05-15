@@ -1,7 +1,9 @@
+@using InfoTerraTerra_Library.Extensions
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model VolantinoViewModel
 @{
     ViewData["Title"] = $"{Model.Volantino.Title} - Info Terra Terra";
-    ViewData["MetaDescription"] = Model.Volantino.Description;
+    ViewData["MetaDescription"] = Model.Volantino.Description.CollapseSpaces();
 }
 
 <article>
@@ -11,7 +13,7 @@
 
             <h1>@Model.Volantino.Title</h1>
             <h2>@Model.Volantino.Description</h2>
-            <div class="margin-top-1rem flex-vertical">
+            <div class="margin-top-1rem flex-vertical centered-in-mobile">
 
                 @{
                     var fonteNumber = 0;
