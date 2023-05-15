@@ -12,8 +12,10 @@ public class VolantiniRepository
             Date = new DateTime(2023, 05, 8),
             Title = "La porzione di Terra abitabile",
             Slug = "porzione-terra-abitabile",
-            Description = @"Pascoli e coltivazioni per l'alimentazione animale costituiscono il 77% della superficie agricola mondiale, 
-                EPPURE il bestiame fornisce a noi esseri umani solo il 18% delle calorie e il 37% delle proteine",
+            Description = @"La popolazione mondiale è più che raddoppiata negli ultimi 50 anni: 
+                a causa delle limitate risorse territoriali 
+                e dell'ampio impatto ambientale delle nostre scelte alimentari
+                è necessario iniziare a nutrirsi con consapevolezza.",
             ImageNameFronte = "volantino-1/volantino-porzione-terra-abitabile-fronte.jpg",
             ImageNameRetro = "volantino-1/volantino-porzione-terra-abitabile-retro.jpg",
             PageUrl = "/volantino/porzione-terra-abitabile",
@@ -32,7 +34,7 @@ public class VolantiniRepository
                             Negli ultimi secoli la situazione è cambiata drasticamente: 
                             <strong>gli habitat selvaggi sono stati eliminati</strong> trasformandoli in terreni agricoli."),
                 new Paragraph(
-                    ImageRelativePath: "volantino-1/volantino-info-terra-terra-solo-grafico.jpg",
+                    ImageRelativePath: "volantino-1/volantino-info-terra-terra-solo-grafico.png",
                     ImageAltText: "Grafico che mostra la ripartizione della superficie terrestre globale oggi"),
                 new Paragraph(
                     Title: "La terra agricola è utilizzata principalmente per il bestiame",
