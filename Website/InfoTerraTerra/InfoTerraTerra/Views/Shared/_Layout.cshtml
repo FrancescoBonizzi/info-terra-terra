@@ -34,12 +34,12 @@
         var ogImage = ViewData["OgImage"] as string;
         if (string.IsNullOrWhiteSpace(ogImage))
         {
-            ogImage = "images/info-terra-terra-og.jpg";
+            ogImage = "info-terra-terra-og.jpg";
         }
     }
     <meta property="og:image" content="@Constants.SiteUrl/@ogImage"/>
 
-    <link rel="canonical" href="@Constants.SiteUrl/@Context.Request.Path.Value?.Trim('/')"/>
+    <link rel="canonical" href="@Constants.SiteUrl/image/@Context.Request.Path.Value?.Trim('/')"/>
 
     <!-- STYLES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
