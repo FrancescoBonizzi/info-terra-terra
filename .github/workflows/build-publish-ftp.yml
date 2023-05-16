@@ -1,4 +1,4 @@
-name: 🚀 Build & publish FTP
+name: 🚀 Build & publish SmarterAspNet
 
 env:
   CONFIGURATION: Release
@@ -66,4 +66,3 @@ jobs:
             server-username: fbonizzi-001
             server-password: ${{ secrets.ftp_password }}
             source-path: ${{ env.PUBLISHED_PACKAGE_PATH }}
-            target-path: info-terra-terra/
