@@ -3,8 +3,8 @@ name: 🚀 Build & publish SmarterAspNet
 env:
   CONFIGURATION: Release
   DOTNET_VERSION: '7.0.x'
-  WORKING_DIRECTORY: 'Website/InfoTerraTerra/InfoTerraTerra'
-  PUBLISHED_PACKAGE_PATH: 'Website/InfoTerraTerra/InfoTerraTerra/published/'
+  WORKING_DIRECTORY: 'Website\InfoTerraTerra\InfoTerraTerra'
+  PUBLISHED_PACKAGE_PATH: 'Website\InfoTerraTerra\nfoTerraTerra\published\'
   
 on:
   push:
@@ -13,7 +13,7 @@ on:
     
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v3
