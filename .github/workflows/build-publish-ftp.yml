@@ -4,7 +4,6 @@ env:
   CONFIGURATION: Release
   DOTNET_VERSION: '7.0.x'
   WORKING_DIRECTORY: 'Website\InfoTerraTerra\InfoTerraTerra'
-  PUBLISHED_PACKAGE_PATH: '\publish\'
   
 on:
   push:
@@ -41,7 +40,7 @@ jobs:
       run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
 
     - name: Publish
-      run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.PUBLISHED_PACKAGE_PATH }}"
+      run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output ./publish
 
     - name: 📂 IIS Deploy
       uses: jahbenjah/SmarterASP.NET-web-deploy@1.0.0
