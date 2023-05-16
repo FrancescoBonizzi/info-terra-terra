@@ -4,7 +4,7 @@ env:
   CONFIGURATION: Release
   DOTNET_VERSION: '7.0.x'
   WORKING_DIRECTORY: 'Website\InfoTerraTerra\InfoTerraTerra'
-  PUBLISHED_PACKAGE_PATH: 'Website\InfoTerraTerra\nfoTerraTerra\published\'
+  PUBLISHED_PACKAGE_PATH: '\Website\InfoTerraTerra\InfoTerraTerra\published\'
   
 on:
   push:
