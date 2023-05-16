@@ -65,4 +65,4 @@ jobs:
             server-computer-name: https://win6047.site4now.net:8172
             server-username: fbonizzi-001
             server-password: ${{ secrets.ftp_password }}
-            source-path: D:\Website\InfoTerraTerra\InfoTerraTerra\published
+            source-path: \published
