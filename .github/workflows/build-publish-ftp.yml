@@ -4,7 +4,7 @@ env:
   CONFIGURATION: Release
   DOTNET_VERSION: '7.0.x'
   WORKING_DIRECTORY: 'Website\InfoTerraTerra\InfoTerraTerra'
-  PUBLISHED_PACKAGE_PATH: '\Website\InfoTerraTerra\InfoTerraTerra\published'
+  PUBLISHED_PACKAGE_PATH: '\Website\InfoTerraTerra\InfoTerraTerra\publish'
   
 on:
   push:
@@ -42,26 +42,11 @@ jobs:
 
     - name: Publish
       run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.PUBLISHED_PACKAGE_PATH }}"
-    
-    - name: Publish Artifacts
-      uses: actions/upload-artifact@v1.0.0
+
+    - name: 📂 IIS Deploy
+      uses: jahbenjah/SmarterASP.NET-web-deploy@1.0.0
       with:
-        name: webapp
-        path: ${{ env.PUBLISHED_PACKAGE_PATH }}
-        
-  deploy:
-      runs-on: windows-latest
-      needs: build
-      steps: 
-        - name: Download artifact from build job
-          uses: actions/download-artifact@v3
-          with:
-            name: webapp
-            path: ${{ env.PUBLISHED_PACKAGE_PATH }}
-        - name: 📂 IIS Deploy
-          uses: jahbenjah/SmarterASP.NET-web-deploy@1.0.0
-          with:
-            website-name: fbonizzi-001-site1
-            server-computer-name: https://win6047.site4now.net:8172
-            server-username: fbonizzi-001
-            server-password: ${{ secrets.ftp_password }}
+        website-name: fbonizzi-001-site1
+        server-computer-name: https://win6047.site4now.net:8172
+        server-username: fbonizzi-001
+        server-password: ${{ secrets.ftp_password }}
