@@ -58,23 +58,13 @@ jobs:
           with:
             name: webapp
             path: ${{ env.PUBLISHED_PACKAGE_PATH }}
-        - name: 📂 Deploy to SmarterASP.NET
-          uses: jahbenjah/SmarterASP.NET-web-deploy@1.0.0
+        - name: 📂 IIS Deploy
+        - uses: ChristopheLav/iis-deploy@v1
           with:
             website-name: fbonizzi-001-site1
-            server-computer-name: https://win6047.site4now.net:8172/MsDeploy.axd?site=fbonizzi-001-site1
-            server-username: fbonizzi-001
-            server-password: ${{ secrets.ftp_password }}
+            msdeploy-service-url: https://win6047.site4now.net:8172/MsDeploy.axd?site=fbonizzi-001-site1
+            msdeploy-username: fbonizzi-001
+            msdeploy-password: ${{ secrets.ftp_password }}
             source-path: ${{ env.PUBLISHED_PACKAGE_PATH }}
             target-path: info-terra-terra/
-            EnableMSDeployAppOffline: true
-        - name: 📂 Sync files (FTP)
-          uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-          with:
-            local-dir: ${{ env.PUBLISHED_PACKAGE_PATH }}
-            server-dir: info-terra-terra/
-            server: win6047.site4now.net
-            username: fbonizzi-001
-            password: ${{ secrets.ftp_password }}
-      
-    
+
