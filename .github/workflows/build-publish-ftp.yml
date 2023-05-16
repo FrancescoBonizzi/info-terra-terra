@@ -4,7 +4,7 @@ env:
   CONFIGURATION: Release
   DOTNET_VERSION: '7.0.x'
   WORKING_DIRECTORY: 'Website\InfoTerraTerra\InfoTerraTerra'
-  PUBLISHED_PACKAGE_PATH: '\Website\InfoTerraTerra\InfoTerraTerra\published\'
+  PUBLISHED_PACKAGE_PATH: '\Website\InfoTerraTerra\InfoTerraTerra\published'
   
 on:
   push:
@@ -65,4 +65,4 @@ jobs:
             server-computer-name: https://win6047.site4now.net:8172
             server-username: fbonizzi-001
             server-password: ${{ secrets.ftp_password }}
-            source-path: ${{ env.PUBLISHED_PACKAGE_PATH }}
+            source-path: D:\Website\InfoTerraTerra\InfoTerraTerra\published
