@@ -4,6 +4,7 @@ import Constants from "../Constants";
 import {MetaDataHelper} from "../services/MetaDataHelper";
 
 export const metadata = MetaDataHelper.generateMetadata(
+    '/',
     `Home page - ${Constants.SiteTitle}`,
     'Info Terra Terra è un sito dedicato a fornire informazioni sulle questioni ambientali più urgenti. ' +
     'Scopri come puoi fare la differenza e aiutarci a creare un mondo migliore per tutti.'

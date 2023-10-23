@@ -16,7 +16,7 @@
 html {
     /* Per rem */
     font-size: 18px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--font-open-sans);
     font-weight: 400;
     overflow-y: scroll;
 }
@@ -88,7 +88,7 @@ section {
 
 
 .section-forest {
-    background: url('../images/forest-1.jpg') no-repeat center center;
+    background: url('/images/forest-1.jpg') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -106,11 +106,11 @@ section {
 }
 
 .bg-forest-1 {
-    background: url('../images/forest-1.jpg') no-repeat center center;
+    background: url('/images/forest-1.jpg') no-repeat center center;
 }
 
 .bg-forest-2 {
-    background: url('../images/forest-2.jpg') no-repeat center center;
+    background: url('/images/forest-2.jpg') no-repeat center center;
     color: white;
 }
 
@@ -230,7 +230,7 @@ nav ul li a {
     padding-top: 5px;
     font-weight: 700;
     text-transform: uppercase;
-    font-family: 'Secular One', cursive;
+    font-family:  var(--font-secular-one);
 }
 
 .action-button {

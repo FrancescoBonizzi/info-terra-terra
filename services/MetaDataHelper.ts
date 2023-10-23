@@ -3,6 +3,7 @@ import Constants from "../Constants";
 
 export const MetaDataHelper = {
     generateMetadata: (
+        path: string,
         title: string,
         description: string,
         ogImage?: string) : Metadata => {
@@ -13,6 +14,7 @@ export const MetaDataHelper = {
         return {
             title: title,
             description: description,
+            alternates: { canonical: new URL(path, Constants.SiteUrl).toString() },
             metadataBase: new URL(Constants.SiteUrl),
             robots: {
                 index: true,
