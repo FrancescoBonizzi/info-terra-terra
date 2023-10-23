@@ -1,11 +1,15 @@
 import {VolantinoIndexCard} from "../components/Volantino";
 import {AllVolantini} from "../data/AllVolantini";
+import Constants from "../Constants";
+import {MetaDataHelper} from "../services/MetaDataHelper";
 
-export const Index = () => {
+export const metadata = MetaDataHelper.generateMetadata(
+    `Home page - ${Constants.SiteTitle}`,
+    'Info Terra Terra è un sito dedicato a fornire informazioni sulle questioni ambientali più urgenti. ' +
+    'Scopri come puoi fare la differenza e aiutarci a creare un mondo migliore per tutti.'
+);
 
-    // TODO: come lo passo alla root?
-    const title = "Home page";
-    const description = "Info Terra Terra è un sito dedicato a fornire informazioni sulle questioni ambientali più urgenti. Scopri come puoi fare la differenza e aiutarci a creare un mondo migliore per tutti.";
+export default function HomePage() {
 
     return (
         <>
@@ -40,7 +44,7 @@ export const Index = () => {
                     <h3><strong>Gli ultimi volantini</strong></h3>
 
                     {AllVolantini.map((volantino) =>
-                        <VolantinoIndexCard {...volantino} />
+                        <VolantinoIndexCard key={volantino.id} {...volantino} />
                     )}
 
                     <a className="action-button margin-top-1rem" href="/volantini">Guarda tutti i volantini</a>

@@ -2,35 +2,18 @@
 
 import Constants from "../Constants";
 import { usePathname } from 'next/navigation'
+import Head from "next/head";
 
-interface Props {
-    title: string;
-    description: string;
-    ogImage?: string;
-}
-
-export const SiteHead = (props: Props) => {
+export const SiteHead = () => {
 
     const pathName = usePathname();
-    const metaTitle = `${props.title} - ${Constants.SiteTitle}`;
-    const ogImage = props.ogImage || "info-terra-terra-og.jpg";
-    const ogImagePath = `${Constants.SiteUrl}/images/${ogImage}`;
     const canonicalUrl = `${Constants.SiteUrl}/${pathName}`;
 
     return (
-        <head>
+        <Head>
 
             <meta charSet="utf-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-            <title>{metaTitle}</title>
-            <meta name="description" content={props.description}/>
-            <meta property="og:type" content="website"/>
-            <meta property="og:title" content={metaTitle}/>
-            <meta property="og:description" content={props.description}/>
-            <meta property="og:site_name" content={Constants.SiteTitle}/>
-            <meta property="og:locale" content="it_IT"/>
-            <meta property="og:image" content={ogImagePath}/>
 
             <link rel="canonical" href={canonicalUrl}/>
 
@@ -54,6 +37,6 @@ export const SiteHead = (props: Props) => {
             <link rel="stylesheet" href="/css/site.css"/>
             <link rel="stylesheet" href="/css/responsive.css"/>
 
-        </head>
+        </Head>
     );
 };

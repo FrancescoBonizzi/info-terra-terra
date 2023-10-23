@@ -10,7 +10,7 @@ export const Footer = () => {
 
     return (
         <footer>
-            <p>&copy; 2023 - @Constants.SiteTitle - <a
+            <p>&copy; 2023 - {Constants.SiteTitle} - <a
                 className={`text-link ${PathNameHelper.getActiveClassForLink(
                     pathName,
                     Constants.PrivacyPageSlug)}`} href={Constants.PrivacyPageSlug}

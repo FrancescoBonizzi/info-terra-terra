@@ -12,7 +12,7 @@ export const VolantinoIndexCard = (props: Volantino) => {
 
                     <div className="badge-container partial-volantino-badge-container">
                         {props.hashTags.map((hashTag) =>
-                            <span className="text-less-important-badge">{hashTag}</span>
+                            <span key={hashTag} className="text-less-important-badge">{hashTag}</span>
                         )}
                     </div>
 
