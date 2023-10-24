@@ -14,7 +14,7 @@ export const AllVolantini: Volantino[] = [
       imageNameFronte: "volantino-1/volantino-porzione-terra-abitabile-fronte.jpg",
       imageNameRetro: "volantino-1/volantino-porzione-terra-abitabile-retro.jpg",
       ogImage: "volantino-1/volantino-info-terra-terra-og.jpg",
-      pageUrl: "/volantino/porzione-terra-abitabile",
+      pageUrl: "/volantini/porzione-terra-abitabile",
       downloadUrl: "/pdf/InfoTerraTerra - La porzione di Terra abitabile.pdf",
       hashTags: ["#terra_abitabile", "#allevamenti", "#calorie"],
       fonti: ["https://ourworldindata.org/land-use"],
