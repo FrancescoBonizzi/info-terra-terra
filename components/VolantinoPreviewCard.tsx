@@ -1,6 +1,6 @@
 import {Volantino} from "../model/Volantino";
 
-export const VolantinoIndexCard = (props: Volantino) => {
+export const VolantinoPreviewCard = (props: Volantino) => {
     return (
         <div className="homepage-volantino-container">
 

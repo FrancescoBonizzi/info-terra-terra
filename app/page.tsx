@@ -1,4 +1,4 @@
-import {VolantinoIndexCard} from "../components/Volantino";
+import {VolantinoPreviewCard} from "../components/VolantinoPreviewCard";
 import {AllVolantini} from "../data/AllVolantini";
 import Constants from "../Constants";
 import {MetaDataHelper} from "../services/MetaDataHelper";
@@ -10,7 +10,7 @@ export const metadata = MetaDataHelper.generateMetadata(
     'Scopri come puoi fare la differenza e aiutarci a creare un mondo migliore per tutti.'
 );
 
-export default function HomePage() {
+export default function Page() {
 
     return (
         <>
@@ -45,7 +45,7 @@ export default function HomePage() {
                     <h3><strong>Gli ultimi volantini</strong></h3>
 
                     {AllVolantini.map((volantino) =>
-                        <VolantinoIndexCard key={volantino.id} {...volantino} />
+                        <VolantinoPreviewCard key={volantino.id} {...volantino} />
                     )}
 
                     <a className="action-button margin-top-1rem" href={Constants.VolantiniPageSlug}>Guarda tutti i volantini</a>
