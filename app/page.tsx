@@ -4,7 +4,7 @@ import Constants from "../Constants";
 import {MetaDataHelper} from "../services/MetaDataHelper";
 
 export const metadata = MetaDataHelper.generateMetadata(
-    '/',
+    Constants.HomePageSlug,
     `Home page - ${Constants.SiteTitle}`,
     'Info Terra Terra è un sito dedicato a fornire informazioni sulle questioni ambientali più urgenti. ' +
     'Scopri come puoi fare la differenza e aiutarci a creare un mondo migliore per tutti.'
@@ -36,7 +36,7 @@ export default function HomePage() {
                         di proteggere il nostro pianeta per le generazioni future.
                     </p>
 
-                    <a className="action-button margin-top-1rem" href="/manifesto">Scopri di più</a>
+                    <a className="action-button margin-top-1rem" href={Constants.ManifestoPageSlug}>Scopri di più</a>
                 </div>
             </section>
 
@@ -48,7 +48,7 @@ export default function HomePage() {
                         <VolantinoIndexCard key={volantino.id} {...volantino} />
                     )}
 
-                    <a className="action-button margin-top-1rem" href="/volantini">Guarda tutti i volantini</a>
+                    <a className="action-button margin-top-1rem" href={Constants.VolantiniPageSlug}>Guarda tutti i volantini</a>
                 </div>
             </section>
 
@@ -85,7 +85,7 @@ export default function HomePage() {
                         <strong>Ogni piccola azione può fare la differenza</strong>
                     </p>
 
-                    <a className="action-button margin-top-1rem" href="/aiutaci">Scopri come puoi aiutare</a>
+                    <a className="action-button margin-top-1rem" href={Constants.AiutaciPageSlug}>Scopri come puoi aiutare</a>
 
                 </div>
             </section>
@@ -99,7 +99,7 @@ export default function HomePage() {
                         lasciaci la tua <strong>mail</strong>, per favore. Non ti disturberemo, promesso!
                     </p>
 
-                    <a className="action-button margin-top-1rem" href="/newsletter">Iscriviti alla newsletter</a>
+                    <a className="action-button margin-top-1rem" href={Constants.NewsletterPageSlug}>Iscriviti alla newsletter</a>
                 </div>
             </section>
         </>
