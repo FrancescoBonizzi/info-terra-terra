@@ -2,38 +2,22 @@
 
 import React from "react";
 import Constants from "../Constants";
-import {BounceLoader} from "react-spinners";
 import Link from "next/link";
 
 // TODO: quando non sarà experimental, leva il @ts-ignore e metti l'import corretto
 // @ts-ignore
-import { experimental_useFormStatus as useFormStatus, experimental_useFormState as useFormState } from "react-dom";
-import {newsletterSubmitAction, NewsletterSubmitOutput} from "../actions/newsletterSubmitAction";
+import { useFormState } from "react-dom";
+import {NewsletterSubmitAction, NewsletterSubmitOutput} from "../dataLayer/newsletter/NewsletterSubmitAction";
+import {FormSubmitButton} from "./FormSubmitButton";
 
 const initialState : NewsletterSubmitOutput = {}
 
 export const NewsletterForm = () => {
 
-    const formStatus = useFormStatus();
-    const isLoading = formStatus.pending;
-
-    const [state, formAction] = useFormState(newsletterSubmitAction, initialState);
+    // NB: useFormStatus funziona solo dentro ai figli di un componente che ha il padre con <form>
+    const [state, formAction] = useFormState(NewsletterSubmitAction, initialState);
     const isSuccess = state.success;
     const errors = state.errors;
-
-    if (isLoading) {
-        return (
-            <div className="transparent-rounded-form max-width-25rem text-color-success">
-                <h4 className="padding0 margin0 text-align-center">
-                    <BounceLoader
-                        color='#86C342'
-                        loading={isLoading}
-                        size={150}
-                    />
-                </h4>
-            </div>
-        );
-    }
 
     return (
         <>
@@ -60,9 +44,7 @@ export const NewsletterForm = () => {
                         <input type="email" id="email" name="email" required/>
                     </div>
 
-                    <div className="form-row">
-                        <input type="submit" value="Iscriviti"/>
-                    </div>
+                    <FormSubmitButton text={"Iscriviti"}/>
 
                 </form>
             }

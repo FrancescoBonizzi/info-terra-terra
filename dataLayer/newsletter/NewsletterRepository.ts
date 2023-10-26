@@ -1,4 +1,6 @@
-import Configurations from "../../../data/Configurations";
+import 'server-only';
+
+import Configurations from "../Configurations";
 
 const ShouldNotBeHere2 = 'NON DEVO ESSERE QUI2';
 

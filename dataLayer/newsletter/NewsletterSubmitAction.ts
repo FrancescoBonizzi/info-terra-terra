@@ -1,15 +1,17 @@
 'use server'
 
-import NewsletterRepository from "../services/database/newsletter/NewsletterRepository";
+import NewsletterRepository from "./NewsletterRepository";
 
 export interface NewsletterSubmitOutput {
     success?: boolean;
     errors?: string | null;
 }
 
-export const newsletterSubmitAction = async (
+export const NewsletterSubmitAction = async (
     _prevState: NewsletterSubmitOutput,
     formData: FormData) : Promise<NewsletterSubmitOutput>  => {
+
+    // TODO: ma le eccezioni come escono?
 
     try {
         await NewsletterRepository.insertEmailAddressAsync(

@@ -1,4 +1,3 @@
-// TODO: valutare il taint quando non sarà più experimental
 import 'server-only';
 
 export default {
