@@ -1,6 +1,8 @@
 import {MetaDataHelper} from "../../services/MetaDataHelper";
 import Constants from "../../Constants";
 import LinksHelper from "../../services/LinksHelper";
+import React from "react";
+import Link from "next/link";
 
 const title = 'Aiutaci';
 export const metadata = MetaDataHelper.generateMetadata(
@@ -26,8 +28,8 @@ export default function Page() {
                     <div className="section-content">
                         <h3><strong>Distribuisci</strong></h3>
                         <p>
-                            Distribuisci i nostri <a href={Constants.VolantiniPageSlug}
-                                                     className="action-button-secondary">volantini</a>:
+                            Distribuisci i nostri <Link href={Constants.VolantiniPageSlug}
+                                                     className="action-button-secondary">volantini</Link>:
                             stampa le nostre brochure informative e distribuiscile nel tuo bar di fiducia,
                             dalli ai tuoi amici, appendilo in qualche bacheca - diffondi nella tua comunità
                             il nostro messaggio.
@@ -41,7 +43,7 @@ export default function Page() {
                             a partire dai volantini che hai distribuito.
                         </p>
 
-                        <a href={Constants.VolantiniPageSlug} className="action-button">Scarica un volantino</a>
+                        <Link href={Constants.VolantiniPageSlug} className="action-button">Scarica un volantino</Link>
                     </div>
                 </section>
 
@@ -60,8 +62,8 @@ export default function Page() {
                     <div className="section-content">
                         <h3><strong>Seguici</strong></h3>
                         <p>
-                            <a href={Constants.NewsletterPageSlug}
-                               className="action-button-secondary">Iscriviti</a> alla nostra mailing
+                            <Link href={Constants.NewsletterPageSlug}
+                               className="action-button-secondary">Iscriviti</Link> alla nostra mailing
                             list:
                             se ci lasci tua email - che sarà trattata nel pieno rispetto della <a
                             href={Constants.PrivacyPageSlug} className="action-button-secondary">privacy</a> -
@@ -69,7 +71,7 @@ export default function Page() {
                             Non invieremo più di una mail a settimana, promesso!
                         </p>
 
-                        <a href={Constants.NewsletterPageSlug} className="action-button">Seguici</a>
+                        <Link href={Constants.NewsletterPageSlug} className="action-button">Seguici</Link>
                     </div>
                 </section>
 

@@ -5,6 +5,7 @@ import React from "react";
 import {SiteTitle} from "./SiteTitle";
 import {usePathname} from "next/navigation";
 import PathNameHelper from "../services/PathNameHelper";
+import Link from "next/link";
 
 export const Header = () => {
 
@@ -17,35 +18,35 @@ export const Header = () => {
                 <ul>
 
                     <li>
-                        <a className="header-logo" href="/">
+                        <Link className="header-logo" href="/">
                             <img
                                 src="/images/info-terra-terra.png"
                                 alt={`Il logo di ${Constants.SiteTitle}`}
                                 height="50"/>
                             <SiteTitle/>
-                        </a>
+                        </Link>
                     </li>
 
                     <li>
-                        <a className={`text-link margin-horizontal-1rem ${PathNameHelper.getActiveClassForLink(
+                        <Link className={`text-link margin-horizontal-1rem ${PathNameHelper.getActiveClassForLink(
                             pathName,
                             Constants.ManifestoPageSlug)}`}
-                           href={Constants.ManifestoPageSlug}>Manifesto</a>
-                        <a className={`text-link margin-horizontal-1rem ${PathNameHelper.getActiveClassForLink(
+                           href={Constants.ManifestoPageSlug}>Manifesto</Link>
+                        <Link className={`text-link margin-horizontal-1rem ${PathNameHelper.getActiveClassForLink(
                             pathName,
                             Constants.AiutaciPageSlug)}`}
-                           href={Constants.AiutaciPageSlug}>Aiutaci</a>
-                        <a className={`text-link margin-horizontal-1rem ${PathNameHelper.getActiveClassForLink(
+                           href={Constants.AiutaciPageSlug}>Aiutaci</Link>
+                        <Link className={`text-link margin-horizontal-1rem ${PathNameHelper.getActiveClassForLink(
                             pathName,
                             Constants.VolantiniPageSlug)}`}
-                           href={Constants.VolantiniPageSlug}>I volantini</a>
+                           href={Constants.VolantiniPageSlug}>I volantini</Link>
                     </li>
 
                     <li>
-                        <a className={PathNameHelper.getActiveClassButtonForLink(
+                        <Link className={PathNameHelper.getActiveClassButtonForLink(
                             pathName,
                             Constants.NewsletterPageSlug)}
-                           href={Constants.NewsletterPageSlug}>✉️ Iscriviti alla newsletter</a>
+                           href={Constants.NewsletterPageSlug}>✉️ Iscriviti alla newsletter</Link>
                     </li>
 
                 </ul>

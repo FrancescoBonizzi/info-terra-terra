@@ -2,6 +2,8 @@ import {VolantinoPreviewCard} from "../components/VolantinoPreviewCard";
 import {AllVolantini} from "../data/AllVolantini";
 import Constants from "../Constants";
 import {MetaDataHelper} from "../services/MetaDataHelper";
+import React from "react";
+import Link from "next/link";
 
 export const metadata = MetaDataHelper.generateMetadata(
     Constants.HomePageSlug,
@@ -36,7 +38,7 @@ export default function Page() {
                         di proteggere il nostro pianeta per le generazioni future.
                     </p>
 
-                    <a className="action-button margin-top-1rem" href={Constants.ManifestoPageSlug}>Scopri di più</a>
+                    <Link className="action-button margin-top-1rem" href={Constants.ManifestoPageSlug}>Scopri di più</Link>
                 </div>
             </section>
 
@@ -48,7 +50,7 @@ export default function Page() {
                         <VolantinoPreviewCard key={volantino.id} {...volantino} />
                     )}
 
-                    <a className="action-button margin-top-1rem" href={Constants.VolantiniPageSlug}>Guarda tutti i volantini</a>
+                    <Link className="action-button margin-top-1rem" href={Constants.VolantiniPageSlug}>Guarda tutti i volantini</Link>
                 </div>
             </section>
 
@@ -85,7 +87,7 @@ export default function Page() {
                         <strong>Ogni piccola azione può fare la differenza</strong>
                     </p>
 
-                    <a className="action-button margin-top-1rem" href={Constants.AiutaciPageSlug}>Scopri come puoi aiutare</a>
+                    <Link className="action-button margin-top-1rem" href={Constants.AiutaciPageSlug}>Scopri come puoi aiutare</Link>
 
                 </div>
             </section>
@@ -99,7 +101,7 @@ export default function Page() {
                         lasciaci la tua <strong>mail</strong>, per favore. Non ti disturberemo, promesso!
                     </p>
 
-                    <a className="action-button margin-top-1rem" href={Constants.NewsletterPageSlug}>Iscriviti alla newsletter</a>
+                    <Link className="action-button margin-top-1rem" href={Constants.NewsletterPageSlug}>Iscriviti alla newsletter</Link>
                 </div>
             </section>
         </>

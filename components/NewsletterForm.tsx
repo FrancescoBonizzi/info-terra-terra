@@ -4,6 +4,7 @@ import React, {FormEvent} from "react";
 import Constants from "../Constants";
 import NewsletterRepository from "../services/database/newsletter/NewsletterRepository";
 import {BounceLoader} from "react-spinners";
+import Link from "next/link";
 
 export const NewsletterForm = () => {
 
@@ -65,8 +66,8 @@ export const NewsletterForm = () => {
                         Se vuoi rimanere aggiornato sulle nostre attività, lasciaci la tua email, per favore.
                     </p>
 
-                    <p>Non preoccuparti, la tua <a href={Constants.PrivacyPageSlug}
-                                                   className="action-button-secondary">privacy</a> è assolutamente al
+                    <p>Non preoccuparti, la tua <Link href={Constants.PrivacyPageSlug}
+                                                   className="action-button-secondary">privacy</Link> è assolutamente al
                         sicuro!</p>
 
                     <div className="form-row">

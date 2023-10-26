@@ -1,4 +1,6 @@
 import {Volantino} from "../model/Volantino";
+import React from "react";
+import Link from "next/link";
 
 export const VolantinoPreviewCard = (props: Volantino) => {
     return (
@@ -22,8 +24,8 @@ export const VolantinoPreviewCard = (props: Volantino) => {
                     </div>
 
                     <p className="partial-volantino-description">{props.description}…</p>
-                    <a className="action-button-secondary centered-in-mobile" href={props.pageUrl}>Leggi di
-                        più &rsaquo;</a>
+                    <Link className="action-button-secondary centered-in-mobile" href={props.pageUrl}>Leggi di
+                        più &rsaquo;</Link>
                 </div>
             </div>
         </div>
