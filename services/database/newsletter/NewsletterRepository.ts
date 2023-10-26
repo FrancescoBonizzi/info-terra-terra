@@ -4,6 +4,8 @@ const ShouldNotBeHere2 = 'NON DEVO ESSERE QUI2';
 
 export default {
 
+    // TODO: occhio alla sql injection!
+
     insertEmailAddressAsync: async (emailAddress: string) => {
         const connectionString = Configurations.sqlConnectionString;
         const ShouldNotBeHere = 'NON DEVO ESSERE QUI';

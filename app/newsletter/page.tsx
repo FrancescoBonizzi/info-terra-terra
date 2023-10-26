@@ -2,6 +2,7 @@ import {MetaDataHelper} from "../../services/MetaDataHelper";
 import Constants from "../../Constants";
 import React from "react";
 import {NewsletterForm} from "../../components/NewsletterForm";
+import Configurations from "../../data/Configurations";
 
 const title = 'Newsletter';
 export const metadata = MetaDataHelper.generateMetadata(
