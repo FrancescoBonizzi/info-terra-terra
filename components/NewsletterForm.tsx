@@ -3,6 +3,7 @@
 import React, {FormEvent} from "react";
 import Constants from "../Constants";
 import NewsletterRepository from "../services/database/newsletter/NewsletterRepository";
+import {BounceLoader} from "react-spinners";
 
 export const NewsletterForm = () => {
 
@@ -34,17 +35,25 @@ export const NewsletterForm = () => {
         }
     }
 
+    if (isLoading) {
+        return (
+            <div className="transparent-rounded-form max-width-25rem text-color-success">
+                <h4 className="padding0 margin0 text-align-center">
+                    <BounceLoader
+                        color='#86C342'
+                        loading={isLoading}
+                        size={150}
+                    />
+                </h4>
+            </div>
+        );
+    }
+
     return (
         <>
             {success &&
                 <div className="transparent-rounded-form max-width-25rem text-color-success">
                     <h4 className="padding0 margin0 text-align-center">Grazie per esserti iscritto alla newsletter! A presto!</h4>
-                </div>
-            }
-
-            {isLoading &&
-                <div className="transparent-rounded-form max-width-25rem text-color-success">
-                    <h4 className="padding0 margin0 text-align-center">Caricamento...</h4>
                 </div>
             }
 
