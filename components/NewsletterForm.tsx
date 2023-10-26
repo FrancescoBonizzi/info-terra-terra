@@ -1,40 +1,25 @@
 'use client'
 
-import React, {FormEvent} from "react";
+import React from "react";
 import Constants from "../Constants";
-import NewsletterRepository from "../services/database/newsletter/NewsletterRepository";
 import {BounceLoader} from "react-spinners";
 import Link from "next/link";
 
+// TODO: quando non sarà experimental, leva il @ts-ignore e metti l'import corretto
+// @ts-ignore
+import { experimental_useFormStatus as useFormStatus, experimental_useFormState as useFormState } from "react-dom";
+import {newsletterSubmitAction, NewsletterSubmitOutput} from "../actions/newsletterSubmitAction";
+
+const initialState : NewsletterSubmitOutput = {}
+
 export const NewsletterForm = () => {
 
-    const [success, setSuccess] = React.useState(false);
-    const [errors, setErrors] = React.useState('');
-    const [isLoading, setIsLoading] = React.useState(false);
+    const formStatus = useFormStatus();
+    const isLoading = formStatus.pending;
 
-    const onSendEmailAddress = async (event: FormEvent<HTMLFormElement>) => {
-
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget)
-
-        try {
-            setIsLoading(true);
-            await NewsletterRepository.insertEmailAddressAsync(
-                formData.get('email') as string);
-            setSuccess(true);
-        }
-        catch (ex) {
-            if (ex instanceof Error) {
-                setErrors(ex.message);
-            }
-            else {
-                setErrors('Errore generico');
-            }
-        }
-        finally {
-            setIsLoading(false);
-        }
-    }
+    const [state, formAction] = useFormState(newsletterSubmitAction, initialState);
+    const isSuccess = state.success;
+    const errors = state.errors;
 
     if (isLoading) {
         return (
@@ -52,14 +37,14 @@ export const NewsletterForm = () => {
 
     return (
         <>
-            {success &&
+            {isSuccess &&
                 <div className="transparent-rounded-form max-width-25rem text-color-success">
                     <h4 className="padding0 margin0 text-align-center">Grazie per esserti iscritto alla newsletter! A presto!</h4>
                 </div>
             }
 
-            {!success &&
-                <form onSubmit={onSendEmailAddress}
+            {!isSuccess &&
+                <form action={formAction}
                     className="margin-top-2rem transparent-rounded-form">
 
                     <p>
@@ -84,7 +69,7 @@ export const NewsletterForm = () => {
 
             {errors &&
                 <div className="transparent-rounded-form max-width-25rem text-color-error padding0 margin0">
-                    <h4 className="padding0 margin0 text-align-center">@Model.Errors</h4>
+                    <h4 className="padding0 margin0 text-align-center">{errors}</h4>
                 </div>
             }
         </>
