@@ -7,6 +7,7 @@ export interface NewsletterSubmitOutput {
     errors?: string | null;
 }
 
+// TODO posso astrarre questo submit e questo output e passare sempre quello
 export const NewsletterSubmitAction = async (
     _prevState: NewsletterSubmitOutput,
     formData: FormData) : Promise<NewsletterSubmitOutput>  => {
