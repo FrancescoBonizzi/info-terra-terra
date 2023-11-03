@@ -12,8 +12,6 @@ export const NewsletterSubmitAction = async (
     _prevState: NewsletterSubmitOutput,
     formData: FormData) : Promise<NewsletterSubmitOutput>  => {
 
-    // TODO: ma le eccezioni come escono?
-
     try {
         await NewsletterRepository.insertEmailAddressAsync(
             formData.get('email') as string);
