@@ -1,42 +1,55 @@
 'use client'
 
-import {LoginSubmitAction, LoginSubmitOutput} from "../dataLayer/login/LoginSubmitAction";
-import {useFormState} from "react-dom";
 import React from "react";
 import {FormSubmitButton} from "./FormSubmitButton";
 import {FormError} from "./FormError";
+import {signIn} from "next-auth/react";
+import {redirect} from "next/navigation";
+import Constants from "../Constants";
+import {loginCredentialsProviderName} from "../services/AuthConfig";
 
-const initialState : LoginSubmitOutput = {}
 export const LoginForm = () => {
 
-    // NB: useFormStatus funziona solo dentro ai figli di un componente che ha il padre con <form>
-    const [state, formAction] = useFormState(LoginSubmitAction, initialState);
-    const isSuccess = state.success;
-    const errors = state.errors;
+    const [errors, setErrors] = React.useState<string>();
+
+    const onSubmitHandler = async (formData: FormData) => {
+
+        const credential = {
+            email: formData.get("email") as string,
+            plainTextPassword: formData.get("plainTextPassword") as string,
+        }
+
+        const result = await signIn(
+            loginCredentialsProviderName,
+            {...credential, redirect: false});
+        if (result?.ok)
+            // NB: questo redirect non deve mai stare dentro ad un catch
+            // perchè per funzionare tira un'eccezione.
+        {
+            redirect(Constants.AdminPageSlug);
+        }
+        else {
+            setErrors(result?.error as string);
+        }
+    }
 
     return (
-        <>
-            {!isSuccess &&
-                <form action={formAction}
-                      className="margin-top-2rem transparent-rounded-form">
+        <form action={onSubmitHandler}
+              className="margin-top-2rem transparent-rounded-form">
 
-                    <div className="form-row">
-                        <label htmlFor="username">Username:</label>
-                        <input type="text" id="username" name="username" required/>
-                    </div>
+            <div className="form-row">
+                <label htmlFor="username">Username:</label>
+                <input type="text" id="username" name="username" required/>
+            </div>
 
-                    <div className="form-row">
-                        <label htmlFor="plainTextPassword">Password:</label>
-                        <input type="password" id="plainTextPassword" name="plainTextPassword" required/>
-                    </div>
+            <div className="form-row">
+                <label htmlFor="plainTextPassword">Password:</label>
+                <input type="password" id="plainTextPassword" name="plainTextPassword" required/>
+            </div>
 
-                    <FormSubmitButton text={"Login"}/>
+            <FormSubmitButton text={"Login"}/>
 
-                    <FormError errors={errors} />
-                </form>
-            }
-
-
-        </>
+            <FormError errors={errors}/>
+        </form>
     )
 }

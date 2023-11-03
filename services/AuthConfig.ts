@@ -1,4 +1,5 @@
-import 'server-only';
+// TODO: è un problema per il secret!
+//import 'server-only';
 
 import type { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from "next";
 import type { NextAuthOptions } from "next-auth";
@@ -6,13 +7,15 @@ import { getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import Constants from "../Constants";
 
+export const loginCredentialsProviderName = "login";
 export const authConfig = {
     secret: 'pane-anguria-alberi-giardini-lavandini-metano',
     providers: [
         CredentialsProvider({
-            id: "login",
-            name: "login",
+            id: loginCredentialsProviderName,
+            name: loginCredentialsProviderName,
             type: "credentials",
+            // Non mi servono a niente perché chiamo io signin, ma vabbè
             credentials: {
                 email: { label: "Email", type: "text", placeholder: "Email" },
                 plainTextPassword: {
@@ -41,7 +44,7 @@ export const authConfig = {
     ],
     pages: {
         signIn: "/auth/login",
-        error: "/",
+        error: "/"
     },
     session: {
         strategy: "jwt",
