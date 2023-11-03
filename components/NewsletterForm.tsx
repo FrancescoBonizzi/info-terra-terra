@@ -4,8 +4,6 @@ import React from "react";
 import Constants from "../Constants";
 import Link from "next/link";
 
-// TODO: quando non sarà experimental, leva il @ts-ignore e metti l'import corretto
-// @ts-ignore
 import { useFormState } from "react-dom";
 import {NewsletterSubmitAction, NewsletterSubmitOutput} from "../dataLayer/newsletter/NewsletterSubmitAction";
 import {FormSubmitButton} from "./FormSubmitButton";
