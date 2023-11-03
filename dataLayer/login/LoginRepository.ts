@@ -17,7 +17,7 @@ const _users: User[] = [
 ];
 
 export default {
-    loginAsync: async (username: string, password: string) : Promise<User> => {
+    loginAsync: async (username: string, password: string)  => {
         const user = _users.find(u => u.username === username && u.password === password);
         if (!user) {
             throw new UnauthorizedException();

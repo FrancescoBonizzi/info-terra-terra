@@ -13,5 +13,6 @@ export default {
     VolantinoPageSlug: "/volantino",
     AdminPageSlug: "/admin",
     LoginPageSlug: "/auth/login",
-    Logout: "/auth/logout"
+    Logout: "/auth/logout",
+    LoginApiPath: "/api/auth/login",
 }
