@@ -44,11 +44,11 @@ section {
 }
 
 .margin0 {
-    margin: 0;
+    margin: 0 !important;
 }
 
 .padding0 {
-    padding: 0;
+    padding: 0 !important;
 }
 
 .section-content-right, .section-content-left {
@@ -410,15 +410,19 @@ section ul li {
 }
 
 .margin-vertical-1rem {
-    margin: 1rem 0;
+    margin: 1rem 0 !important;
 }
 
 .margin-top-2rem {
-    margin-top: 2rem;
+    margin-top: 2rem !important;
 }
 
 .margin-top-1rem {
-    margin-top: 1rem;
+    margin-top: 1rem !important;
+}
+
+.margin-bottom-0rem {
+    margin-bottom: 0 !important;
 }
 
 .height100vh {

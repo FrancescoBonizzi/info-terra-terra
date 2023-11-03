@@ -11,7 +11,7 @@ export default {
     NewsletterPageSlug: "/newsletter",
     QrPageSlug: "/qr",
     VolantinoPageSlug: "/volantino",
-    AdminSlug: "/admin",
-    LoginSlug: "/auth/login",
+    AdminPageSlug: "/admin",
+    LoginPageSlug: "/auth/login",
     Logout: "/auth/logout"
 }

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useFormState } from "react-dom";
 import {NewsletterSubmitAction, NewsletterSubmitOutput} from "../dataLayer/newsletter/NewsletterSubmitAction";
 import {FormSubmitButton} from "./FormSubmitButton";
+import {FormError} from "./FormError";
 
 const initialState : NewsletterSubmitOutput = {}
 
@@ -43,15 +44,11 @@ export const NewsletterForm = () => {
                     </div>
 
                     <FormSubmitButton text={"Iscriviti"}/>
+                    <FormError errors={errors} />
 
                 </form>
             }
 
-            {errors &&
-                <div className="transparent-rounded-form max-width-25rem text-color-error padding0 margin0">
-                    <h4 className="padding0 margin0 text-align-center">{errors}</h4>
-                </div>
-            }
         </>
     )
 }
