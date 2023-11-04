@@ -12,7 +12,6 @@ export default {
     QrPageSlug: "/qr",
     VolantinoPageSlug: "/volantino",
     AdminPageSlug: "/admin",
-    LoginPageSlug: "/auth/login",
-    Logout: "/auth/logout",
+    LoginPageSlug: "/login",
     LoginApiPath: "/api/auth/login",
 }
