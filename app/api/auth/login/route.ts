@@ -13,6 +13,3 @@ export async function POST(
 
     response.status(200).json(user);
 }
-
-
-// TODO: Non riesce a fare la chiamata API (CREDO) per il login dalla form
