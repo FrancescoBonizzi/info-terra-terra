@@ -1,7 +1,7 @@
-import Constants from "../../../Constants";
-import {MetaDataHelper} from "../../../services/MetaDataHelper";
 import React from "react";
-import {LoginForm} from "../../../components/LoginForm";
+import {MetaDataHelper} from "../../services/MetaDataHelper";
+import Constants from "../../Constants";
+import {LoginForm} from "../../components/LoginForm";
 
 const title = 'Login';
 export const metadata = MetaDataHelper.generateMetadata(
