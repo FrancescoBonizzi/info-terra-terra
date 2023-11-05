@@ -20,12 +20,10 @@ export async function POST(
         if (e instanceof Error && e.name === UnauthorizedException.name)
         {
             response.status(401).send(e.message);
-            return;
         }
         else if (e instanceof Error && e.name === FrontendException.name)
         {
             response.status(400).send(e.message);
-            return;
         }
 
         response.status(500).send('Errore generico');

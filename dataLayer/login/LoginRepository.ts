@@ -29,7 +29,10 @@ export default {
             throw new FrontendException ('Il campo password è obbligatorio');
         }
 
-        const user = _users.find(u => u.username === username && u.password === password);
+        const user = _users.find(u =>
+            u.username === username
+            && u.password === password);
+
         if (!user) {
             throw new UnauthorizedException();
         }
