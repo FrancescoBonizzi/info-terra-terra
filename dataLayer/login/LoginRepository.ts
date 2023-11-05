@@ -1,7 +1,9 @@
 import 'server-only';
 
 import {User} from "./User";
-import {UnauthorizedException} from "./UnhautorizedException";
+import {FrontendException} from "../exceptions/FrontendException";
+import StringHelper from "../../services/StringHelper";
+import {UnauthorizedException} from "../exceptions/UnhautorizedException";
 
 const _users: User[] = [
     {
@@ -18,6 +20,15 @@ const _users: User[] = [
 
 export default {
     loginAsync: async (username: string, password: string)  => {
+
+        if (!StringHelper.isNullOrWhitespace(username)) {
+            throw new FrontendException ('Il campo username è obbligatorio');
+        }
+
+        if (!StringHelper.isNullOrWhitespace(password)) {
+            throw new FrontendException ('Il campo password è obbligatorio');
+        }
+
         const user = _users.find(u => u.username === username && u.password === password);
         if (!user) {
             throw new UnauthorizedException();

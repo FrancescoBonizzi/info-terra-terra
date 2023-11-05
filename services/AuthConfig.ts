@@ -1,11 +1,13 @@
 // TODO: è un problema per il secret!
 //import 'server-only';
 
-import type { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from "next";
-import type { NextAuthOptions } from "next-auth";
-import { getServerSession } from "next-auth";
+import type {GetServerSidePropsContext, NextApiRequest, NextApiResponse} from "next";
+import type {NextAuthOptions} from "next-auth";
+import {getServerSession} from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import Constants from "../Constants";
+
+// TODO: usa il middleware per decidere cosa è sotto auth
 
 export const loginCredentialsProviderName = "login";
 export const authConfig = {
@@ -17,7 +19,7 @@ export const authConfig = {
             type: "credentials",
             // Non mi servono a niente perché chiamo io signin, ma vabbè
             credentials: {
-                email: { label: "Email", type: "text", placeholder: "Email" },
+                email: {label: "Email", type: "text", placeholder: "Email"},
                 plainTextPassword: {
                     label: "Password",
                     type: "password",
@@ -25,29 +27,30 @@ export const authConfig = {
                 },
             },
             async authorize(credentials, req) {
-                const res = await fetch(Constants.LoginApiPath, {
-                    method: 'POST',
-                    body: JSON.stringify(credentials),
-                    headers: { "Content-Type": "application/json" }
-                })
-                const user = await res.json();
 
-                // If no error and we have user data, return it
-                if (res.ok && user) {
-                    return user
+                const res = await fetch(
+                     req.headers!.origin + Constants.LoginApiPath,
+                    {
+                        method: 'POST',
+                        body: JSON.stringify(credentials),
+                        headers: {"Content-Type": "application/json"}
+                    })
+
+                if (res.ok) {
+                    return await res.json();
                 }
 
-                // Return null if user data could not be retrieved
-                return null
+                throw new Error("Autenticazione fallita");
             }
         }),
     ],
     pages: {
-        signIn: "/auth/login",
+        signIn: Constants.LoginPageSlug,
         error: "/"
     },
     session: {
         strategy: "jwt",
+        maxAge: 30 * 24 * 60 * 60, // 30 days
     }
 } satisfies NextAuthOptions
 
