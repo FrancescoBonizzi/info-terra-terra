@@ -21,11 +21,11 @@ const _users: User[] = [
 export default {
     loginAsync: async (username: string, password: string)  => {
 
-        if (!StringHelper.isNullOrWhitespace(username)) {
+        if (StringHelper.isNullOrWhitespace(username)) {
             throw new FrontendException ('Il campo username è obbligatorio');
         }
 
-        if (!StringHelper.isNullOrWhitespace(password)) {
+        if (StringHelper.isNullOrWhitespace(password)) {
             throw new FrontendException ('Il campo password è obbligatorio');
         }
 

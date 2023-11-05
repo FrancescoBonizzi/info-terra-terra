@@ -40,7 +40,7 @@ export const authConfig = {
                     return await res.json();
                 }
 
-                throw new Error("Autenticazione fallita");
+                throw new Error(await res.text());
             }
         }),
     ],
