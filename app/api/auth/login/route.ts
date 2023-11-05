@@ -14,6 +14,7 @@ export async function POST(
             request.body.username,
             request.body.plainTextPassword);
 
+        // TODO: non funziona status! TypeError: response.status is not a function
         response.status(200).json(user);
     }
     catch (e) {

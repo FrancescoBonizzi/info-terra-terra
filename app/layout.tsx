@@ -1,10 +1,10 @@
 import React from "react";
-import {SiteHead} from "../components/SiteHead";
 import {Header} from "../components/Header";
 import {Footer} from "../components/Footer";
 import './css/site.css';
 import './css/responsive.css';
 import {Open_Sans, Secular_One} from "next/font/google";
+import {Metadata, Viewport} from "next";
 
 const openSans = Open_Sans({
     subsets: ['latin'],
@@ -19,6 +19,19 @@ const secularOne = Secular_One({
     variable: '--font-secular-one'
 });
 
+export const metadata: Metadata = {
+    robots: {
+        index: true,
+        follow: true
+    }
+}
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    themeColor: '#423b3b'
+}
+
 interface Props {
     children: React.ReactNode;
 }
@@ -28,8 +41,6 @@ export default function RootLayout(props: Props) {
         <html
             lang="it"
             className={`${openSans.variable} ${secularOne.variable}`}>
-
-            <SiteHead/>
 
             <body>
 
