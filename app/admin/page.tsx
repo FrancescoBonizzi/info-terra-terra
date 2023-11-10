@@ -2,6 +2,7 @@ import {MetaDataHelper} from "../../services/MetaDataHelper";
 import Constants from "../../Constants";
 import {getServerSession} from "next-auth";
 import {authConfig} from "../../services/AuthConfig";
+import {redirect} from "next/navigation";
 
 const title = 'Admin';
 export const metadata = MetaDataHelper.generateMetadata(
@@ -13,10 +14,7 @@ export const metadata = MetaDataHelper.generateMetadata(
 export default async function Page() {
     const session = await getServerSession(authConfig);
     if (!session?.user) {
-        // TODO: sicuro si potrà fare meglio di così
-        return (
-            <h1>Non autorizzato</h1>
-        )
+        return redirect(Constants.LoginPageSlug);
     }
 
     return (
