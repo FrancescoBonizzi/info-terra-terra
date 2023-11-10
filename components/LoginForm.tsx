@@ -19,9 +19,6 @@ export const LoginForm = () => {
             plainTextPassword: formData.get("plainTextPassword") as string,
         }
 
-        // TODO: console.log qua non va??
-        //  il problema di tutto è che alle Api non arrivano i dati, boh!
-
         const result = await signIn(
             loginCredentialsProviderName,
             {...credential, redirect: false});
