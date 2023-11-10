@@ -1,19 +1,16 @@
 import LoginRepository from "../../../../dataLayer/login/LoginRepository";
-import {NextApiRequest} from "next";
 import {UnauthorizedException} from "../../../../dataLayer/exceptions/UnhautorizedException";
 import {FrontendException} from "../../../../dataLayer/exceptions/FrontendException";
-import {NextResponse} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 
-export async function POST(
-    request: NextApiRequest) {
+export async function POST(request: NextRequest) {
 
-    console.log(request.body.username);
-    console.log(request.body.plainTextPassword);
+    const parsedRequest = await request.json();
 
     try {
         const user = await LoginRepository.loginAsync(
-            request.body.username,
-            request.body.plainTextPassword);
+            parsedRequest.username,
+            parsedRequest.plainTextPassword);
         return NextResponse.json(user);
     }
     catch (e) {

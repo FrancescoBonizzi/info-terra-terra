@@ -15,9 +15,12 @@ export const LoginForm = () => {
     const onSubmitHandler = async (formData: FormData) => {
 
         const credential = {
-            email: formData.get("email") as string,
+            username: formData.get("username") as string,
             plainTextPassword: formData.get("plainTextPassword") as string,
         }
+
+        // TODO: console.log qua non va??
+        //  il problema di tutto è che alle Api non arrivano i dati, boh!
 
         const result = await signIn(
             loginCredentialsProviderName,

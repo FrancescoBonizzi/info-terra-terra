@@ -19,7 +19,7 @@ export const authConfig = {
             type: "credentials",
             // Non mi servono a niente perché chiamo io signin, ma vabbè
             credentials: {
-                email: {label: "Email", type: "text", placeholder: "Email"},
+                username: {label: "Username", type: "text", placeholder: "Username"},
                 plainTextPassword: {
                     label: "Password",
                     type: "password",
@@ -28,11 +28,17 @@ export const authConfig = {
             },
             async authorize(credentials, req) {
 
+                if (!credentials)
+                    throw new Error("Errore generico");
+
                 const res = await fetch(
                      req.headers!.origin + Constants.LoginApiPath,
                     {
                         method: 'POST',
-                        body: JSON.stringify(credentials),
+                        body: JSON.stringify({
+                            username: credentials.username,
+                            plainTextPassword: credentials.plainTextPassword
+                        }),
                         headers: {"Content-Type": "application/json"}
                     })
 
