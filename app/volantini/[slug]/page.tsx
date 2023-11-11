@@ -25,7 +25,7 @@ export function generateMetadata(props: Props): Metadata | undefined {
         volantino.ogImage);
 }
 
-export default function Page(props: Props) {
+export default function Page(props: Readonly<Props>) {
 
     const volantino = AllVolantini
         .find((volantino) => volantino.slug === props.params.slug);
