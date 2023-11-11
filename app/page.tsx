@@ -1,9 +1,9 @@
 import {VolantinoPreviewCard} from "../components/VolantinoPreviewCard";
-import {AllVolantini} from "../data/AllVolantini";
 import Constants from "../Constants";
 import {MetaDataHelper} from "../services/MetaDataHelper";
 import React from "react";
 import Link from "next/link";
+import {AllVolantini} from "../dataLayer/volantini/AllVolantini";
 
 export const metadata = MetaDataHelper.generateMetadata(
     Constants.HomePageSlug,
@@ -38,7 +38,8 @@ export default function Page() {
                         di proteggere il nostro pianeta per le generazioni future.
                     </p>
 
-                    <Link className="action-button margin-top-1rem" href={Constants.ManifestoPageSlug}>Scopri di più</Link>
+                    <Link className="action-button margin-top-1rem" href={Constants.ManifestoPageSlug}>Scopri di
+                        più</Link>
                 </div>
             </section>
 
@@ -50,7 +51,8 @@ export default function Page() {
                         <VolantinoPreviewCard key={volantino.id} {...volantino} />
                     )}
 
-                    <Link className="action-button margin-top-1rem" href={Constants.VolantiniPageSlug}>Guarda tutti i volantini</Link>
+                    <Link className="action-button margin-top-1rem" href={Constants.VolantiniPageSlug}>Guarda tutti i
+                        volantini</Link>
                 </div>
             </section>
 
@@ -65,8 +67,8 @@ export default function Page() {
                     </p>
 
                     <p>
-                        Ma per farlo, <strong>abbiamo bisogno del tuo aiuto!</strong>
-                        Ci sono molte cose che puoi fare per sostenerci:
+                        Ma per farlo, <strong>abbiamo bisogno del tuo aiuto!</strong> Ci sono molte cose che puoi fare
+                        per sostenerci:
                     </p>
 
                     <ul>
@@ -74,11 +76,10 @@ export default function Page() {
                             comunità
                         </li>
                         <li>
-                            <strong>Condividere</strong> le nostre iniziative. Ricorda:
-                            <strong>
-                                anche una sola persona che inizia a riflettere
-                                su questi temi grazie a noi, è un successo!
-                            </strong>
+                            <strong>Condividere</strong> le nostre iniziative. Ricorda: <strong>
+                            anche una sola persona che inizia a riflettere
+                            su questi temi grazie a noi, è un successo!
+                        </strong>
                         </li>
                         <li>Lasciarci la tua email per ricevere aggiornamenti sulle nostre attività</li>
                     </ul>
@@ -87,7 +88,8 @@ export default function Page() {
                         <strong>Ogni piccola azione può fare la differenza</strong>
                     </p>
 
-                    <Link className="action-button margin-top-1rem" href={Constants.AiutaciPageSlug}>Scopri come puoi aiutare</Link>
+                    <Link className="action-button margin-top-1rem" href={Constants.AiutaciPageSlug}>Scopri come puoi
+                        aiutare</Link>
 
                 </div>
             </section>
@@ -101,7 +103,8 @@ export default function Page() {
                         lasciaci la tua <strong>mail</strong>, per favore. Non ti disturberemo, promesso!
                     </p>
 
-                    <Link className="action-button margin-top-1rem" href={Constants.NewsletterPageSlug}>Iscriviti alla newsletter</Link>
+                    <Link className="action-button margin-top-1rem" href={Constants.NewsletterPageSlug}>Iscriviti alla
+                        newsletter</Link>
                 </div>
             </section>
         </>

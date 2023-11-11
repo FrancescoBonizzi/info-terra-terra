@@ -1,4 +1,4 @@
-import {Volantino} from "../model/Volantino";
+import {Volantino} from "./Volantino";
 
 export const AllVolantini: Volantino[] = [
    {

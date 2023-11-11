@@ -1,4 +1,4 @@
-import {Paragraph} from "./Paragraph";
+import {Paragraph} from "../../model/Paragraph";
 
 export interface Volantino {
     id: number;

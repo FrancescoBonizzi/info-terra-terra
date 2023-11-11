@@ -1,7 +1,7 @@
-import {AllVolantini} from "../../../data/AllVolantini";
 import {notFound} from "next/navigation";
 import {MetaDataHelper} from "../../../services/MetaDataHelper";
 import {Metadata} from "next";
+import {AllVolantini} from "../../../dataLayer/volantini/AllVolantini";
 
 interface Props {
     params: {

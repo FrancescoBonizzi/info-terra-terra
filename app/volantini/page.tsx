@@ -1,8 +1,8 @@
 import {MetaDataHelper} from "../../services/MetaDataHelper";
 import Constants from "../../Constants";
 import React from "react";
-import {AllVolantini} from "../../data/AllVolantini";
 import {VolantinoPreviewCard} from "../../components/VolantinoPreviewCard";
+import {AllVolantini} from "../../dataLayer/volantini/AllVolantini";
 
 const title = 'Volantini';
 export const metadata = MetaDataHelper.generateMetadata(

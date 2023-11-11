@@ -1,6 +1,6 @@
-import {Volantino} from "../model/Volantino";
 import React from "react";
 import Link from "next/link";
+import {Volantino} from "../dataLayer/volantini/Volantino";
 
 export const VolantinoPreviewCard = (props: Volantino) => {
     return (

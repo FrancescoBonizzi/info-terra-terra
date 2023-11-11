@@ -13,7 +13,7 @@ export default {
         console.log(`Inserting email address ${emailAddress} into database...`);
     },
 
-    getStatisticsAsync: async () => {
+    getStatisticsAsync: async () : Promise<NewsletterIscrittiStatistics> => {
         const connectionString = Configurations.sqlConnectionString;
         console.log(`Getting statistics from database...`);
     }
