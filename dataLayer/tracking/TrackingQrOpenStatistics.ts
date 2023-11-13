@@ -4,7 +4,8 @@ import {TrackingGroupedData} from "./TrackingGroupedData";
 import {KeyValuePair} from "../../model/KeyValuePair";
 
 export class TrackingQrOpenStatistics {
-    singleVolantinoStatistics: SingleVolantinoStatistics[];
+
+    singleVolantinoStatistics!: SingleVolantinoStatistics[];
     globalCounters: { key: string; value: string }[];
 
     constructor(trackingGroupedData: TrackingGroupedData[] | null) {
