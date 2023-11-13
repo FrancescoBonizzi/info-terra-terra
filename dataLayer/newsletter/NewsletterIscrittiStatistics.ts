@@ -2,21 +2,15 @@ import {KeyValuePair} from "../../model/KeyValuePair";
 
 export class NewsletterIscrittiStatistics {
     public allNewsletterEmail: string[];
-    public lastIscrittoDate: string | null;
     public counters: KeyValuePair<string, string>[];
 
-    constructor(allNewsletterEmail: string[], lastIscrittoDate: string | null) {
+    constructor(allNewsletterEmail: string[]) {
         this.allNewsletterEmail = allNewsletterEmail;
-        this.lastIscrittoDate = lastIscrittoDate;
 
         this.counters = [
             {
                 key: "Numero iscritti alla newsletter",
                 value: this.getNumeroIscrittiText()
-            },
-            {
-                key: "Data ultimo iscritto alla newsletter",
-                value: this.lastIscrittoDate ?? "😟"
             }
         ];
     }

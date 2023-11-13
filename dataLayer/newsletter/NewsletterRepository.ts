@@ -5,12 +5,6 @@ import {NewsletterIscrittiStatistics} from "./NewsletterIscrittiStatistics";
 import sql from "mssql";
 import EmailValidator from "../../services/EmailValidator";
 import {FrontendException} from "../exceptions/FrontendException";
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
 
 export default {
 
@@ -27,7 +21,8 @@ export default {
                 'SELECT TOP 1 id ' +
                 'FROM Newsletter.EmailAddresses ' +
                 'WHERE EmailAddress = @emailAddress');
-        const alreadyExists = emailAddressId != null;
+        const alreadyExists = emailAddressId.recordset.length > 0
+            && emailAddressId.recordset[0] !== null;
 
         if (!alreadyExists)
         {
@@ -49,29 +44,14 @@ export default {
         const connection = await sql.connect(Configurations.sqlConnectionString);
 
         try {
-            const allEmail = await connection
-                .query<string[]>(
+            const allEmail = (await connection
+                .query(
                     `SELECT emailAddress 
                 FROM Newsletter.EmailAddresses 
-                ORDER BY DateUtc DESC`);
-
-            const lastEmailDateRaw = await connection
-                .query<string | null>(
-                    `SELECT TOP 1 dateUtc 
-                FROM Newsletter.EmailAddresses
-                ORDER BY DateUtc DESC`);
-
-            let lastEmailDateItalianTimeZoneString = null;
-
-            if (lastEmailDateRaw.recordset.length > 0) {
-                const lastEmailUtc = dayjs.utc(lastEmailDateRaw.recordset[0]);
-                const lastEmailDateItalianTimeZone = lastEmailUtc.tz('Europe/Rome');
-                lastEmailDateItalianTimeZoneString = lastEmailDateItalianTimeZone.format("DD/MM/YYYY [alle] HH:mm");
-            }
+                ORDER BY DateUtc DESC`)).recordset as {emailAddress: string}[];
 
             return new NewsletterIscrittiStatistics(
-                allEmail.recordset,
-                lastEmailDateItalianTimeZoneString);
+                allEmail.map(x => x.emailAddress));
         }
         finally {
             await connection.close();

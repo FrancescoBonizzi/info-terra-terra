@@ -8,7 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "dayjs": "^1.11.10",
     "mssql": "^10.0.1",
     "next": "^14.0.0",
     "next-auth": "^4.24.4",
