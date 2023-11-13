@@ -9,7 +9,7 @@ import {Counter} from "../../components/admin/Counter";
 import {CounterWithCategory} from "../../components/admin/CounterWithCategory";
 import {KeyValuePair} from "../../model/KeyValuePair";
 
-const title = 'Admin';
+const title = 'Amministrazione';
 export const metadata = MetaDataHelper.generateMetadata(
     Constants.AdminPageSlug,
     `${title} - ${Constants.SiteTitle}`,
@@ -25,14 +25,13 @@ export default async function Page() {
     const trackingQrStatistics = await TrackingRepository.getStatisticsAsync();
     const newsletterStatistics = await NewsletterRepository.getStatisticsAsync();
 
+    const pageTitleSpan = `${title} / 👋🏻 ${session.user.name}`;
     return (
         <article>
 
             <section className="bg-admin">
                 <div className="text-align-center">
-                    <span>{title}</span>
-                    <span>/</span>
-                    <span>👋🏻 {session.user.name}</span>
+                    <span>{pageTitleSpan}</span>
                 </div>
             </section>
 

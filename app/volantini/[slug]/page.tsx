@@ -1,7 +1,7 @@
 import {notFound} from "next/navigation";
 import {MetaDataHelper} from "../../../services/MetaDataHelper";
 import {Metadata} from "next";
-import {AllVolantini} from "../../../dataLayer/volantini/AllVolantini";
+import VolantiniRepository from "../../../dataLayer/volantini/VolantiniRepository";
 
 interface Props {
     params: {
@@ -11,8 +11,7 @@ interface Props {
 
 export function generateMetadata(props: Props): Metadata | undefined {
 
-    const volantino = AllVolantini
-        .find((volantino) => volantino.slug === props.params.slug);
+    const volantino = VolantiniRepository.getBySlug(props.params.slug);
 
     if (!volantino) {
         return undefined;
@@ -27,8 +26,7 @@ export function generateMetadata(props: Props): Metadata | undefined {
 
 export default function Page(props: Readonly<Props>) {
 
-    const volantino = AllVolantini
-        .find((volantino) => volantino.slug === props.params.slug);
+    const volantino = VolantiniRepository.getBySlug(props.params.slug);
 
     if (!volantino) {
         notFound();

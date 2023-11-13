@@ -1,6 +1,8 @@
 import {KeyValuePair} from "../../model/KeyValuePair";
+import StringHelper from "../../services/StringHelper";
 
 interface Props {
+    category?: string;
     counter: KeyValuePair<string, string>;
 }
 
@@ -8,10 +10,9 @@ export const Counter = (props: Props) => {
     return (
         <div className="counter-container">
 
-            @if (!string.IsNullOrWhiteSpace(Model.Category))
-            {
+            {!StringHelper.isNullOrWhitespace(props.category) &&
                 <div className="counter-category">
-                    @Model.Category
+                    {props.category}
                 </div>
             }
 

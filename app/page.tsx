@@ -3,7 +3,7 @@ import Constants from "../Constants";
 import {MetaDataHelper} from "../services/MetaDataHelper";
 import React from "react";
 import Link from "next/link";
-import {AllVolantini} from "../dataLayer/volantini/AllVolantini";
+import VolantiniRepository from "../dataLayer/volantini/VolantiniRepository";
 
 export const metadata = MetaDataHelper.generateMetadata(
     Constants.HomePageSlug,
@@ -47,7 +47,7 @@ export default function Page() {
                 <div className="section-content">
                     <h3><strong>Gli ultimi volantini</strong></h3>
 
-                    {AllVolantini.map((volantino) =>
+                    {VolantiniRepository.getAll().map((volantino) =>
                         <VolantinoPreviewCard key={volantino.id} {...volantino} />
                     )}
 

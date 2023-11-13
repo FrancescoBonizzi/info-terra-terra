@@ -2,7 +2,7 @@ import {MetaDataHelper} from "../../services/MetaDataHelper";
 import Constants from "../../Constants";
 import React from "react";
 import {VolantinoPreviewCard} from "../../components/VolantinoPreviewCard";
-import {AllVolantini} from "../../dataLayer/volantini/AllVolantini";
+import VolantiniRepository from "../../dataLayer/volantini/VolantiniRepository";
 
 const title = 'Volantini';
 export const metadata = MetaDataHelper.generateMetadata(
@@ -25,7 +25,7 @@ export default function Page() {
             <section className="bg-alt">
                 <div className="section-content">
 
-                    {AllVolantini.map((volantino) =>
+                    {VolantiniRepository.getAll().map((volantino) =>
                         <VolantinoPreviewCard key={volantino.id} {...volantino} />
                     )}
 

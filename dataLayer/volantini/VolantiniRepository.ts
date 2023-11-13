@@ -1,6 +1,7 @@
 import {Volantino} from "./Volantino";
 
-export const AllVolantini: Volantino[] = [
+
+const _volantini : Volantino[] = [
    {
       id: 1,
       date: new Date(2023, 4, 8), // Mese è 0-based (0 = Gennaio, 4 = Maggio)
@@ -60,3 +61,11 @@ export const AllVolantini: Volantino[] = [
       ],
    },
 ];
+
+export default {
+
+   getAll: () => _volantini,
+   getById: (id: number) => _volantini.find((v) => v.id === id),
+   getBySlug: (slug: string) => _volantini.find((v) => v.slug === slug),
+
+}

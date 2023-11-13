@@ -1,106 +1,136 @@
 import {SingleVolantinoStatistics} from "./SingleVolantinoStatistics";
 import StringHelper from "../../services/StringHelper";
 import {TrackingGroupedData} from "./TrackingGroupedData";
+import {KeyValuePair} from "../../model/KeyValuePair";
 
 export class TrackingQrOpenStatistics {
     singleVolantinoStatistics: SingleVolantinoStatistics[];
     globalCounters: { key: string; value: string }[];
 
     constructor(trackingGroupedData: TrackingGroupedData[] | null) {
-        this.globalCounters = [{ key: "Numero totale QR aperti", value: "Nessuno 😭" }];
-        this.singleVolantinoStatistics = [];
 
-        if (!trackingGroupedData || trackingGroupedData.length === 0) return;
+        // Counter globali
+        const globalCounters: KeyValuePair<string, string>[] = [];
 
-        const globalCounters: { key: string; value: string }[] = [];
+        if (!trackingGroupedData || trackingGroupedData.length === 0) {
+            this.globalCounters = globalCounters;
+            return;
+        }
 
         globalCounters.push({
             key: "Numero totale QR aperti",
-            value: trackingGroupedData.reduce((sum, d) => sum + d.howMany, 0).toString(),
+            value: trackingGroupedData.reduce((acc, d) => acc + d.howMany, 0).toString()
         });
 
         const qrApertiPerCitta = trackingGroupedData
-            .filter((x) => x.citta !== undefined && x.citta !== null)
             .reduce((acc, d) => {
-                acc[d.citta!] = acc[d.citta!] || 0;
-                acc[d.citta!] += d.howMany;
+                const existing = acc.find(c => c.key === d.citta);
+                if (existing) {
+                    existing.value += d.howMany;
+                }
+                else {
+                    acc.push({key: d.citta!, value: d.howMany});
+                }
                 return acc;
-            }, {} as { [key: string]: number });
+            }, [] as KeyValuePair<string, number>[]);
 
-        const cittaEntries = Object.entries(qrApertiPerCitta)
-            .filter(([citta, count]) => citta && count)
-            .sort((a, b) => b[1] - a[1]);
+        if (qrApertiPerCitta.length > 0) {
+            const sortedQrApertiPerCitta = qrApertiPerCitta
+                .filter(c => c.key !== null)
+                .sort((a, b) => b.value - a.value);
 
-        globalCounters.push(
-            ...cittaEntries.map(([c, count]) => ({
-                key: `A ${StringHelper.capitalizeFirstLetter(c)}`,
-                value: count.toString(),
-            }))
-        );
+            globalCounters.push(
+                ...sortedQrApertiPerCitta.map(c => ({
+                    key: `A ${StringHelper.capitalizeFirstLetter(c.key!)}`,
+                    value: c.value.toString()
+                }))
+            );
+        }
 
         this.globalCounters = globalCounters;
+        // Fine counter globali
 
+
+        // Counter per volantino
         const singleVolantinoStatistics: SingleVolantinoStatistics[] = [];
 
-        const qrApertiPerVolantino = trackingGroupedData
+        const qrApertiPerVolantino = (trackingGroupedData || [])
             .reduce((acc, d) => {
-                acc[d.idVolantino] = acc[d.idVolantino] || [];
-                acc[d.idVolantino].push(d);
+                const existing = acc.find(c => c.idVolantino === d.idVolantino);
+                if (existing) {
+                    existing.data.push(d);
+                }
+                else {
+                    acc.push({idVolantino: d.idVolantino, data: [d]});
+                }
                 return acc;
-            }, {} as { [key: string]: TrackingGroupedData[] });
+            }, [] as { idVolantino: number, data: TrackingGroupedData[] }[]);
 
-        const volantinoEntries = Object.entries(qrApertiPerVolantino)
-            .filter(([volantino, data]) => data && data.length > 0)
-            .sort((a, b) => Number(b[0]) - Number(a[0]));
+        if (qrApertiPerVolantino.length > 0) {
+            singleVolantinoStatistics.push(
+                ...qrApertiPerVolantino.map(c => {
+                    const counters: KeyValuePair<string, string>[] = [
+                        {key: "Numero QR aperti", value: c.data.reduce((acc, x) => acc + x.howMany, 0).toString()}
+                    ];
 
-        singleVolantinoStatistics.push(
-            ...volantinoEntries.map(([volantino, data]) => {
-                const counters = [{ key: "Numero QR aperti", value: data.reduce((sum, d) => sum + d.howMany, 0).toString() }];
+                    const numeroQrApertiPerCitta = c.data
+                        .reduce((acc, d) => {
+                            const existing = acc.find(x => x.key === d.citta);
+                            if (existing) {
+                                existing.value += d.howMany;
+                            }
+                            else {
+                                acc.push({key: d.citta!, value: d.howMany});
+                            }
+                            return acc;
+                        }, [] as KeyValuePair<string, number>[])
+                        .filter(d => d.key !== null)
+                        .map(d => ({key: StringHelper.capitalizeFirstLetter(d.key!)!, value: d.value.toString()}))
+                        .sort((a, b) => a.key.localeCompare(b.key));
 
-                const numeroQrApertiPerCitta = data
-                    .filter((x) => x.citta !== undefined && x.citta !== null)
-                    .reduce((acc, d) => {
-                        acc[d.citta!] = acc[d.citta!] || 0;
-                        acc[d.citta!] += d.howMany;
-                        return acc;
-                    }, {} as { [key: string]: number });
+                    const numeroQrApertiPerLuogo = c.data
+                        .reduce((acc, d) => {
+                            const existing = acc.find(x => x.key === d.luogo);
+                            if (existing) {
+                                existing.value += d.howMany;
+                            }
+                            else {
+                                acc.push({key: d.luogo!, value: d.howMany});
+                            }
+                            return acc;
+                        }, [] as KeyValuePair<string, number>[])
+                        .filter(d => d.key !== null)
+                        .map(d => ({key: StringHelper.capitalizeFirstLetter(d.key!)!, value: d.value.toString()}))
+                        .sort((a, b) => a.key.localeCompare(b.key));
 
-                const numeroQrApertiPerLuogo = data
-                    .filter((x) => x.luogo !== undefined && x.luogo !== null)
-                    .reduce((acc, d) => {
-                        acc[d.luogo!] = acc[d.luogo!] || 0;
-                        acc[d.luogo!] += d.howMany;
-                        return acc;
-                    }, {} as { [key: string]: number });
+                    const numeroQrApertiPerCittaVia = c.data
+                        .filter(x => !!(x.via && x.citta))
+                        .reduce((acc, d) => {
+                            const key = `${d.citta} - ${d.via}`;
+                            const existing = acc.find(x => x.key === key);
+                            if (existing) {
+                                existing.value += d.howMany;
+                            }
+                            else {
+                                acc.push({key: key, value: d.howMany});
+                            }
+                            return acc;
+                        }, [] as KeyValuePair<string, number>[])
+                        .map(d => ({key: StringHelper.capitalizeFirstLetter(d.key!)!, value: d.value.toString()}))
+                        .sort((a, b) => a.key.localeCompare(b.key));
 
-                const numeroQrApertiPerCittaVia = data
-                    .filter((x) => x.via && x.citta)
-                    .reduce((acc, d) => {
-                        const key = `${d.citta} - ${d.via}`;
-                        acc[key] = acc[key] || 0;
-                        acc[key] += d.howMany;
-                        return acc;
-                    }, {} as { [key: string]: number });
-
-                return {
-                    titoloVolantino: data[0].volantino.title,
-                    counters: counters,
-                    perCitta: Object.entries(numeroQrApertiPerCitta)
-                        .filter(([citta, count]) => citta && count)
-                        .sort((a, b) => a[0].localeCompare(b[0]))
-                        .map(([c, count]) => ({ key: StringHelper.capitalizeFirstLetter(c)!, value: count.toString() })),
-                    perVia: Object.entries(numeroQrApertiPerCittaVia)
-                        .filter(([key, count]) => key && count)
-                        .sort((a, b) => a[0].localeCompare(b[0]))
-                        .map(([key, count]) => ({ key: StringHelper.capitalizeFirstLetter(key)!, value: count.toString() })),
-                    perLuogo: Object.entries(numeroQrApertiPerLuogo)
-                        .filter(([luogo, count]) => luogo && count)
-                        .sort((a, b) => a[0].localeCompare(b[0]))
-                        .map(([l, count]) => ({ key: StringHelper.capitalizeFirstLetter(l)!, value: count.toString() })),
-                };
-            })
-        );
+                    return {
+                        titoloVolantino: c.data[0].volantino.title,
+                        counters: counters,
+                        perCitta: numeroQrApertiPerCitta,
+                        perVia: numeroQrApertiPerCittaVia,
+                        perLuogo: numeroQrApertiPerLuogo
+                    };
+                })
+            );
+        }
 
         this.singleVolantinoStatistics = singleVolantinoStatistics;
+        // Fine counter per volantino
     }
 }

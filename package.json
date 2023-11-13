@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "dayjs": "^1.11.10",
+    "mssql": "^10.0.1",
     "next": "^14.0.0",
     "next-auth": "^4.24.4",
     "react": "^18.2.0",
@@ -15,6 +17,7 @@
     "react-spinners": "^0.13.8"
   },
   "devDependencies": {
+    "@types/mssql": "^9.1.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
