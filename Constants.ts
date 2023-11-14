@@ -10,7 +10,6 @@ export default {
     VolantiniPageSlug: "/volantini",
     NewsletterPageSlug: "/newsletter",
     QrPageSlug: "/qr",
-    VolantinoPageSlug: "/volantino",
     AdminPageSlug: "/admin",
     LoginPageSlug: "/login",
     LoginApiPath: "/api/auth/login",

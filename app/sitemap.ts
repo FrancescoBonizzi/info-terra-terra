@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     const volantini = VolantiniRepository.getAll();
     volantini.forEach(v => {
-        absoluteLinks.push(`${Constants.SiteUrl}${Constants.VolantinoPageSlug}/${v.slug}`)
+        absoluteLinks.push(`${Constants.SiteUrl}${Constants.VolantiniPageSlug}/${v.slug}`)
     })
 
     return absoluteLinks.map(url => {
