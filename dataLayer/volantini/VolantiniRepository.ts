@@ -21,6 +21,7 @@ const _volantini : Volantino[] = [
       fonti: ["https://ourworldindata.org/land-use"],
       paragraphs: [
          {
+            id: 1,
             title: "Metà della terra abitabile del mondo è utilizzata per l'agricoltura",
             text: `Per gran parte della storia dell'umanità, la maggior parte della terra del mondo era selvaggia: 
                         foreste, praterie e arbusti dominavano i suoi paesaggi. 
@@ -28,10 +29,12 @@ const _volantini : Volantino[] = [
                         <strong>gli habitat selvaggi sono stati eliminati</strong> trasformandoli in terreni agricoli.`,
          },
          {
+            id: 2,
             imageRelativePath: "volantino-1/volantino-info-terra-terra-solo-grafico.png",
             imageAltText: "Grafico che mostra la ripartizione della superficie terrestre globale oggi",
          },
          {
+            id: 3,
             title: "La terra agricola è utilizzata principalmente per il bestiame",
             text: `Esiste anche una distribuzione molto <strong>diseguale</strong> dell'uso del suolo tra bestiame e 
                         colture per il consumo umano. Se combiniamo i pascoli utilizzati per il pascolo con i terreni utilizzati 
@@ -40,10 +43,12 @@ const _volantini : Volantino[] = [
                         e <strong>il 37% delle proteine</strong> totali.`,
          },
          {
+            id: 4,
             imageRelativePath: "/volantino-1/volantino-info-terra-terra-solo-spreco-risorse.jpg",
             imageAltText: "Disegno che mostra un toro che piange",
          },
          {
+            id: 5,
             text: `L'espansione dell'agricoltura è stata <strong>uno dei maggiori impatti dell'umanità sull'ambiente</strong>. 
                         Ha trasformato gli habitat ed è una delle maggiori pressioni per la <strong>biodiversità</strong>: 
                         delle 28.000 specie valutate a rischio di estinzione nella Lista Rossa dell'
@@ -51,6 +56,7 @@ const _volantini : Volantino[] = [
                         l'agricoltura è indicata come una minaccia per 24.000 di esse.`,
          },
          {
+            id: 6,
             title: "Ridurre il consumo di carne e derivati",
             text: `È la <strong>singola azione individuale più efficace</strong> che possiamo compiere nel quotidiano 
                         per migliorare la nostra impronta ecologica 
