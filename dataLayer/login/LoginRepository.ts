@@ -18,7 +18,7 @@ const _users: User[] = [
     }
 ];
 
-export default {
+const LoginRepository = {
     loginAsync: async (username: string, password: string)  => {
 
         if (StringHelper.isNullOrWhitespace(username)) {
@@ -40,3 +40,5 @@ export default {
         return user;
     }
 }
+
+export default LoginRepository;

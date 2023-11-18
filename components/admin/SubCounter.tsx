@@ -1,4 +1,5 @@
 import {KeyValuePair} from "../../model/KeyValuePair";
+import React from "react";
 
 interface Props {
     counter: KeyValuePair<string, string>;

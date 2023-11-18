@@ -2,6 +2,8 @@ import {notFound} from "next/navigation";
 import {MetaDataHelper} from "../../../services/MetaDataHelper";
 import {Metadata} from "next";
 import VolantiniRepository from "../../../dataLayer/volantini/VolantiniRepository";
+import React from "react";
+import Image from "next/image";
 
 interface Props {
     params: {
@@ -48,7 +50,10 @@ export default function Page(props: Readonly<Props>) {
                                 : `(Fonte ${index + 1})`;
                             return (
                                 <a key={link}
-                                    href={link} target="_blank" className="action-button-secondary centered-in-mobile">
+                                    href={link}
+                                   rel={"noreferrer"}
+                                   target="_blank"
+                                   className="action-button-secondary centered-in-mobile">
                                     Approfondisci direttamente alla fonte dei dati {fontNumberString}
                                 </a>
                             )
@@ -71,9 +76,9 @@ export default function Page(props: Readonly<Props>) {
                             <div className="section-content">
 
                                 {paragraph.imageRelativePath && (
-                                    <img
+                                    <Image
                                         src={`/images/${paragraph.imageRelativePath}`}
-                                        alt={paragraph.imageAltText}
+                                        alt={paragraph.imageAltText ?? "Immagine"}
                                         className="paragraph-image"/>
                                 )}
 

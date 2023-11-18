@@ -8,6 +8,7 @@ import NewsletterRepository from "../../dataLayer/newsletter/NewsletterRepositor
 import {Counter} from "../../components/admin/Counter";
 import {CounterWithCategory} from "../../components/admin/CounterWithCategory";
 import {KeyValuePair} from "../../model/KeyValuePair";
+import React from "react";
 
 const title = 'Amministrazione';
 export const metadata = MetaDataHelper.generateMetadata(
@@ -67,7 +68,7 @@ export default async function Page() {
                     <div className="volantino-stat-container" key={volantino.titoloVolantino}>
 
                     <span className="stat-titolo-volantino">
-                        Statistiche volantino "{volantino.titoloVolantino}"
+                        Statistiche volantino `&quot;{volantino.titoloVolantino}`&quot;
                     </span>
 
                         <div className="volantino-counters-container">

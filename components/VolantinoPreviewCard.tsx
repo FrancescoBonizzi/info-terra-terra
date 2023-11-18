@@ -1,13 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import {Volantino} from "../dataLayer/volantini/Volantino";
+import Image from "next/image";
 
 export const VolantinoPreviewCard = (props: Volantino) => {
     return (
         <div className="homepage-volantino-container">
 
             <div className="homepage-volantino-image-text-container">
-                <img
+                <Image
                     src={`/images/${props.imageNameFronte}`}
                     alt="La foto del volatino @Model.Title"/>
                 <div className="homepage-volantino-text-container">

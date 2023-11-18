@@ -6,6 +6,7 @@ import {SiteTitle} from "./SiteTitle";
 import {usePathname} from "next/navigation";
 import PathNameHelper from "../services/PathNameHelper";
 import Link from "next/link";
+import Image from "next/image";
 
 export const Header = () => {
 
@@ -19,7 +20,7 @@ export const Header = () => {
 
                     <li>
                         <Link className="header-logo" href="/">
-                            <img
+                            <Image
                                 src="/images/info-terra-terra.png"
                                 alt={`Il logo di ${Constants.SiteTitle}`}
                                 height="50"/>

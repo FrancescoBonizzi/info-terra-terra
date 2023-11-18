@@ -1,5 +1,6 @@
 import {KeyValuePair} from "../../model/KeyValuePair";
 import StringHelper from "../../services/StringHelper";
+import React from "react";
 
 interface Props {
     category?: string;

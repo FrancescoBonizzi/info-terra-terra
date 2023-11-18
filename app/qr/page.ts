@@ -8,7 +8,6 @@ import {headers} from 'next/headers'
 import StringHelper from "../../services/StringHelper";
 
 export default async function Page({
-    params,
     searchParams,
 }: {
     params: { slug: string }
@@ -47,7 +46,7 @@ export default async function Page({
     // Purtroppo devo ricostruirlo perchè NextJs non mi dà accesso by design alla query string
     const qrRequestSearchParams= Object
         .entries(searchParams)
-        .filter(([key, value]) => !StringHelper.isNullOrWhitespace(value))
+        .filter(([, value]) => !StringHelper.isNullOrWhitespace(value))
         .map(([key, value]) => `${key}=${value}`)
         .join('&');
 

@@ -1,5 +1,6 @@
 import {MetaDataHelper} from "../../services/MetaDataHelper";
 import Constants from "../../Constants";
+import React from "react";
 
 const title = 'Manifesto';
 export const metadata = MetaDataHelper.generateMetadata(
@@ -11,7 +12,6 @@ export const metadata = MetaDataHelper.generateMetadata(
 export default function Page() {
 
     return (
-        <>
             <article>
 
                 <section>
@@ -27,7 +27,7 @@ export default function Page() {
                         <span className="jumbo-text">#1</span>
                         <p>
                             Crediamo che il <strong>cambiamento climatico</strong> sia una delle sfide più urgenti
-                            che l'umanità debba affrontare. Ma sappiamo anche che non possiamo farcela da soli.
+                            che l&apos;umanità debba affrontare. Ma sappiamo anche che non possiamo farcela da soli.
                             Abbiamo bisogno del tuo aiuto per sensibilizzare sulla questione e
                             per promuovere comportamenti sostenibili che possano fare la differenza.
                         </p>
@@ -50,7 +50,7 @@ export default function Page() {
                         </p>
 
                         <p>
-                            Abbiamo solo pochi secondi per catturare l'attenzione.
+                            Abbiamo solo pochi secondi per catturare l&apos;attenzione.
                             Sappiamo che le persone non hanno tempo da perdere.
                             Ecco perché utilizziamo immagini potenti e frasi semplici ma significative
                             che possono comunicare il nostro messaggio in modo <strong>chiaro e diretto</strong>.
@@ -67,7 +67,7 @@ export default function Page() {
                         </p>
 
                         <p>
-                            Siamo convinti che le evidenze scientifiche siano essenziali per comprendere l'entità
+                            Siamo convinti che le evidenze scientifiche siano essenziali per comprendere l&apos;entità
                             della crisi climatica.
                             Perchè? Banalmente: <strong>la scienza funziona</strong>. È il metodo migliore che abbiamo
                             per capire i fenomeni e <strong>permette a tutti di verificare le affermazioni</strong>, di
@@ -93,7 +93,7 @@ export default function Page() {
                             non solo agli addetti ai lavori e ai già informati.
                             La nostra idea è semplice: mostrare che un <strong>cambiamento graduale</strong> e poco
                             impattante sulla vita di tutti i giorni può essere adottato da tutti,
-                            a partire dall'<strong>alimentazione</strong>.
+                            a partire dall&apos;<strong>alimentazione</strong>.
                         </p>
 
                     </div>
@@ -107,7 +107,7 @@ export default function Page() {
                             href="https://www.helloprint.it/sostenibilita"
                             className="action-button-secondary">servizi</a> che piantano un albero per ogni ordine di
                             stampa.
-                            Vogliamo minimizzare l'impatto ambientale della nostra attività.
+                            Vogliamo minimizzare l&apos;impatto ambientale della nostra attività.
                         </p>
 
                         <p>
@@ -120,6 +120,5 @@ export default function Page() {
                 </section>
 
             </article>
-        </>
     );
 }

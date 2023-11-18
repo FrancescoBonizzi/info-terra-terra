@@ -1,5 +1,7 @@
 import Constants from "../Constants";
 
-export default {
+const LinksHeler = {
     mailto: `mailto:${Constants.EmailAddress}`,
 }
+
+export default LinksHeler;

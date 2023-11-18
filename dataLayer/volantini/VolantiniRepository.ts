@@ -68,10 +68,12 @@ const _volantini : Volantino[] = [
    },
 ];
 
-export default {
+const VolantiniRepository = {
 
    getAll: () => _volantini,
    getById: (id: number) => _volantini.find((v) => v.id === id),
    getBySlug: (slug: string) => _volantini.find((v) => v.slug === slug),
 
 }
+
+export default VolantiniRepository;

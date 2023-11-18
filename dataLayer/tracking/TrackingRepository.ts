@@ -15,7 +15,7 @@ const parseUrlValue = (what: string | null | undefined): string | null => {
         : null;
 }
 
-export default {
+const TrackingRepository = {
 
     // TODO: occhio alla sql injection!
 
@@ -82,3 +82,5 @@ export default {
         }
     }
 }
+
+export default TrackingRepository;

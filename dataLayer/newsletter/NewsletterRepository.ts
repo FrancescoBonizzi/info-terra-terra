@@ -6,7 +6,7 @@ import sql from "mssql";
 import EmailValidator from "../../services/EmailValidator";
 import {FrontendException} from "../exceptions/FrontendException";
 
-export default {
+const NewsletterRepository = {
 
     insertEmailAddressAsync: async (emailAddress: string) => {
 
@@ -58,3 +58,5 @@ export default {
         }
     }
 }
+
+export default NewsletterRepository;

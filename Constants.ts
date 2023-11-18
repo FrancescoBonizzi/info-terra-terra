@@ -1,5 +1,6 @@
 /** Attenzione! Questi dati vanno al client, quindi non mettere secrets */
-export default {
+
+const Constants= {
     SiteTitle: "Info Terra Terra",
     SiteUrl: "https://infoterraterra.it",
     EmailAddress: "contatti@infoterraterra.it",
@@ -14,3 +15,5 @@ export default {
     LoginPageSlug: "/login",
     LoginApiPath: "/api/auth/login",
 }
+
+export default Constants;

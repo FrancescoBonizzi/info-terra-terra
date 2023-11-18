@@ -1,4 +1,4 @@
-export default {
+const PathNameHelper = {
 
     getActiveClassForLink: (
         pathName: string,
@@ -17,3 +17,5 @@ export default {
     }
 
 }
+
+export default PathNameHelper;

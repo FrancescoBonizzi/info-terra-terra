@@ -16,6 +16,7 @@
 html {
     /* Per rem */
     font-size: 18px;
+    /*noinspection CssUnresolvedCustomProperty*/
     font-family: var(--font-open-sans);
     font-weight: 400;
     overflow-y: scroll;
@@ -88,6 +89,7 @@ section {
 
 
 .section-forest {
+    /*noinspection CssUnknownTarget*/
     background: url('/images/forest-1.jpg') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -106,10 +108,12 @@ section {
 }
 
 .bg-forest-1 {
+    /*noinspection CssUnknownTarget*/
     background: url('/images/forest-1.jpg') no-repeat center center;
 }
 
 .bg-forest-2 {
+    /*noinspection CssUnknownTarget*/
     background: url('/images/forest-2.jpg') no-repeat center center;
     color: white;
 }
@@ -230,6 +234,7 @@ nav ul li a {
     padding-top: 5px;
     font-weight: 700;
     text-transform: uppercase;
+    /*noinspection CssUnresolvedCustomProperty*/
     font-family:  var(--font-secular-one);
 }
 

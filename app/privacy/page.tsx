@@ -1,5 +1,6 @@
 import {MetaDataHelper} from "../../services/MetaDataHelper";
 import Constants from "../../Constants";
+import React from "react";
 
 const title = 'Privacy';
 export const metadata = MetaDataHelper.generateMetadata(
@@ -16,7 +17,7 @@ export default function Page() {
             <section>
                 <div className="section-content">
                     <h1>{title}</h1>
-                    <h2>Informativa ai sensi dell'art. 13 del Regolamento (UE) n. 679/2016 ("GDPR")</h2>
+                    <h2>Informativa ai sensi dell&apos;art. 13 del Regolamento (UE) n. 679/2016 (&quot;GDPR&quot;)</h2>
                 </div>
             </section>
 
@@ -123,7 +124,7 @@ export default function Page() {
 
                     <h4>COOKIE</h4>
                     <p>
-                        Questo sito web non utilizza alcun cookie, se non per un'area riservata non accessibile al pubblico.
+                        Questo sito web non utilizza alcun cookie, se non per un&apos;area riservata non accessibile al pubblico.
                     </p>
 
                     <h4>COS’È UN COOKIE</h4>

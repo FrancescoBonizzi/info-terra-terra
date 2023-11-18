@@ -14,7 +14,6 @@ export const metadata = MetaDataHelper.generateMetadata(
 export default function Page() {
 
     return (
-        <>
             <article>
 
                 <section>
@@ -38,7 +37,7 @@ export default function Page() {
                         <p>
                             <a href={LinksHelper.mailto} className="action-button-secondary">Se ci contatti</a>,
                             ti forniremo una versione del volantino con un QRCode adatto per ottenere <strong>statistiche
-                            sull'efficacia</strong> del tuo volantinaggio.
+                            sull&apos;efficacia</strong> del tuo volantinaggio.
                             Potremo dirti, per esempio, in quali zone è stato aperto di più il sito
                             a partire dai volantini che hai distribuito.
                         </p>
@@ -82,6 +81,5 @@ export default function Page() {
                 </section>
 
             </article>
-        </>
     );
 }
