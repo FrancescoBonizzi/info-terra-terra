@@ -67,7 +67,7 @@ export default function Page(props: Readonly<Props>) {
                         : "";
 
                     return (
-                        <section className={sectionClass} key={paragraph.title}>
+                        <section className={sectionClass} key={paragraph.id}>
                             <div className="section-content">
 
                                 {paragraph.imageRelativePath && (
