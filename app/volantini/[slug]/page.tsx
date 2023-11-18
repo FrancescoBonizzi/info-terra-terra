@@ -3,7 +3,6 @@ import {MetaDataHelper} from "../../../services/MetaDataHelper";
 import {Metadata} from "next";
 import VolantiniRepository from "../../../dataLayer/volantini/VolantiniRepository";
 import React from "react";
-import Image from "next/image";
 
 interface Props {
     params: {

@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import {Volantino} from "../dataLayer/volantini/Volantino";
-import Image from "next/image";
 
 export const VolantinoPreviewCard = (props: Volantino) => {
     return (
