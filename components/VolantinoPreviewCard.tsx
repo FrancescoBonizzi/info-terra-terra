@@ -8,7 +8,7 @@ export const VolantinoPreviewCard = (props: Volantino) => {
         <div className="homepage-volantino-container">
 
             <div className="homepage-volantino-image-text-container">
-                <Image
+                <img
                     src={`/images/${props.imageNameFronte}`}
                     alt="La foto del volatino @Model.Title"/>
                 <div className="homepage-volantino-text-container">

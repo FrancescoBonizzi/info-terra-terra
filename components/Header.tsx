@@ -20,7 +20,7 @@ export const Header = () => {
 
                     <li>
                         <Link className="header-logo" href="/">
-                            <Image
+                            <img
                                 src="/images/info-terra-terra.png"
                                 alt={`Il logo di ${Constants.SiteTitle}`}
                                 height="50"/>

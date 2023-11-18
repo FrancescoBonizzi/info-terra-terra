@@ -76,7 +76,7 @@ export default function Page(props: Readonly<Props>) {
                             <div className="section-content">
 
                                 {paragraph.imageRelativePath && (
-                                    <Image
+                                    <img
                                         src={`/images/${paragraph.imageRelativePath}`}
                                         alt={paragraph.imageAltText ?? "Immagine"}
                                         className="paragraph-image"/>
