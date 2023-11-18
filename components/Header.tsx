@@ -6,7 +6,6 @@ import {SiteTitle} from "./SiteTitle";
 import {usePathname} from "next/navigation";
 import PathNameHelper from "../services/PathNameHelper";
 import Link from "next/link";
-import Image from "next/image";
 
 export const Header = () => {
 
