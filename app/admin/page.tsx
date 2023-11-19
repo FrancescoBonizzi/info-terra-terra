@@ -68,7 +68,7 @@ export default async function Page() {
                     <div className="volantino-stat-container" key={volantino.titoloVolantino}>
 
                     <span className="stat-titolo-volantino">
-                        Statistiche volantino `&quot;{volantino.titoloVolantino}`&quot;
+                        Statistiche volantino &quot;{volantino.titoloVolantino}&quot;
                     </span>
 
                         <div className="volantino-counters-container">
