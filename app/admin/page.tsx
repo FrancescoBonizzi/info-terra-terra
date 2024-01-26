@@ -23,6 +23,9 @@ export default async function Page() {
         return redirect(Constants.LoginPageSlug);
     }
 
+
+    await TrackingRepository.migrateFromOldStoreAsync();
+
     const trackingQrStatistics = await TrackingRepository.getStatisticsAsync();
     const newsletterStatistics = await NewsletterRepository.getStatisticsAsync();
 
