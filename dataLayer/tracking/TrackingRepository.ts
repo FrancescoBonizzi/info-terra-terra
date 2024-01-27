@@ -1,10 +1,11 @@
 import 'server-only';
 import {TrackingQrOpenStatistics} from "./TrackingQrOpenStatistics";
 import StringHelper from "../../services/StringHelper";
+import Configurations from "../Configurations";
+import sql from "mssql";
 import {TrackingGroupedData} from "./TrackingGroupedData";
 import VolantiniRepository from "../volantini/VolantiniRepository";
 import {QrOpen} from "./QrOpen";
-import {getStore} from "@netlify/blobs";
 
 const parseUrlValue = (what: string | null | undefined): string | null => {
     return what
@@ -14,87 +15,71 @@ const parseUrlValue = (what: string | null | undefined): string | null => {
         : null;
 }
 
-const storeName = "tracking";
-const qrOpenKey = "qrOpen";
-
-interface PersistedTrackingData {
-    idVolantino: number;
-    citta?: string | null;
-    via?: string | null;
-    luogo?: string | null;
-    slug?: string | null;
-    ip?: string | null;
-    os?: string | null;
-    referer?: string | null;
-    dateUtc: string;
-}
-
 const TrackingRepository = {
+
+    // TODO: occhio alla sql injection!
 
     insertQrOpenAsync: async (trackingData: QrOpen) => {
 
-        const construction = getStore(storeName);
-        const persistedTrackingData = await construction.get(
-            qrOpenKey,
-            {type: 'json'}) as PersistedTrackingData[] ?? [];
+        const connection = await sql.connect(Configurations.sqlConnectionString);
 
-        persistedTrackingData.push({
-            idVolantino: trackingData.trackingSlug.idVolantino,
-            citta: parseUrlValue(trackingData.trackingSlug.citta),
-            via: parseUrlValue(trackingData.trackingSlug.via),
-            luogo: parseUrlValue(trackingData.trackingSlug.luogo),
-            slug: trackingData.trackingSlug.slug,
-            ip: trackingData.ip,
-            os: trackingData.os,
-            referer: trackingData.referer,
-            dateUtc: new Date().toUTCString()
-        });
-        await construction.setJSON(qrOpenKey, persistedTrackingData);
+        try {
+            await connection
+                .request()
+                .input('Ip', sql.NVarChar, trackingData.ip)
+                .input('Os', sql.NVarChar, trackingData.os)
+                .input('Referer', sql.NVarChar, trackingData.referer)
+                .input('Slug', sql.NVarChar, trackingData.trackingSlug.slug)
+                .input('IdVolantino', sql.Int, trackingData.trackingSlug.idVolantino)
+                .input('Citta', sql.NVarChar, parseUrlValue(trackingData.trackingSlug.citta))
+                .input('Via', sql.NVarChar, parseUrlValue(trackingData.trackingSlug.via))
+                .input('Luogo', sql.NVarChar, parseUrlValue(trackingData.trackingSlug.luogo))
+                .query(`
+                INSERT INTO Tracking.QrOpen 
+                (Ip, Os, Referer, Slug, IdVolantino, Citta, Via, Luogo, DateUtc)
+                VALUES (@Ip, @Os, @Referer, @Slug, @IdVolantino, @Citta, @Via, @Luogo, GETUTCDATE())`);
+        }
+        finally {
+            await connection.close();
+        }
     },
 
     getStatisticsAsync: async (): Promise<TrackingQrOpenStatistics> => {
 
-        const construction = getStore(storeName);
-        const persistedTrackingData = await construction.get(
-            qrOpenKey,
-            {type: 'json'}) as PersistedTrackingData[] ?? [];
+        const connection = await sql.connect(Configurations.sqlConnectionString);
 
-        const groupedDataRaw = persistedTrackingData
-            .reduce((acc, curr) => {
-                const groupingKey = `${curr.idVolantino}-${curr.citta}-${curr.via}-${curr.luogo}`;
-                if (!acc[groupingKey]) {
-                    acc[groupingKey] = {
-                        idVolantino: curr.idVolantino,
-                        citta: curr.citta,
-                        via: curr.via,
-                        luogo: curr.luogo,
-                        howMany: 0
-                    };
-                }
-                acc[groupingKey].howMany++;
-                return acc;
-            }, {} as Record<string, TrackingGroupedData>);
+        try {
+            const result = await connection
+                .request()
+                .query(`
+                SELECT idVolantino, citta, via, luogo, COUNT(*) AS howMany 
+                FROM Tracking.QrOpen
+                WHERE IdVolantino IS NOT NULL
+                GROUP BY IdVolantino, Citta, Via, Luogo
+                ORDER BY IdVolantino DESC
+            `);
 
-        const groupedData = Object.values(groupedDataRaw);
-        const sortedGroupedData = groupedData.toSorted((a, b) =>
-            b.idVolantino - a.idVolantino);
+            const groupedData: TrackingGroupedData[] = result.recordset;
 
-        if (groupedData.length === 0) {
-            return new TrackingQrOpenStatistics(null);
-        }
-
-        for (const data of sortedGroupedData) {
-            const volantino = VolantiniRepository.getById(data.idVolantino);
-
-            if (volantino) {
-                data.volantino = volantino;
+            if (!groupedData || groupedData.length === 0) {
+                return new TrackingQrOpenStatistics(null);
             }
+
+            for (const data of groupedData) {
+                const volantino = VolantiniRepository.getById(data.idVolantino);
+
+                if (volantino) {
+                    data.volantino = volantino;
+                }
+            }
+
+            return new TrackingQrOpenStatistics(
+                groupedData.filter((d) => d.volantino !== null)
+            );
         }
-
-        return new TrackingQrOpenStatistics(
-            sortedGroupedData.filter((d) => d.volantino !== null)
-        );
-
+        finally {
+            await connection.close();
+        }
     }
 }
 

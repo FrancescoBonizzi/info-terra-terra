@@ -42,7 +42,7 @@ export class TrackingQrOpenStatistics {
 
             globalCounters.push(
                 ...sortedQrApertiPerCitta.map(c => ({
-                    key: `A ${StringHelper.capitalizeFirstLetter(c.key)}`,
+                    key: `A ${StringHelper.capitalizeFirstLetter(c.key!)}`,
                     value: c.value.toString()
                 }))
             );
@@ -86,7 +86,7 @@ export class TrackingQrOpenStatistics {
                             return acc;
                         }, [] as KeyValuePair<string, number>[])
                         .filter(d => d.key !== null)
-                        .map(d => ({key: StringHelper.capitalizeFirstLetter(d.key)!, value: d.value.toString()}))
+                        .map(d => ({key: StringHelper.capitalizeFirstLetter(d.key!)!, value: d.value.toString()}))
                         .sort((a, b) => a.key.localeCompare(b.key));
 
                     const numeroQrApertiPerLuogo = c.data
@@ -101,7 +101,7 @@ export class TrackingQrOpenStatistics {
                             return acc;
                         }, [] as KeyValuePair<string, number>[])
                         .filter(d => d.key !== null)
-                        .map(d => ({key: StringHelper.capitalizeFirstLetter(d.key)!, value: d.value.toString()}))
+                        .map(d => ({key: StringHelper.capitalizeFirstLetter(d.key!)!, value: d.value.toString()}))
                         .sort((a, b) => a.key.localeCompare(b.key));
 
                     const numeroQrApertiPerCittaVia = c.data
@@ -117,11 +117,11 @@ export class TrackingQrOpenStatistics {
                             }
                             return acc;
                         }, [] as KeyValuePair<string, number>[])
-                        .map(d => ({key: StringHelper.capitalizeFirstLetter(d.key)!, value: d.value.toString()}))
+                        .map(d => ({key: StringHelper.capitalizeFirstLetter(d.key!)!, value: d.value.toString()}))
                         .sort((a, b) => a.key.localeCompare(b.key));
 
                     return {
-                        titoloVolantino: c.data[0].volantino!.title,
+                        titoloVolantino: c.data[0].volantino.title,
                         counters: counters,
                         perCitta: numeroQrApertiPerCitta,
                         perVia: numeroQrApertiPerCittaVia,
