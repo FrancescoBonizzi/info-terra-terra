@@ -5,7 +5,6 @@ import {TrackingGroupedData} from "./TrackingGroupedData";
 import VolantiniRepository from "../volantini/VolantiniRepository";
 import {QrOpen} from "./QrOpen";
 import {getStore} from "@netlify/blobs";
-import oldDataJson from "./old_data.json";
 
 const parseUrlValue = (what: string | null | undefined): string | null => {
     return what
@@ -31,22 +30,6 @@ interface PersistedTrackingData {
 }
 
 const TrackingRepository = {
-
-    migrateFromOldStoreAsync: async () => {
-
-        const construction = getStore(storeName);
-        const persistedTrackingData = await construction.get(
-            qrOpenKey,
-            {type: 'json'}) as PersistedTrackingData[] ?? [];
-
-        if (persistedTrackingData.length > 0) {
-            // Già fatto
-            return;
-        }
-
-        const oldDataJsonParsed = oldDataJson as PersistedTrackingData[];
-        await construction.setJSON(qrOpenKey, oldDataJsonParsed);
-    },
 
     insertQrOpenAsync: async (trackingData: QrOpen) => {
 
