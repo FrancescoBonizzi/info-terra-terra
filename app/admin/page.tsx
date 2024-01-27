@@ -23,12 +23,65 @@ export default async function Page() {
         return redirect(Constants.LoginPageSlug);
     }
 
-    await TrackingRepository.migrateFromOldStoreAsync();
+    let trackingQrStatistics = null;
+    let newsletterStatistics = null;
 
-    const trackingQrStatistics = await TrackingRepository.getStatisticsAsync();
-    const newsletterStatistics = await NewsletterRepository.getStatisticsAsync();
+    try {
+        await TrackingRepository.migrateFromOldStoreAsync();
+    }
+    catch (error) {
+
+        const errorMessage = error instanceof Error
+            ? error.message
+            : JSON.stringify(error);
+
+        return (
+            <article>
+                <h1>Errore</h1>
+                <p>Si è verificato un errore durante la migrazione dei dati.</p>
+                <p>{errorMessage}</p>
+            </article>
+        )
+    }
+
+    try {
+        trackingQrStatistics = await TrackingRepository.getStatisticsAsync();
+    }
+    catch (error) {
+
+        const errorMessage = error instanceof Error
+            ? error.message
+            : JSON.stringify(error);
+
+        return (
+            <article>
+                <h1>Errore</h1>
+                <p>Si è verificato un errore durante il recupero delle statistiche tracking.</p>
+                <p>{errorMessage}</p>
+            </article>
+        )
+    }
+
+    try {
+        newsletterStatistics = await NewsletterRepository.getStatisticsAsync();
+    }
+    catch (error) {
+
+        const errorMessage = error instanceof Error
+            ? error.message
+            : JSON.stringify(error);
+
+        return (
+            <article>
+                <h1>Errore</h1>
+                <p>Si è verificato un errore durante il recupero delle statistiche newsletter.</p>
+                <p>{errorMessage}</p>
+            </article>
+        )
+    }
 
     const pageTitleSpan = `${title} / 👋🏻 ${session.user.name}`;
+
     return (
         <article>
 
