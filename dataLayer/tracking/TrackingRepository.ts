@@ -4,7 +4,7 @@ import StringHelper from "../../services/StringHelper";
 import {TrackingGroupedData} from "./TrackingGroupedData";
 import VolantiniRepository from "../volantini/VolantiniRepository";
 import {QrOpen} from "./QrOpen";
-import {getStore, Store} from "@netlify/blobs";
+import {getStore} from "@netlify/blobs";
 import oldDataJson from "./old_data.json";
 
 const parseUrlValue = (what: string | null | undefined): string | null => {
@@ -30,21 +30,14 @@ interface PersistedTrackingData {
     dateUtc: string;
 }
 
-const getPersistedTrackingData = async (store: Store): Promise<PersistedTrackingData[]> => {
-    const persistedTrackingDataJson = await store.get(
-        qrOpenKey);
-
-    return persistedTrackingDataJson
-        ? JSON.parse(persistedTrackingDataJson) as PersistedTrackingData[]
-        : [];
-}
-
 const TrackingRepository = {
 
     migrateFromOldStoreAsync: async () => {
 
-        const store = getStore(storeName);
-        const persistedTrackingData = await getPersistedTrackingData(store);
+        const construction = getStore(storeName);
+        const persistedTrackingData = await construction.get(
+            qrOpenKey,
+            {type: 'json'}) as PersistedTrackingData[] ?? [];
 
         if (persistedTrackingData.length > 0) {
             // Già fatto
@@ -52,13 +45,15 @@ const TrackingRepository = {
         }
 
         const oldDataJsonParsed = oldDataJson as PersistedTrackingData[];
-        await store.setJSON(qrOpenKey, oldDataJsonParsed);
+        await construction.setJSON(qrOpenKey, oldDataJsonParsed);
     },
 
     insertQrOpenAsync: async (trackingData: QrOpen) => {
 
         const construction = getStore(storeName);
-        const persistedTrackingData = await getPersistedTrackingData(construction);
+        const persistedTrackingData = await construction.get(
+            qrOpenKey,
+            {type: 'json'}) as PersistedTrackingData[] ?? [];
 
         persistedTrackingData.push({
             idVolantino: trackingData.trackingSlug.idVolantino,
@@ -77,7 +72,9 @@ const TrackingRepository = {
     getStatisticsAsync: async (): Promise<TrackingQrOpenStatistics> => {
 
         const construction = getStore(storeName);
-        const persistedTrackingData = await getPersistedTrackingData(construction);
+        const persistedTrackingData = await construction.get(
+            qrOpenKey,
+            {type: 'json'}) as PersistedTrackingData[] ?? [];
 
         const groupedDataRaw = persistedTrackingData
             .reduce((acc, curr) => {
