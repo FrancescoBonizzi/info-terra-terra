@@ -17,6 +17,27 @@ export const metadata = MetaDataHelper.generateMetadata(
     'Area riservata agli amministratori del sito.'
 );
 
+const generateErrorPage = (
+    error: unknown,
+    callerName: string) => {
+
+    const errorMessage = error instanceof Error
+        ? error.message
+        : JSON.stringify(error);
+
+    return (
+        <article>
+            <section className="bg-admin">
+                <div className="text-align-center">
+                    <span>Errore!</span>
+                </div>
+            </section>
+            <p>{callerName}</p>
+            <p>{errorMessage}</p>
+        </article>
+    );
+}
+
 export default async function Page() {
     const session = await getServerSession(authConfig);
     if (!session?.user) {
@@ -30,54 +51,21 @@ export default async function Page() {
         await TrackingRepository.migrateFromOldStoreAsync();
     }
     catch (error) {
-
-        const errorMessage = error instanceof Error
-            ? error.message
-            : JSON.stringify(error);
-
-        return (
-            <article>
-                <h1>Errore</h1>
-                <p>Si è verificato un errore durante la migrazione dei dati.</p>
-                <p>{errorMessage}</p>
-            </article>
-        )
+        return generateErrorPage(error, 'TrackingRepository.migrateFromOldStoreAsync');
     }
 
     try {
         trackingQrStatistics = await TrackingRepository.getStatisticsAsync();
     }
     catch (error) {
-
-        const errorMessage = error instanceof Error
-            ? error.message
-            : JSON.stringify(error);
-
-        return (
-            <article>
-                <h1>Errore</h1>
-                <p>Si è verificato un errore durante il recupero delle statistiche tracking.</p>
-                <p>{errorMessage}</p>
-            </article>
-        )
+        return generateErrorPage(error, 'TrackingRepository.getStatisticsAsync');
     }
 
     try {
         newsletterStatistics = await NewsletterRepository.getStatisticsAsync();
     }
     catch (error) {
-
-        const errorMessage = error instanceof Error
-            ? error.message
-            : JSON.stringify(error);
-
-        return (
-            <article>
-                <h1>Errore</h1>
-                <p>Si è verificato un errore durante il recupero delle statistiche newsletter.</p>
-                <p>{errorMessage}</p>
-            </article>
-        )
+        return generateErrorPage(error, 'NewsletterRepository.getStatisticsAsync');
     }
 
     const pageTitleSpan = `${title} / 👋🏻 ${session.user.name}`;
