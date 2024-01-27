@@ -3,7 +3,7 @@ import 'server-only';
 import {NewsletterIscrittiStatistics} from "./NewsletterIscrittiStatistics";
 import EmailValidator from "../../services/EmailValidator";
 import {FrontendException} from "../exceptions/FrontendException";
-import { getStore } from "@netlify/blobs";
+import {getStore, Store} from "@netlify/blobs";
 
 const storeName = "newsletter";
 const subscriptionsKey = "subscriptions";
@@ -13,6 +13,15 @@ interface EmailAddresses {
     dateUtc: string;
 }
 
+const getPersistedSubscriptions = async (store: Store) : Promise<EmailAddresses[]> => {
+    const persistedSubscriptionsJson = await store.get(
+        subscriptionsKey);
+
+    return persistedSubscriptionsJson
+        ? JSON.parse(persistedSubscriptionsJson) as EmailAddresses[]
+        : [];
+}
+
 const NewsletterRepository = {
 
     insertEmailAddressAsync: async (emailAddress: string) => {
@@ -20,12 +29,10 @@ const NewsletterRepository = {
         if (!EmailValidator.isValidEmailAddress(emailAddress))
             throw new FrontendException("Indirizzo email non valido");
 
-        const construction = getStore(storeName);
-        const subscriptions = await construction.get(
-            subscriptionsKey,
-            { type: 'json' }) as EmailAddresses[] ?? [];
+        const store = getStore(storeName);
+        const subscriptions = await getPersistedSubscriptions(store);
 
-        await construction.setJSON("subscriptions", { type: "common", finish: "bright" });
+        await store.setJSON("subscriptions", { type: "common", finish: "bright" });
 
         const emailAddressId = subscriptions.findIndex(x => x.emailAddress === emailAddress);
         const alreadyExists = emailAddressId >= 0;
@@ -36,7 +43,7 @@ const NewsletterRepository = {
                 emailAddress,
                 dateUtc: new Date().toUTCString()
             });
-            await construction.setJSON(subscriptionsKey, subscriptions);
+            await store.setJSON(subscriptionsKey, subscriptions);
         }
 
         // NB: non scrivo un messaggio tipo "eri già iscritto"
@@ -47,9 +54,7 @@ const NewsletterRepository = {
     getStatisticsAsync: async () : Promise<NewsletterIscrittiStatistics> => {
 
         const construction = getStore(storeName);
-        const subscriptions = await construction.get(
-            subscriptionsKey,
-            { type: 'json' }) as EmailAddresses[] ?? [];
+        const subscriptions= await getPersistedSubscriptions(construction);
 
         return new NewsletterIscrittiStatistics(
             subscriptions.map(x => x.emailAddress));

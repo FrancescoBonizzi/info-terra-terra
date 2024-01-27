@@ -15,6 +15,11 @@ export const NewsletterForm = () => {
 
     // NB: useFormStatus funziona solo dentro ai figli di un componente che ha il padre con <form>
     const [state, formAction] = useFormState(NewsletterSubmitAction, initialState);
+
+    if (!state) {
+        return  <FormError errors={'Errore inaspettato!'} />
+    }
+
     const isSuccess = state.success;
     const errors = state.errors;
 

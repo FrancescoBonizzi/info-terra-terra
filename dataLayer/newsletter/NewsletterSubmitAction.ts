@@ -12,24 +12,26 @@ export const NewsletterSubmitAction = async (
     _prevState: NewsletterSubmitOutput,
     formData: FormData) : Promise<NewsletterSubmitOutput>  => {
 
+    let output: NewsletterSubmitOutput = {
+        success: false,
+        errors: null
+    };
+
     try {
         await NewsletterRepository.insertEmailAddressAsync(
             formData.get('email') as string);
+        output.success = true;
     }
     catch (ex) {
         if (ex instanceof Error) {
-            return {
-                errors: ex.message
-            }
+            output.errors = ex.message;
+            output.success = false;
         }
         else {
-            return {
-                errors: 'Errore generico'
-            }
+            output.errors = 'Errore generico';
+            output.success = false;
         }
     }
 
-    return {
-        success: true
-    }
+    return output;
 }
