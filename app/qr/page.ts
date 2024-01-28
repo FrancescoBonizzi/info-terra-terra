@@ -59,7 +59,7 @@ export default async function Page({
     }
 
     // Lo sparo per i fatti suoi così non impatta il tempo di risposta
-    void TrackingRepository.insertQrOpenAsync({
+    await TrackingRepository.insertQrOpenAsync({
         trackingSlug: trackingSlug,
         os: headersList.get('user-agent'),
         referer: headersList.get('referer'),
