@@ -1,8 +1,8 @@
 import 'server-only';
 
+import {Client} from 'pg';
 import Configurations from "../Configurations";
 import {NewsletterIscrittiStatistics} from "./NewsletterIscrittiStatistics";
-import sql from "mssql";
 import EmailValidator from "../../services/EmailValidator";
 import {FrontendException} from "../exceptions/FrontendException";
 
@@ -10,28 +10,31 @@ const NewsletterRepository = {
 
     insertEmailAddressAsync: async (emailAddress: string) => {
 
-        if (!EmailValidator.isValidEmailAddress(emailAddress))
+        if (!EmailValidator.isValidEmailAddress(emailAddress)) {
             throw new FrontendException("Indirizzo email non valido");
+        }
 
-        const connection = await sql.connect(Configurations.sqlConnectionString);
-        const emailAddressId = await connection
-            .request()
-            .input("emailAddress", sql.VarChar, emailAddress)
-            .query<number | null>(
-                'SELECT TOP 1 id ' +
-                'FROM Newsletter.EmailAddresses ' +
-                'WHERE EmailAddress = @emailAddress');
-        const alreadyExists = emailAddressId.recordset.length > 0
-            && emailAddressId.recordset[0] !== null;
+        const client = new Client(Configurations.postgresConfiguration);
+        await client.connect();
 
-        if (!alreadyExists)
-        {
-            await connection
-                .request()
-                .input("emailAddress", sql.VarChar, emailAddress)
-                .query(
+        try {
+            const result = await client.query(
+                'SELECT id FROM Newsletter.EmailAddresses WHERE EmailAddress = $1 LIMIT 1',
+                [emailAddress]
+            );
+
+            const alreadyExists = result.rows.length > 0;
+
+            if (!alreadyExists) {
+                await client.query(
                     `INSERT INTO Newsletter.EmailAddresses (EmailAddress, DateUtc)
-                    VALUES (@emailAddress, GETUTCDATE())`);
+                VALUES ($1, NOW())`,
+                    [emailAddress]
+                );
+            }
+        }
+        finally {
+            await client.end();
         }
 
         // NB: non scrivo un messaggio tipo "eri già iscritto"
@@ -39,22 +42,21 @@ const NewsletterRepository = {
         // email è già stato iscritto o meno.
     },
 
-    getStatisticsAsync: async () : Promise<NewsletterIscrittiStatistics> => {
+    getStatisticsAsync: async (): Promise<NewsletterIscrittiStatistics> => {
 
-        const connection = await sql.connect(Configurations.sqlConnectionString);
+        const client = new Client(Configurations.postgresConfiguration);
+        await client.connect();
 
         try {
-            const allEmail = (await connection
-                .query(
-                    `SELECT emailAddress 
-                FROM Newsletter.EmailAddresses 
-                ORDER BY DateUtc DESC`)).recordset as {emailAddress: string}[];
+            const {rows} = await client.query(
+                `SELECT emailAddress
+            FROM Newsletter.EmailAddresses
+            ORDER BY DateUtc DESC`);
 
-            return new NewsletterIscrittiStatistics(
-                allEmail.map(x => x.emailAddress));
+            return new NewsletterIscrittiStatistics(rows.map(x => x.emailAddress));
         }
         finally {
-            await connection.close();
+            await client.end();
         }
     }
 }

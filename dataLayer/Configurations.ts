@@ -1,7 +1,14 @@
 import 'server-only';
+import {ClientConfig} from "pg";
 
 const Configurations = {
-    sqlConnectionString: 'Server=tcp:infoterraterra.database.windows.net,1433;Initial Catalog=infoterraterra;Persist Security Info=False;User ID=infoterraterra-admin;Password=migroq-viCbok-1sanqo;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
+    postgresConfiguration: {
+        user: 'frcddqxp',
+        host: 'hattie.db.elephantsql.com',
+        database: 'frcddqxp',
+        password: 'XswmXzt0UZHl3BBOFwJa_inE_R9yM4NW',
+        port: 5432
+    } as ClientConfig
 };
 
 export default Configurations;
