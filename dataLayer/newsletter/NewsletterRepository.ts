@@ -19,7 +19,7 @@ const NewsletterRepository = {
 
         try {
             const result = await client.query(
-                'SELECT id FROM Newsletter.EmailAddresses WHERE EmailAddress = $1 LIMIT 1',
+                'SELECT "Id" FROM "Newsletter"."EmailAddresses" WHERE "EmailAddress" = $1 LIMIT 1',
                 [emailAddress]
             );
 
@@ -27,7 +27,7 @@ const NewsletterRepository = {
 
             if (!alreadyExists) {
                 await client.query(
-                    `INSERT INTO Newsletter.EmailAddresses (EmailAddress, DateUtc)
+                    `INSERT INTO "Newsletter"."EmailAddresses" ("EmailAddress", "DateUtc")
                 VALUES ($1, NOW())`,
                     [emailAddress]
                 );
@@ -49,11 +49,11 @@ const NewsletterRepository = {
 
         try {
             const {rows} = await client.query(
-                `SELECT emailAddress
-            FROM Newsletter.EmailAddresses
-            ORDER BY DateUtc DESC`);
+                `SELECT "EmailAddress"
+            FROM "Newsletter"."EmailAddresses"
+            ORDER BY "DateUtc" DESC`);
 
-            return new NewsletterIscrittiStatistics(rows.map(x => x.emailAddress));
+            return new NewsletterIscrittiStatistics(rows.map(x => x.EmailAddress));
         }
         finally {
             await client.end();

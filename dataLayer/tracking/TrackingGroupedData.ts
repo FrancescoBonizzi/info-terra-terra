@@ -1,11 +1,11 @@
 import {Volantino} from "../volantini/Volantino";
 
 export interface TrackingGroupedData {
-    idVolantino: number;
-    citta?: string;
-    via?: string;
-    luogo?: string;
-    howMany: number;
+    IdVolantino: number;
+    Citta?: string;
+    Via?: string;
+    Luogo?: string;
+    HowMany: number;
     volantino: Volantino;
 }
 

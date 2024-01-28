@@ -13,6 +13,8 @@ export class TrackingQrOpenStatistics {
         // Counter globali
         const globalCounters: KeyValuePair<string, string>[] = [];
 
+        console.log("trackingGroupedData", trackingGroupedData);
+
         if (!trackingGroupedData || trackingGroupedData.length === 0) {
             this.globalCounters = globalCounters;
             return;
@@ -20,17 +22,17 @@ export class TrackingQrOpenStatistics {
 
         globalCounters.push({
             key: "Numero totale QR aperti",
-            value: trackingGroupedData.reduce((acc, d) => acc + d.howMany, 0).toString()
+            value: trackingGroupedData.reduce((acc, d) => acc + d.HowMany, 0).toString()
         });
 
         const qrApertiPerCitta = trackingGroupedData
             .reduce((acc, d) => {
-                const existing = acc.find(c => c.key === d.citta);
+                const existing = acc.find(c => c.key === d.Citta);
                 if (existing) {
-                    existing.value += d.howMany;
+                    existing.value += d.HowMany;
                 }
                 else {
-                    acc.push({key: d.citta!, value: d.howMany});
+                    acc.push({key: d.Citta!, value: d.HowMany});
                 }
                 return acc;
             }, [] as KeyValuePair<string, number>[]);
@@ -57,12 +59,12 @@ export class TrackingQrOpenStatistics {
 
         const qrApertiPerVolantino = (trackingGroupedData || [])
             .reduce((acc, d) => {
-                const existing = acc.find(c => c.idVolantino === d.idVolantino);
+                const existing = acc.find(c => c.idVolantino === d.IdVolantino);
                 if (existing) {
                     existing.data.push(d);
                 }
                 else {
-                    acc.push({idVolantino: d.idVolantino, data: [d]});
+                    acc.push({idVolantino: d.IdVolantino, data: [d]});
                 }
                 return acc;
             }, [] as { idVolantino: number, data: TrackingGroupedData[] }[]);
@@ -71,17 +73,17 @@ export class TrackingQrOpenStatistics {
             singleVolantinoStatistics.push(
                 ...qrApertiPerVolantino.map(c => {
                     const counters: KeyValuePair<string, string>[] = [
-                        {key: "Numero QR aperti", value: c.data.reduce((acc, x) => acc + x.howMany, 0).toString()}
+                        {key: "Numero QR aperti", value: c.data.reduce((acc, x) => acc + x.HowMany, 0).toString()}
                     ];
 
                     const numeroQrApertiPerCitta = c.data
                         .reduce((acc, d) => {
-                            const existing = acc.find(x => x.key === d.citta);
+                            const existing = acc.find(x => x.key === d.Citta);
                             if (existing) {
-                                existing.value += d.howMany;
+                                existing.value += d.HowMany;
                             }
                             else {
-                                acc.push({key: d.citta!, value: d.howMany});
+                                acc.push({key: d.Citta!, value: d.HowMany});
                             }
                             return acc;
                         }, [] as KeyValuePair<string, number>[])
@@ -91,12 +93,12 @@ export class TrackingQrOpenStatistics {
 
                     const numeroQrApertiPerLuogo = c.data
                         .reduce((acc, d) => {
-                            const existing = acc.find(x => x.key === d.luogo);
+                            const existing = acc.find(x => x.key === d.Luogo);
                             if (existing) {
-                                existing.value += d.howMany;
+                                existing.value += d.HowMany;
                             }
                             else {
-                                acc.push({key: d.luogo!, value: d.howMany});
+                                acc.push({key: d.Luogo!, value: d.HowMany});
                             }
                             return acc;
                         }, [] as KeyValuePair<string, number>[])
@@ -105,15 +107,15 @@ export class TrackingQrOpenStatistics {
                         .sort((a, b) => a.key.localeCompare(b.key));
 
                     const numeroQrApertiPerCittaVia = c.data
-                        .filter(x => !!(x.via && x.citta))
+                        .filter(x => !!(x.Via && x.Citta))
                         .reduce((acc, d) => {
-                            const key = `${d.citta} - ${d.via}`;
+                            const key = `${d.Citta} - ${d.Via}`;
                             const existing = acc.find(x => x.key === key);
                             if (existing) {
-                                existing.value += d.howMany;
+                                existing.value += d.HowMany;
                             }
                             else {
-                                acc.push({key: key, value: d.howMany});
+                                acc.push({key: key, value: d.HowMany});
                             }
                             return acc;
                         }, [] as KeyValuePair<string, number>[])

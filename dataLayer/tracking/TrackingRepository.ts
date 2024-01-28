@@ -19,14 +19,14 @@ const TrackingRepository = {
 
     insertQrOpenAsync: async (trackingData: QrOpen) => {
 
-        const client = new Client(Configurations.postgresConnectionString);
+        const client = new Client(Configurations.postgresConfiguration);
         await client.connect();
 
         try {
             await client
                 .query(`
-            INSERT INTO Tracking.QrOpen
-            (Ip, Os, Referer, Slug, IdVolantino, Citta, Via, Luogo, DateUtc)
+            INSERT INTO "Tracking"."QrOpen"
+            ("Ip", "Os", "Referer", "Slug", "IdVolantino", "Citta", "Via", "Luogo", "DateUtc")
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW())`,
                     [
                         trackingData.ip,
@@ -46,17 +46,17 @@ const TrackingRepository = {
 
     getStatisticsAsync: async (): Promise<TrackingQrOpenStatistics> => {
 
-        const client = new Client(Configurations.postgresConnectionString);
+        const client = new Client(Configurations.postgresConfiguration);
         await client.connect();
 
         try {
             const result = await client
                 .query(`
-            SELECT idVolantino, citta, via, luogo, COUNT(*) AS howMany
-            FROM Tracking.QrOpen
-            WHERE IdVolantino IS NOT NULL
-            GROUP BY IdVolantino, Citta, Via, Luogo
-            ORDER BY IdVolantino DESC
+            SELECT "IdVolantino", "Citta", "Via", "Luogo", COUNT(*)::int AS "HowMany"
+            FROM "Tracking"."QrOpen"
+            WHERE "IdVolantino" IS NOT NULL
+            GROUP BY "IdVolantino", "Citta", "Via", "Luogo"
+            ORDER BY "IdVolantino" DESC
         `);
 
             const groupedData: TrackingGroupedData[] = result.rows;
@@ -66,7 +66,7 @@ const TrackingRepository = {
             }
 
             for (const data of groupedData) {
-                const volantino = VolantiniRepository.getById(data.idVolantino);
+                const volantino = VolantiniRepository.getById(data.IdVolantino);
 
                 if (volantino) {
                     data.volantino = volantino;
