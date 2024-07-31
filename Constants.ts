@@ -9,7 +9,6 @@ const Constants= {
     AiutaciPageSlug: "/aiutaci",
     ManifestoPageSlug: "/manifesto",
     VolantiniPageSlug: "/volantini",
-    NewsletterPageSlug: "/newsletter",
     QrPageSlug: "/qr",
     AdminPageSlug: "/admin",
     LoginPageSlug: "/login",

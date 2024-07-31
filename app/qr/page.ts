@@ -1,11 +1,7 @@
 import {redirect} from "next/navigation";
-import {QrOpenRequest} from "../../dataLayer/tracking/QrOpenRequest";
 import Constants from "../../Constants";
 import VolantiniRepository from "../../dataLayer/volantini/VolantiniRepository";
-import {TrackingSlug} from "../../dataLayer/tracking/TrackingSlug";
-import TrackingRepository from "../../dataLayer/tracking/TrackingRepository";
-import {headers} from 'next/headers'
-import StringHelper from "../../services/StringHelper";
+import {QrOpenRequest} from "../../dataLayer/tracking/QrOpenRequest";
 
 export default async function Page({
     searchParams,
@@ -40,36 +36,6 @@ export default async function Page({
     if (!volantino) {
         return redirect(Constants.VolantiniPageSlug);
     }
-
-    const headersList = headers();
-
-    // Purtroppo devo ricostruirlo perchè NextJs non mi dà accesso by design alla query string
-    const qrRequestSearchParams= Object
-        .entries(searchParams)
-        .filter(([, value]) => !StringHelper.isNullOrWhitespace(value))
-        .map(([key, value]) => `${key}=${value}`)
-        .join('&');
-
-    const trackingSlug: TrackingSlug = {
-        idVolantino: idVolantino,
-        citta: qrRequest.citta,
-        via: qrRequest.via,
-        luogo: qrRequest.luogo,
-        slug: qrRequestSearchParams
-    }
-
-    // Lo sparo per i fatti suoi così non impatta il tempo di risposta
-    await TrackingRepository.insertQrOpenAsync({
-        trackingSlug: trackingSlug,
-        os: headersList.get('user-agent'),
-        referer: headersList.get('referer'),
-        ip: headersList.get('x-forwarded-for')
-            ?? headersList.get('x-real-ip')
-            ?? headersList.get('x-client-ip')
-            ?? headersList.get('x-forwarded')
-            ?? headersList.get('forwarded-for')
-            ?? headersList.get('cf-connecting-ip')
-    });
 
     return redirect(`${Constants.VolantiniPageSlug}/${volantino.slug}`);
 }

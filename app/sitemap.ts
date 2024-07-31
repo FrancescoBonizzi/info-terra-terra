@@ -10,7 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         Constants.AiutaciPageSlug,
         Constants.ManifestoPageSlug,
         Constants.VolantiniPageSlug,
-        Constants.NewsletterPageSlug,
         Constants.QrPageSlug
     ]
 

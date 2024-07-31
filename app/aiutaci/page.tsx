@@ -57,23 +57,6 @@ export default function Page() {
                     </div>
                 </section>
 
-                <section className="bg-alt">
-                    <div className="section-content">
-                        <h3><strong>Seguici</strong></h3>
-                        <p>
-                            <Link href={Constants.NewsletterPageSlug}
-                               className="action-button-secondary">Iscriviti</Link> alla nostra mailing
-                            list:
-                            se ci lasci tua email - che sarà trattata nel pieno rispetto della <a
-                            href={Constants.PrivacyPageSlug} className="action-button-secondary">privacy</a> -
-                            per <strong>ricevere aggiornamenti</strong> sulle nostre attività e sulle nostre campagne.
-                            Non invieremo più di una mail a settimana, promesso!
-                        </p>
-
-                        <Link href={Constants.NewsletterPageSlug} className="action-button">Seguici</Link>
-                    </div>
-                </section>
-
                 <section className="bg-cta text-white">
                     <div className="section-content">
                         <h3 className="margin0 padding0"><strong>Grazie</strong> per il tuo supporto!</h3>

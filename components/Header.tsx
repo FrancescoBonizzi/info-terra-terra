@@ -42,13 +42,6 @@ export const Header = () => {
                            href={Constants.VolantiniPageSlug}>I volantini</Link>
                     </li>
 
-                    <li>
-                        <Link className={PathNameHelper.getActiveClassButtonForLink(
-                            pathName,
-                            Constants.NewsletterPageSlug)}
-                           href={Constants.NewsletterPageSlug}>✉️ Iscriviti alla newsletter</Link>
-                    </li>
-
                 </ul>
             </nav>
 

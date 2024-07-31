@@ -94,19 +94,6 @@ export default function Page() {
                 </div>
             </section>
 
-            <section className="bg-cta text-white">
-                <div className="section-content">
-                    <h3><strong>Rimaniamo in contatto</strong></h3>
-
-                    <p>
-                        Se vuoi rimanere aggiornato sulle nostre attività
-                        lasciaci la tua <strong>mail</strong>, per favore. Non ti disturberemo, promesso!
-                    </p>
-
-                    <Link className="action-button margin-top-1rem" href={Constants.NewsletterPageSlug}>Iscriviti alla
-                        newsletter</Link>
-                </div>
-            </section>
         </>
     );
 }
