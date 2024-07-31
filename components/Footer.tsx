@@ -17,9 +17,8 @@ export const Footer = () => {
                 className={`text-link ${PathNameHelper.getActiveClassForLink(
                     pathName,
                     Constants.PrivacyPageSlug)}`} href={Constants.PrivacyPageSlug}
-                title="Leggi l'informativa sulla privacy">Privacy</Link> - <a className="text-link"
-                                                                           href={LinksHelper.mailto}
-                                                                           title="Mandaci una mail!">Contattaci</a></p>
+                title="Leggi l'informativa sulla privacy">Privacy</Link>
+            </p>
         </footer>
     )
 };
