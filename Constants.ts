@@ -3,6 +3,7 @@
 const Constants= {
     SiteTitle: "Info Terra Terra",
     SiteUrl: "https://infoterraterra.it",
+    EmailAddress: "contatti@infoterraterra.it",
     HomePageSlug: "/",
     PrivacyPageSlug: "/privacy",
     AiutaciPageSlug: "/aiutaci",

@@ -5,7 +5,6 @@ import PathNameHelper from "../services/PathNameHelper";
 import Constants from "../Constants";
 import React from "react";
 import Link from "next/link";
-import LinksHelper from "../services/LinksHelper";
 
 export const Footer = () => {
 
